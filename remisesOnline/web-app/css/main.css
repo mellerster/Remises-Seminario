@@ -48,7 +48,8 @@ body {
 }
 
 #grailsLogo {
-	background-color: #abbf78;
+	/*background-color: #abbf78;*/
+	background-color: #0099cc;
 }
 
 /* replace with .no-boxshadow body if you have modernizr available */
@@ -65,7 +66,7 @@ body {
 }
 
 a:link, a:visited, a:hover {
-	color: #48802c;
+	color: #4F81BD;
 }
 
 a:hover, a:active {
@@ -73,7 +74,8 @@ a:hover, a:active {
 }
 
 h1 {
-	color: #48802c;
+	/*color: #4F81BD;*/
+	color:#4F81BD;
 	font-weight: normal;
 	font-size: 1.25em;
 	margin: 0.8em 0 0.3em 0;
@@ -108,7 +110,8 @@ img {
 }
 
 .footer {
-	background: #abbf78;
+	/*background: #abbf78;*/
+	background: #0099cc;
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
@@ -184,7 +187,7 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create , .nav a.remises, .nav a.logout, .nav a.choferes {
+.nav a.home, .nav a.list, .nav a.create , .nav a.remises, .nav a.logout, .nav a.choferes, .nav a.reservas {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -208,6 +211,10 @@ img {
 
 .nav a.choferes {
 	background-image: url(../images/skin/group.png);
+}
+
+.nav a.reservas {
+	background-image: url(../images/skin/time_go.png);
 }
 
 .nav a.logout {
@@ -295,7 +302,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .required-indicator {
-	color: #48802C;
+	color: #4F81BD;
 	display: inline-block;
 	font-weight: bold;
 	margin-left: 0.3em;
