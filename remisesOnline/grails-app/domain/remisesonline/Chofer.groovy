@@ -6,6 +6,7 @@ class Chofer {
 	String telefono
 	String direccion
 	String licencia
+	static belongsTo =  [agencia : Agencia]
 	
     static constraints = {
 		dni unique :true, blank : false, nullable:false , minValue:1000000

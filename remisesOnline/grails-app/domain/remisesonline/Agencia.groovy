@@ -5,7 +5,7 @@ class Agencia {
 	String telefono
 	String codigo
 	
-	static hasMany = [remises : Remise]
+	static hasMany = [remises : Remise, choferes : Chofer]
 	
     static constraints = {
 		nombre nullable : false, unique : true
