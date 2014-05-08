@@ -184,7 +184,7 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create {
+.nav a.home, .nav a.list, .nav a.create , .nav a.remises, .nav a.logout, .nav a.choferes {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -200,6 +200,18 @@ img {
 
 .nav a.create {
 	background-image: url(../images/skin/database_add.png);
+}
+
+.nav a.remises {
+	background-image: url(../images/skin/car.png);
+}
+
+.nav a.choferes {
+	background-image: url(../images/skin/group.png);
+}
+
+.nav a.logout {
+	background-image: url(../images/skin/door_in.png);
 }
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */

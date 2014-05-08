@@ -3,8 +3,8 @@ package remisesonline
 class Remise {
 	String patente
 	byte[] foto
+	Chofer chofer
 	
-	static hasOne =  [chofer : Chofer]
 	static hasMany = [comodidades : Comodidad]
 	static belongsTo = [agencia : Agencia]
 	
