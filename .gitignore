@@ -215,3 +215,9 @@ pip-log.txt
 .mr.developer.cfg
 
 target/
+
+#############
+## IntelliJ IDEA 
+#############
+
+.idea/
