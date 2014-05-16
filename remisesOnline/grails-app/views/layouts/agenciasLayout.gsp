@@ -19,7 +19,7 @@
 		<r:layoutResources />
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'remisesonline_logo.png')}" alt="Grails"/></a></div>
+		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'remises_new_logo.png')}" alt="Grails"/></a></div>
 		<div><g:render template="/Menuagencia"></g:render></div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
