@@ -9,7 +9,7 @@
 		<li><g:link class="choferes" controller="chofer" action="index">
 				Mis Choferes
 			</g:link></li>
-		<li><g:link class="reservas" action="index">
+		<li><g:link class="reservas" controller="reserva" action="index">
 				Reservas
 			</g:link></li>
 		<li><a class="logout"  href="${createLink(uri: '/')}">

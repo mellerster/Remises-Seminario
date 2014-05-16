@@ -1,7 +1,5 @@
 package remisesonline
 
-import java.util.Date
-
 class Reserva {
 	//Lugar destino
 	//Remise remise
@@ -11,6 +9,12 @@ class Reserva {
 //		destino nullable:false
 //		remise nullable:false
         //fechaReserva min: new Date(), max: (new Date()) + 30
-        fechaReserva(validator: {return (it > new Date())})
+        fechaReserva(
+                validator: {
+                    Date downLimit = new Date()
+                    Date upLimit = downLimit + 30
+
+                    return (it > downLimit && it < upLimit )
+        })
     }
 }
