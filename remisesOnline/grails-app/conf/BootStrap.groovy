@@ -1,5 +1,5 @@
 import remisesonline.Comodidad
-
+import remisesonline.Lugar
 
 class BootStrap {
 
@@ -15,6 +15,9 @@ class BootStrap {
 		comodidad = new Comodidad()
 		comodidad.descripcion = "Baul Grande"
 		comodidad.save()
+		
+		def lugar = new Lugar(direccion : 'H. Yrigoyen 370, CABA')
+		lugar.save()
     }
     def destroy = {
     }
