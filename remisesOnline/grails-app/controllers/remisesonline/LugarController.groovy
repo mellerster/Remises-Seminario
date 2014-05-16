@@ -2,5 +2,5 @@ package remisesonline
 
 class LugarController {
 
-    def index() { }
+	def scaffold = true
 }

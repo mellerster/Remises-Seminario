@@ -2,5 +2,5 @@ package remisesonline
 
 class ItinerarioController {
 
-    def index() { }
+    def scaffold = true
 }

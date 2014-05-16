@@ -9,7 +9,7 @@ class Chofer {
 	static belongsTo =  [agencia : Agencia]
 	
     static constraints = {
-		dni unique :true, blank : false, nullable:false , minValue:1000000
+		dni unique:true, blank:false, nullable:false, minValue:1000000
 		nombre blank:false
 		telefono()
 		direccion()

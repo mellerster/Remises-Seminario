@@ -2,5 +2,5 @@ package remisesonline
 
 class ReservaController {
 
-    def index() { }
+	def scaffold = true
 }
