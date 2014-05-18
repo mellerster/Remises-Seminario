@@ -19,12 +19,12 @@ class BootStrap {
 		
 		def itinerario = new Itinerario(descripcion: 'Un paseo por CABA')
 		
-		def lugar = new Lugar(direccion: 'H. Yrigoyen 370, CABA')
+		def lugar = new Lugar(direccion: 'H. Yrigoyen 370, CABA', descripcion: 'en plaza de mayo')
 		lugar.save()
 		
 		itinerario.addToLugares(lugar)
 		
-		lugar = new Lugar(direccion: 'Corrientes 1400, CABA').save(failOnError: true)
+		lugar = new Lugar(direccion: 'Corrientes 1400, CABA', descripcion: 'no se donde es').save(failOnError: true)
 		
 		itinerario.addToLugares(lugar)
 		
