@@ -1,4 +1,5 @@
 import remisesonline.Comodidad
+import remisesonline.Itinerario
 import remisesonline.Lugar
 
 class BootStrap {
@@ -16,8 +17,18 @@ class BootStrap {
 		comodidad.descripcion = "Baul Grande"
 		comodidad.save()
 		
-		def lugar = new Lugar(direccion : 'H. Yrigoyen 370, CABA')
+		def itinerario = new Itinerario(descripcion: 'Un paseo por CABA')
+		
+		def lugar = new Lugar(direccion: 'H. Yrigoyen 370, CABA')
 		lugar.save()
+		
+		itinerario.addToLugares(lugar)
+		
+		lugar = new Lugar(direccion: 'Corrientes 1400, CABA').save(failOnError: true)
+		
+		itinerario.addToLugares(lugar)
+		
+		itinerario.save(failOnError: true)
     }
     def destroy = {
     }
