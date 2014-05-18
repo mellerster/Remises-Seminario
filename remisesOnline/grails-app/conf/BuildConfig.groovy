@@ -79,5 +79,9 @@ grails.project.dependency.resolution = {
         //compile ":less-asset-pipeline:1.5.3"
         //compile ":coffee-asset-pipeline:1.5.0"
         //compile ":handlebars-asset-pipeline:1.3.0.1"
+		
+		//Plugins agregados a nuestro tp
+		compile ":class-domain-uml:0.1.5"
+		compile ":blueprint:1.0.2"
     }
 }
