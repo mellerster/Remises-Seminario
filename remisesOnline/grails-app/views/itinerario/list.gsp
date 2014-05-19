@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pomodoro Task Manager</title>
+    <title>Tema Itinerarios</title>
     <blueprint:resources/>
     <link href="${resource(dir: 'css', file: 'prueba.css')}" type="text/css" rel="stylesheet">
 </head>
