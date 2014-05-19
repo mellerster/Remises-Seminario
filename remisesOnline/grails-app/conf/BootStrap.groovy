@@ -1,6 +1,7 @@
 import remisesonline.Comodidad
 import remisesonline.Itinerario
 import remisesonline.Lugar
+import remisesonline.Agencia
 
 class BootStrap {
 
@@ -29,6 +30,9 @@ class BootStrap {
 		itinerario.addToLugares(lugar)
 		
 		itinerario.save(failOnError: true)
+		
+		def agencia = new Agencia(nombre: 'El remis loco', telefono: '4313-3565', codigo: 'que demonios es esto?')
+		agencia.save(failOnError: true)
     }
     def destroy = {
     }

@@ -11,6 +11,6 @@ class Lugar {
     }
 	
 	String toString() {
-		return direccion
+		return "${direccion}. ${descripcion}"
 	}
 }
