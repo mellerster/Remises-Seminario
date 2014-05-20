@@ -3,6 +3,9 @@ package remisesonline
 class Lugar {
 	String direccion
 	String descripcion
+	
+	static hasMany = [itinerarios: Asociacion]
+	//static belongsTo = [Itinerario]
 
     static constraints = {
 		direccion unique:true, blank:false, nullable:false

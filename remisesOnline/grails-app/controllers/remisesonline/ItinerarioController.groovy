@@ -4,9 +4,9 @@ class ItinerarioController {
 
     def scaffold = true
 	
-	def index = {
+	//def index = {
 		//redirect(action: list)
-	}
+	//}
 	
 	def list = {
 		def itinerarios = Itinerario.list(sort: "descripcion", order: "asc")

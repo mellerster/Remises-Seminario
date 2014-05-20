@@ -1,7 +1,7 @@
 package remisesonline
 
 class Reserva {
-	//Lugar destino
+	Itinerario destinos
 	Remise remise
 	Date fechaReserva
 	String estado
@@ -10,7 +10,7 @@ class Reserva {
 	static belongsTo = [agencia: Agencia]
 
     static constraints = {
-//		destino nullable:false
+		destinos nullable:true
 		remise nullable:true //en la reserva puede preferir algun remise o no
 		fechaReserva (validator: {
 				def now = new Date()

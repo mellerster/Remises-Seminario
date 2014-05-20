@@ -3,6 +3,7 @@ import remisesonline.Itinerario
 import remisesonline.Lugar
 import remisesonline.Agencia
 import remisesonline.Chofer
+import remisesonline.Asociacion
 
 class BootStrap {
 
@@ -21,34 +22,33 @@ class BootStrap {
 		
 		def itinerario = new Itinerario(descripcion: 'Un paseo por CABA')
 		
+		itinerario.save(failOnError: true)
+		
 		def lugar = new Lugar(direccion: 'H. Yrigoyen 370, CABA', descripcion: 'en plaza de mayo')
 		lugar.save()
 		
-		itinerario.addToLugares(lugar)
+		def asociacion = new Asociacion(itinerario: itinerario, lugar: lugar, orden: 1)
+		
+		itinerario.addToLugares(asociacion)
 		
 		lugar = new Lugar(direccion: 'Corrientes 1400, CABA',\
 						descripcion: 'no se donde es').save(failOnError: true)
-		
-		itinerario.addToLugares(lugar)
-		
-		itinerario.save(failOnError: true)
+						
+		asociacion = new Asociacion(itinerario: itinerario, lugar: lugar, orden: 2)
+		itinerario.addToLugares(asociacion)
 		
 		def agencia = new Agencia(nombre: 'El remis loco', telefono: '4313-3565',\
 								codigo: 'que demonios es esto?')
 		agencia.save(failOnError: true)
 		
-		
 		def chofer = new Chofer(dni: '33.333.333', nombre: 'Hugo',\
 								licencia: '23f', telefono: '153',\
 								direccion: 'grt 67', agencia: agencia)
-		chofer.save(failOnError: true)
 		agencia.addToChoferes(chofer)
 		chofer = new Chofer(dni: '55.333.555', nombre: 'Diego',\
 							licencia: 'aaa514', telefono: '4313-3565',\
 							direccion: 'xx 152', agencia: agencia)
-		chofer.save(failOnError: true)
 		agencia.addToChoferes(chofer)
-		agencia.save(failOnError: true)
 		
     }
     def destroy = {
