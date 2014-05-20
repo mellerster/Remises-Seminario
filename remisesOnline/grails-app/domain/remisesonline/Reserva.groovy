@@ -5,6 +5,7 @@ class Reserva {
 	Remise remise
 	Date fechaReserva
 	String estado
+	Date creado = new Date()
 	
 	static belongsTo = [agencia: Agencia]
 

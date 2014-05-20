@@ -15,6 +15,6 @@ class LugarSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
-    }
+    // void "test something"() {
+    // }
 }
