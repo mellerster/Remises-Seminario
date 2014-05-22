@@ -4,7 +4,7 @@ class Remise {
 	String patente
 	byte[] foto
 	Chofer chofer
-	
+	def estado
 	static hasMany = [comodidades : Comodidad]
 	static belongsTo = [agencia : Agencia]
 	
@@ -13,6 +13,7 @@ class Remise {
 		comodidades min:0 
 		chofer nullable :false
 		foto nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */
+		estado inList: ["Con Pasajeros", "Vacio","Reservado"]
     }
 	
 	String toString() {
