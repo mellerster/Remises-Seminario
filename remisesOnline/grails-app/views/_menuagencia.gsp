@@ -1,6 +1,4 @@
-<!--<g:if test="${session.agencia }">-->
-
-<!--</g:if>-->
+<g:if test="${session.agencia }">
 <div class="nav" role="navigation">
 	<ul>
 		<li><g:link class="remises" controller="remise" action="index">
@@ -12,9 +10,12 @@
 		<li><g:link class="reservas" controller="reserva" action="index">
 				Reservas
 			</g:link></li>
+		<li>
+			Agencia: ${session.agencia }
+		</li>
 		<li><g:link class="logout" controller="agencia" action="logout">
 				Salir
 			</g:link></li>
 	</ul>
 </div>
-
+</g:if>

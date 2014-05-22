@@ -5,6 +5,15 @@ class AgenciaController {
 	
 	def logout(){
 		session.agencia = null
-		redirect(action:"index")
+		redirect(action:"login")
+	}
+	
+	def login(){
+		[agencias: Agencia.list()]
+	}
+	
+	def entrar(){
+		session.agencia = Agencia.findByNombre(params.agencia)
+		redirect action:'index' ,controller:'remise'
 	}
 }
