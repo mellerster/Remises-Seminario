@@ -37,8 +37,7 @@ class BootStrap {
 		asociacion = new Asociacion(itinerario: itinerario, lugar: lugar, orden: 2)
 		itinerario.addToLugares(asociacion)
 		
-		def agencia = new Agencia(nombre: 'El remis loco', telefono: '4313-3565',\
-								codigo: 'que demonios es esto?')
+		def agencia = new Agencia(nombre: 'El remis loco', telefono: '4313-3565')
 		agencia.save(failOnError: true)
 		
 		def chofer = new Chofer(dni: '33.333.333', nombre: 'Hugo',\
