@@ -12,9 +12,9 @@
 		<li><g:link class="reservas" controller="reserva" action="index">
 				Reservas
 			</g:link></li>
-		<li><a class="logout"  href="${createLink(uri: '/')}">
+		<li><g:link class="logout" controller="agencia" action="logout">
 				Salir
-			</a></li>
+			</g:link></li>
 	</ul>
 </div>
 
