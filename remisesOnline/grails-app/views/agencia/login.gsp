@@ -10,10 +10,13 @@
 		<table>
 			<tr>
 				<td><g:form action="entrar">
-						<g:select name="agencia" from="${agencias}"
+						<g:select name="agencia" from="${agencias}" class="many-to-one"
 							noSelection="['null':'Seleccione su agencia...']" />
-						<br />
-						<g:submitButton name="ingresar" value="Ingresar"/>
+						
+						<fieldset class="buttons">
+							<g:submitButton name="ingresar" class="ingresar" value="Ingresar" />
+						</fieldset>
+
 					</g:form></td>
 			</tr>
 			<tr>
