@@ -11,7 +11,7 @@
 				Reservas
 			</g:link></li>
 		<li>
-			Agencia: ${session.agencia }
+			<g:link controller="agencia" action="show" id="${session.agencia.id }">Agencia: ${session.agencia }</g:link>
 		</li>
 		<li><g:link class="logout" controller="agencia" action="logout">
 				Salir
