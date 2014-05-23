@@ -4,6 +4,7 @@ import remisesonline.Lugar
 import remisesonline.Agencia
 import remisesonline.Chofer
 import remisesonline.Asociacion
+import remisesonline.Remise
 
 class BootStrap {
 
@@ -37,7 +38,7 @@ class BootStrap {
 		asociacion = new Asociacion(itinerario: itinerario, lugar: lugar, orden: 2)
 		itinerario.addToLugares(asociacion)
 		
-		def agencia = new Agencia(nombre: 'El remis loco', telefono: '4313-3565')
+		def agencia = new Agencia(nombre: 'El remis loco', telefono: '4313-3565', email: 'remises@remisloco.com')
 		agencia.save(failOnError: true)
 		
 		def chofer = new Chofer(dni: '33.333.333', nombre: 'Hugo',\
@@ -48,6 +49,9 @@ class BootStrap {
 							licencia: 'aaa514', telefono: '4313-3565',\
 							direccion: 'xx 152', agencia: agencia)
 		agencia.addToChoferes(chofer)
+		
+		def remis = new Remise(patente:'DKP123', chofer:chofer,estado:'Vacio',agencia:agencia)
+		agencia.addToRemises(remis)
 		
     }
     def destroy = {

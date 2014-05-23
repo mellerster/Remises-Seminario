@@ -3,7 +3,7 @@ package remisesonline
 class Agencia {
 	String nombre
 	String telefono
-	int codigo
+	String email
 
 	static hasMany = [remises: Remise, choferes: Chofer]
 
@@ -11,18 +11,11 @@ class Agencia {
 		nombre nullable: false, unique: true
 		telefono blank: false
 		remises minSize: 0
+		email email:true
 	}
 
 	String toString(){
 		return nombre
 	}
 
-	def beforeInsert(){
-		def ultimaAgencia = Agencia.last()
-		if(ultimaAgencia){
-			codigo = ultimaAgencia.codigo + 1;
-		}else {
-			codigo = 1;
-		}
-	}
 }
