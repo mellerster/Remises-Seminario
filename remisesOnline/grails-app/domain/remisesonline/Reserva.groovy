@@ -8,7 +8,6 @@ class Reserva {
 	Date creado = new Date()
 	
 	static belongsTo = [agencia: Agencia, pasajero : Pasajero]
-	//static hasMany = [pasajeros : Pasajero]
 
     static constraints = {
 		destinos nullable:true
@@ -20,7 +19,6 @@ class Reserva {
 				if  (it < now || it > calendar.time) 
 					return ['invalid.rango']
 		})
-		estado inList: ['Abierto', 'Cerrado']
-	//	pasajeros minValue:1, maxValue:4
+		estado inList: ['Abierto', 'Cerrado']	
     }
 }
