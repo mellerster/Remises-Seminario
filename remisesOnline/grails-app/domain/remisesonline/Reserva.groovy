@@ -7,8 +7,8 @@ class Reserva {
 	String estado
 	Date creado = new Date()
 	
-	static belongsTo = [agencia: Agencia]
-	static hasMany = [pasajeros : Pasajero]
+	static belongsTo = [agencia: Agencia, pasajero : Pasajero]
+	//static hasMany = [pasajeros : Pasajero]
 
     static constraints = {
 		destinos nullable:true
@@ -21,6 +21,6 @@ class Reserva {
 					return ['invalid.rango']
 		})
 		estado inList: ['Abierto', 'Cerrado']
-		pasajeros minValue:1
+	//	pasajeros minValue:1, maxValue:4
     }
 }
