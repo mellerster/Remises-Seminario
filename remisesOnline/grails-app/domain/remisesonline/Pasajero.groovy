@@ -13,4 +13,8 @@ class Pasajero {
 		email email:true, blank:false, unique:true
 		telefono blank:false
     }
+	
+	String toString(){
+		return "${nombre} - ${email}" 
+	}
 }

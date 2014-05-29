@@ -94,7 +94,7 @@ a{
 				<h1><g:link action="login" controller="agencia"><g:img dir="images/skin" file="car.png"/>Soy Agencia</g:link></h1>
 			</div>
 			<div id="status" role="complementary">
-				<h1><g:img dir="images/skin" file="user.png"/>Soy Cliente</h1>
+				<h1><g:link action="login" controller="pasajero"><g:img dir="images/skin" file="user.png"/>Soy Pasajero</g:link></h1>
 			</div>
 		</div>
 	</div>

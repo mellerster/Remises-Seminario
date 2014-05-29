@@ -1,7 +1,7 @@
 <g:if test="${session.pasajero }">
 <div class="nav" role="navigation">
 	<ul>
-		<li><g:link class="remises" controller="reserva" action="lista">
+		<li><g:link class="remises" controller="reserva" action="index">
 				Mis Viajes
 			</g:link></li>
 		<li><g:link class="reservas" controller="reserva" action="create">

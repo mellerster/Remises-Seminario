@@ -187,7 +187,7 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create , .nav a.remises, .nav a.logout, .nav a.choferes, .nav a.reservas {
+.nav a.home, .nav a.list, .nav a.create , .nav a.remises, .nav a.logout, .nav a.choferes, .nav a.reservas , .nav a.pasajero {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -215,6 +215,10 @@ img {
 
 .nav a.reservas {
 	background-image: url(../images/skin/time_go.png);
+}
+
+.nav a.pasajero {
+	background-image: url(../images/skin/user.png);
 }
 
 .nav a.logout {
