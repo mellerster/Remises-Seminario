@@ -85,6 +85,10 @@ p {
 a{
 	text-decoration: none;
 }
+
+img{
+	padding-right: 10px;
+}
 </style>
 </head>
 <body>
