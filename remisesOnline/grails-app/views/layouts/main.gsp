@@ -21,6 +21,7 @@
 	<body>
 		<div id="grailsLogo" role="banner"><a href="${createLink(uri: '/')}"><img src="${resource(dir: 'images', file: 'remises_new_logo.png')}" alt="Grails"/></a></div>
 		<div><g:render template="/Menuagencia"></g:render></div>
+		<div><g:render template="/Menupasajero"></g:render></div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
