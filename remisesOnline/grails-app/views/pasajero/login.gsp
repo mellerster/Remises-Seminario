@@ -7,23 +7,20 @@
 </head>
 <body>
 	<div class="body">
-		<table>
-			<tr>
-				<td><g:form action="entrar">
-						<g:select name="pasajero" from="${pasajeros}" value="pasajero?.id" optionKey="id"  class="many-to-one"
-							noSelection="['null':'Seleccione sus datos...']" />
-						
-						<fieldset class="buttons">
-							<g:submitButton name="ingresar" class="ingresar" value="Ingresar" />
-						</fieldset>
-
-					</g:form></td>
-			</tr>
-			<tr>
-				<td><g:link action="create">Soy un nuevo pasajero</g:link></td>
-			</tr>
-
-		</table>
+		<g:form action="entrar">
+			<fieldset class="form">
+				<g:select name="pasajero" from="${pasajeros}" value="pasajero?.id"
+					optionKey="id" class="many-to-one"
+					noSelection="['null':'Seleccione sus datos...']" />
+			</fieldset>
+			<fieldset class="buttons">
+				<g:submitButton name="ingresar" class="ingresar" value="Ingresar"
+					action="entrar" />
+				<g:link class="nuevoPasajero" action="create">
+								Soy un nuevo pasajero
+							</g:link>
+			</fieldset>
+		</g:form>
 	</div>
 </body>
 </html>

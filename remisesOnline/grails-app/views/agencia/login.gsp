@@ -7,23 +7,17 @@
 </head>
 <body>
 	<div class="body">
-		<table>
-			<tr>
-				<td><g:form action="entrar">
-						<g:select name="agencia" from="${agencias}" class="many-to-one"
-							noSelection="['null':'Seleccione su agencia...']" />
-						
-						<fieldset class="buttons">
-							<g:submitButton name="ingresar" class="ingresar" value="Ingresar" />
-						</fieldset>
+		<g:form action="entrar">
+			<fieldset class="form">
+				<g:select name="agencia" from="${agencias}" class="many-to-one"
+					noSelection="['null':'Seleccione su agencia...']" />
+			</fieldset>
+			<fieldset class="buttons">
+				<g:submitButton name="ingresar" class="ingresar" value="Ingresar" />
+				<g:link action="create" class="nuevaAgencia">Soy una agencia nueva</g:link>
+			</fieldset>
 
-					</g:form></td>
-			</tr>
-			<tr>
-				<td><g:link action="create">Soy una agencia nueva</g:link></td>
-			</tr>
-
-		</table>
+		</g:form>
 	</div>
 </body>
 </html>
