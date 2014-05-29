@@ -20,7 +20,7 @@
 					</g:form></td>
 			</tr>
 			<tr>
-				<td><g:link action="create">Soy una nuevo pasajero</g:link></td>
+				<td><g:link action="create">Soy un nuevo pasajero</g:link></td>
 			</tr>
 
 		</table>
