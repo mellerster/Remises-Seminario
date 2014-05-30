@@ -83,5 +83,6 @@ grails.project.dependency.resolution = {
 		//Plugins agregados a nuestro tp
 		compile ":class-domain-uml:0.1.5"
 		compile ":blueprint:1.0.2"
+		compile ":mail:1.0.5"
     }
 }

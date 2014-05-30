@@ -17,4 +17,10 @@ class PasajeroController {
 		session.pasajero = Pasajero.get(params.pasajero)		
 		redirect action:'index' ,controller:'reserva'
 	}
+	/*
+	def pasajeroService
+	def solicitarAmistad(){
+		pasajeroService.enviarSolicitudAmistad(session.pasajero, session.pasajero)
+		render "email enviado"
+	}*/
 }
