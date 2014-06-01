@@ -17,20 +17,5 @@ class Agencia {
 	String toString(){
 		return nombre
 	}
-  
-  def reservasPendientes() {
-    return reservas.findAll { it.estado == 'Pendiente'}
-  }
-  
-  def reservasEnCurso() {
-    return reservas.findAll { it.estado == 'En Curso'}
-  }
-    
-  def reservasCanceladas() {
-    return reservas.findAll { it.estado == 'Cancelada'}
-  }
-    
-  def reservasCerradas() {
-    return reservas.findAll { it.estado == 'Cerrada'}
-  }
+
 }
