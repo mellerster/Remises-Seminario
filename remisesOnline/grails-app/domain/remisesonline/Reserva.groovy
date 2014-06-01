@@ -5,7 +5,7 @@ class Reserva {
 	Itinerario destinos = new Itinerario()
 	Remise remise
 	Date fechaReserva
-	String estado
+	String estado = ESTADOS_VALIDOS[0]
 	Date creado = new Date()
 	
 	static belongsTo = [agencia: Agencia, pasajero: Pasajero]

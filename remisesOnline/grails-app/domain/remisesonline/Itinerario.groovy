@@ -6,7 +6,11 @@ class Itinerario {
 	
 	static hasMany = [lugares: Asociacion]
 
-    static constraints = {
+  static constraints = {
 		descripcion blank: false, nullable: false
-    }
+  }
+  
+  String toString() {
+    return descripcion
+  }
 }
