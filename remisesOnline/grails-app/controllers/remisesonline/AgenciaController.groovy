@@ -22,7 +22,9 @@ class AgenciaController {
   }
   
   def listReservas() {
-    // session.agencia.reservas?.findAll {it.estado == params.estadoSeleccionado}
-    Reserva.findByEstado(params.estadoSeleccionado)
+    //session.agencia = Agencia.findByNombre(params.agencia) //No funca: no tengo el parametro agencia
+    //session.agencia.reservas?.findAll {it.estado == params.estadoSeleccionado}
+    def reservas = Reserva.findByEstado(params.estadoSeleccionado) //TODO: provisorio hasta que funque lo anterior
+    return [reservas: reservas]
   }
 }

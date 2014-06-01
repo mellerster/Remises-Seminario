@@ -9,13 +9,12 @@
 	<div class="body">
 		<g:form action="listReservas">
 			<fieldset class="form">
-				<g:select name="estadoSeleccionado" from="${estadosReservas}" class="many-to-one"
+				<g:select name="estadoSeleccionado" from="${estadosReservas}"
 					noSelection="['null':'Seleccione estado...']" />
 			</fieldset>
 			<fieldset class="buttons">
 				<g:submitButton name="listar" value="Listar" />
 			</fieldset>
-
 		</g:form>
 	</div>
 </body>

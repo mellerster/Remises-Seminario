@@ -14,7 +14,7 @@ class Agencia {
 		email email: true
 	}
 
-	String toString(){
+	String toString() {
 		return nombre
 	}
 
