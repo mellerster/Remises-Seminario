@@ -1,6 +1,7 @@
 package remisesonline
 
 class Reserva {
+  static final ESTADOS_VALIDOS = ['Pendiente', 'En curso', 'Cerrada', 'Cancelada']
 	Itinerario destinos = new Itinerario()
 	Remise remise
 	Date fechaReserva
@@ -19,6 +20,6 @@ class Reserva {
 				if  (it < now || it > calendar.time) 
 					return ['invalid.rango']
 		})
-		estado inList: ['Pendiente', 'En curso', 'Cerrada', 'Cancelada']	
+		estado inList: ESTADOS_VALIDOS	
     }
 }
