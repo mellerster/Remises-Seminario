@@ -8,8 +8,8 @@ class Lugar {
 	//static belongsTo = [Itinerario]
 
     static constraints = {
-		direccion unique:true, blank:false, nullable:false
-		descripcion unique:true, blank:false, nullable:false
+		direccion unique: true, blank: false, nullable: false
+		descripcion unique: true, blank: false, nullable: false
 		
     }
 	

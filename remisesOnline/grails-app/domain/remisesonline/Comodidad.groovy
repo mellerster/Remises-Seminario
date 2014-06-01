@@ -4,7 +4,7 @@ class Comodidad {
 	String descripcion
 	
     static constraints = {
-		descripcion unique:true, blank:false, nullable:false
+		descripcion unique: true, blank: false, nullable: false
     }
 	
 	String toString(){

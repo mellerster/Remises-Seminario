@@ -11,7 +11,7 @@ class Agencia {
 		nombre nullable: false, unique: true
 		telefono blank: false
 		remises minSize: 0
-		email email:true
+		email email: true
 	}
 
 	String toString(){

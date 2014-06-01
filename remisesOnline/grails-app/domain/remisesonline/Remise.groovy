@@ -5,14 +5,14 @@ class Remise {
 	byte[] foto
 	Chofer chofer
 	def estado
-	static hasMany = [comodidades : Comodidad]
-	static belongsTo = [agencia : Agencia]
+	static hasMany = [comodidades: Comodidad]
+	static belongsTo = [agencia: Agencia]
 	
 	static constraints = {
-		patente unique:true, nullable : false, blank : false
-		comodidades min:0 
-		chofer nullable :false
-		foto nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */
+		patente unique: true, nullable: false, blank: false
+		comodidades min: 0 
+		chofer nullable: false
+		foto nullable: true, maxSize: 1024 * 1024 * 2 /* 2MB */
 		estado inList: ["Con Pasajeros", "Vacio","Reservado"]
     }
 	
