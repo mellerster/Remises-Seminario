@@ -86,16 +86,17 @@ class BootStrap {
       
       def reserva = new Reserva(remise: remis, agencia: agencia, destinos: itinerario,\
                                 pasajero: pasajero, fechaReserva: new Date() + 1)
-      reserva.save(failOnError: true)
+      // reserva.save(failOnError: true)
+      
+      agencia.addToReservas(reserva)
       
       reserva = new Reserva(remise: remis, destinos: itinerario,\
                             fechaReserva: new Date() + 1)
       reserva.pasajero = Pasajero.findByNombre('Hugo el cliente')
-      reserva.agencia = Agencia.findByEmail('remises@remisloco.com')
+      agencia = Agencia.findByEmail('remises@remisloco.com')
+      reserva.agencia = agencia
+      agencia.addToReservas(reserva)
       reserva.estado = Reserva.ESTADOS_VALIDOS[1]
-      
-      reserva.save(failOnError: true)
-      
 		
     }
     
