@@ -61,6 +61,7 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.1'
 		compile ":famfamfam:1.0.1"
 		compile ":class-domain-uml:0.1.5"
+		compile ":console:1.3"
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.9" // or ":hibernate4:4.3.4"
         runtime ":database-migration:1.3.8"
