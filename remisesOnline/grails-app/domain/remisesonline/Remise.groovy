@@ -20,7 +20,7 @@ class Remise {
 		return  patente
 	}
 	
-	void agregarComodidad(Comodidad comodidad){
+	void agregarComodidad(Comodidad comodidad) {
 		if (!comodidades.contains(comodidad))
 			comodidades.add(comodidad);
 	}

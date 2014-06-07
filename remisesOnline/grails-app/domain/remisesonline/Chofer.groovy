@@ -16,7 +16,7 @@ class Chofer {
 		licencia()
     }
 	
-	String toString(){
+	String toString() {
 		return nombre
 	}
 }

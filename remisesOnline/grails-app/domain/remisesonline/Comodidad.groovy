@@ -7,7 +7,7 @@ class Comodidad {
 		descripcion unique: true, blank: false, nullable: false
     }
 	
-	String toString(){
+	String toString() {
 		return descripcion
 	}
 }
