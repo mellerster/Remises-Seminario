@@ -59,9 +59,8 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ":scaffolding:2.0.2"
         compile ':cache:1.1.1'
-		compile ":famfamfam:1.0.1"
-		compile ":class-domain-uml:0.1.5"
-		compile ":console:1.3"
+        compile ":famfamfam:1.0.1"
+		
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.9" // or ":hibernate4:4.3.4"
         runtime ":database-migration:1.3.8"
@@ -81,9 +80,11 @@ grails.project.dependency.resolution = {
         //compile ":coffee-asset-pipeline:1.5.0"
         //compile ":handlebars-asset-pipeline:1.3.0.1"
 		
-		//Plugins agregados a nuestro tp
-		compile ":class-domain-uml:0.1.5"
-		compile ":blueprint:1.0.2"
-		compile ":mail:1.0.5"
+        //Plugins agregados a nuestro tp
+        compile ":class-domain-uml:0.1.5"
+        compile ":blueprint:1.0.2"
+        compile ":mail:1.0.5"
+        compile ":joda-time:1.4"
+        compile ":console:1.3"
     }
 }
