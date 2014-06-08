@@ -22,7 +22,7 @@ class AgenciaController {
   }
   
   def listReservas() {
-	def agenciaLogueada = Agencia.get(session.agencia.id)
+    def agenciaLogueada = Agencia.get(session.agencia.id)
     def reservasEstado = agenciaLogueada?.reservas?.findAll {it.estado == params.estadoSeleccionado}
     return [reservas: reservasEstado] 
   }

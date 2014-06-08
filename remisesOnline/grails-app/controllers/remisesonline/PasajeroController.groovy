@@ -15,8 +15,14 @@ class PasajeroController {
 	
 	def entrar() {
 		session.pasajero = Pasajero.get(params.pasajero)		
-		redirect action: 'index', controller: 'reserva'
+		redirect action: 'listReservas', controller: 'pasajero'
 	}
+  
+  def listReservas() {
+    def pasajeroLogueado = Pasajero.get(session.pasajero.id)
+    return [reservas: pasajeroLogueado.reservas] 
+  }
+  
 	/*
 	def pasajeroService
 	def solicitarAmistad(){
