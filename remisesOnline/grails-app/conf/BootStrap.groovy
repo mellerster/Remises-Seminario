@@ -52,6 +52,10 @@ class BootStrap {
       chofer = new Chofer(dni: '99.393.595', nombre: 'Alfredo',\
                 licencia: 'vhf890', telefono: '4299-3500',\
                 direccion: 'copacabana 980', agencia: agencia)
+      def remisDKP123 = new Remise(patente:'DKP123', chofer:chofer,\
+                             estado: 'Vacio', agencia: agencia)
+      
+      agencia.addToRemises(remisDKP123)
       
       agencia.addToChoferes(chofer)
 
@@ -72,9 +76,9 @@ class BootStrap {
       
       agencia.addToChoferes(chofer)
       
-      def remis = new Remise(patente:'DKP123', chofer:chofer,\
+      def remisAAA000 = new Remise(patente:'AAA000', chofer:chofer,\
                              estado: 'Vacio', agencia: agencia)
-      agencia.addToRemises(remis)
+      agencia.addToRemises(remisAAA000)
       
       def pasajero = new Pasajero(nombre: 'Hugo el cliente', email: 'h@gmail.com',\
                               telefono: '54', fechaNacimiento: new Date())
@@ -84,13 +88,15 @@ class BootStrap {
                               telefono: '54', fechaNacimiento: new Date())
       pasajero.save(failOnError: true)
       
-      def reserva = new Reserva(remise: remis, agencia: agencia, destinos: itinerario,\
+      def reserva = new Reserva(remise: remisAAA000, agencia: agencia, destinos: itinerario,\
                                 pasajero: pasajero, fechaReserva: new Date() + 1)
       // reserva.save(failOnError: true)
       
       agencia.addToReservas(reserva)
       
-      reserva = new Reserva(remise: remis, destinos: itinerario,\
+      agencia = Agencia.findByNombre('El remis loco')
+      
+      reserva = new Reserva(remise: remisDKP123, destinos: itinerario,\
                             fechaReserva: new Date() + 1)
       reserva.pasajero = Pasajero.findByNombre('Hugo el cliente')
       agencia = Agencia.findByEmail('remises@remisloco.com')
