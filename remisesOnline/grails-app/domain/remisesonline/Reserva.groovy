@@ -7,7 +7,7 @@ class Reserva {
 	Date fechaReserva
 	String estado = ESTADOS_VALIDOS[0]
 	Date creado = new Date()
-	
+
 	static belongsTo = [agencia: Agencia, pasajero: Pasajero]
 
 	static constraints = {
@@ -23,12 +23,12 @@ class Reserva {
 				def now = new Date()
 				def calendar = now.toCalendar()
 				calendar.add(Calendar.MONTH, 1)
-				if	(it < now || it > calendar.time) 
+				if	(it < now || it > calendar.time)
 					return ['invalid.rango']
 		}
-		estado inList: ESTADOS_VALIDOS	
+		estado inList: ESTADOS_VALIDOS
 	}
-	
+
 	String toString() {
 		"$destinos $fechaReserva $estado"
 	}

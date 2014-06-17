@@ -8,13 +8,13 @@ class Chofer {
 	String licencia
 	static belongsTo = [agencia: Agencia]
 	
-    static constraints = {
+	static constraints = {
 		dni unique: true, blank: false, nullable: false, minValue: 1000000
 		nombre blank: false
 		telefono()
 		direccion()
 		licencia()
-    }
+	}
 	
 	String toString() {
 		return nombre

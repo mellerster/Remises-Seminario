@@ -2,7 +2,7 @@ package remisesonline
 
 class ChoferController {
 
-    def scaffold = true
+	def scaffold = true
 	
 	def index(Integer max) {
 		params.max = Math.min(max ?: 10, 100)

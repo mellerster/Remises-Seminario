@@ -7,16 +7,16 @@ class Pasajero {
 	Date fechaNacimiento
 	Set destinosFrecuentes = []
 	Set viajes = []
-	
+
 	static hasMany = [amigos: Pasajero, reservas: Reserva, destinosFrecuentes: Parada, viajes: Itinerario]
-	
+
 	static constraints = {
 		nombre nullable: false, blank: false
 		email email: true, blank: false, unique: true
 		telefono blank: false
 	}
-	
-	String toString(){
-		return "${nombre} - ${email}" 
+
+	String toString() {
+		return "${nombre} - ${email}"
 	}
 }

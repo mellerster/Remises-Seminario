@@ -2,7 +2,7 @@ package remisesonline
 
 class ItinerarioController {
 
-    def scaffold = true
+	def scaffold = true
 	
 	//def index = {
 		//redirect(action: list)
@@ -10,7 +10,6 @@ class ItinerarioController {
 	
 	def list = {
 		def itinerarios = Itinerario.list(sort: "descripcion", order: "asc")
-		
 		return [itinerarios: itinerarios]
 	}
 }
