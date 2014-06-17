@@ -2,7 +2,7 @@ package remisesonline
 
 class PasajeroController {
 
-    def scaffold = true
+	def scaffold = true
 	
 	def logout() {
 		session.pasajero = null
@@ -17,12 +17,12 @@ class PasajeroController {
 		session.pasajero = Pasajero.get(params.pasajero)		
 		redirect action: 'listReservas', controller: 'pasajero'
 	}
-  
-  def listReservas() {
-    def pasajeroLogueado = Pasajero.get(session.pasajero.id)
-    return [reservas: pasajeroLogueado.reservas] 
-  }
-  
+	
+	def listReservas() {
+		def pasajeroLogueado = Pasajero.get(session.pasajero.id)
+		return [reservas: pasajeroLogueado.reservas] 
+	}
+	
 	/*
 	def pasajeroService
 	def solicitarAmistad(){

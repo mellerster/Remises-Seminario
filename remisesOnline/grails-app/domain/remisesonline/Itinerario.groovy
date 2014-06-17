@@ -4,7 +4,8 @@ class Itinerario {
 	
 	String descripcion
 	
-	static hasMany = [paradas: Parada]
+	static hasMany = [paradas: Parada, reserva: Reserva]
+	static belongsTo = [pasajero: Pasajero]
 
 	static constraints = {
 		descripcion blank: false, nullable: false
