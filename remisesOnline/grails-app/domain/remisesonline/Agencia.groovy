@@ -4,9 +4,9 @@ class Agencia {
 	String nombre
 	String telefono
 	String email
-  Set remises = []
-  Set reservas = []
-  Set choferes = []
+	Set remises = []
+	Set reservas = []
+	Set choferes = []
 
 	static hasMany = [remises: Remise, choferes: Chofer, reservas: Reserva]
 
