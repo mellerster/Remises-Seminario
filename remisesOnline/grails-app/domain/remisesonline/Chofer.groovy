@@ -17,6 +17,6 @@ class Chofer {
 	}
 	
 	String toString() {
-		return nombre
+		return "${nombre} - ${dni}"
 	}
 }

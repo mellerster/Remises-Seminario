@@ -1,0 +1,3 @@
+def servletCtx = org.codehaus.groovy.grails.web.context.ServletContextHolder.servletContext
+def myBootstrapArtefact = grailsApplication.getArtefacts('Bootstrap')[-1]
+myBootstrapArtefact.referenceInstance.init(servletCtx)
