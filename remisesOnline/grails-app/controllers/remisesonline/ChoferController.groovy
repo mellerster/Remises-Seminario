@@ -22,8 +22,7 @@ class ChoferController {
     }
 
     def create() {
-		def agencia = Agencia.get(session.agencia.id)
-		println agencia
+		def agencia = Agencia.get(session.agencia.id)		
 		params.agencia = agencia;
 		respond new Chofer(params)
 		
