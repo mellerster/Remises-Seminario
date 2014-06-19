@@ -16,7 +16,7 @@
 			<fieldset class="buttons">
 				<g:submitButton name="ingresar" class="ingresar" value="Ingresar"
 					action="entrar" />
-				<g:link class="nuevoPasajero" action="create">
+				<g:link class="nuevoPasajero" action="crear">
 								Soy un nuevo pasajero
 							</g:link>
 			</fieldset>
