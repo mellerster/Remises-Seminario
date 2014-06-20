@@ -13,6 +13,16 @@ class AgenciaFilters {
 			}
 		}
 		
+		agenciaListadoReservas(controller:"agencia", action:"(searchReservas|listReservas)"){
+			before = {
+				if(!session?.agencia){
+					flash.message = "Solo pueden ingresar agencias que han iniciado sesión"
+					redirect(controller:"agencia", action:"login")
+					return false
+				}
+			}
+		}
+		
 		agenciaAdmin(controller:'agencia',
 		action:"edit|show|delete|update") {
 			before={

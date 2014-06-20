@@ -12,13 +12,8 @@
         </g:link>
       </li>
       <li>
-        <g:link class="reservas" controller="reserva" action="index">
-				Reservas
-        </g:link>
-      </li>
-      <li>
         <g:link class="reservas" controller="agencia" action="searchReservas">
-				Ver reservas
+				reservas
         </g:link>
       </li>
       <li>
