@@ -2,12 +2,13 @@ package remisesonline
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-class NuevoChoferCommand{
+class NuevoChoferCommand {
 	String nombre
 	String dni
 	String telefono
 	String direccion
 	String licencia
+  
 	static constraints = {
 		dni blank: false, nullable: false, minValue: 1000000
 		nombre blank: false, nullable: false
@@ -24,9 +25,9 @@ class ChoferController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-		def agencia = Agencia.findByNombre(session.agencia.nombre)
-		def lista = agencia.choferes.toList()
-		respond lista, model: [choferInstanceCount: lista.size()]
+        def agencia = Agencia.findByNombre(session.agencia.nombre)
+        def lista = agencia.choferes.toList()
+        respond lista, model: [choferInstanceCount: lista.size()]
     }
 
     def show(Chofer choferInstance) {
@@ -34,7 +35,7 @@ class ChoferController {
     }
 
     def create() {
-		respond new Chofer(params)
+        respond new Chofer(params)
     }
 
     @Transactional
@@ -48,9 +49,9 @@ class ChoferController {
             respond choferInstanceCommand.errors, view:'create'
             return
         }
-		Chofer chofer = new Chofer()
-		chofer.properties = choferInstanceCommand;
-		chofer.agencia =  Agencia.get(session.agencia.id)	
+        Chofer chofer = new Chofer()
+        chofer.properties = choferInstanceCommand;
+        chofer.agencia =  Agencia.get(session.agencia.id)	
 
         chofer.save flush:true , failOnError:true
 
