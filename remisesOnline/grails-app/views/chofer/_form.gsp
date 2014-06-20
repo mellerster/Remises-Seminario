@@ -46,6 +46,3 @@
 	<g:textField name="licencia" value="${choferInstance?.licencia}"/>
 
 </div>
-
-<g:textField name="agencia.id" value="${choferInstance?.agencia.id }" style="display:none;" />
-

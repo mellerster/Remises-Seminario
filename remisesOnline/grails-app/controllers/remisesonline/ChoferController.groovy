@@ -1,9 +1,18 @@
 package remisesonline
-
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+
+class NuevoChoferCommand{
+	String nombre
+	String dni
+	String telefono
+	String direccion
+	String licencia
+	static constraints = {
+		dni blank: false, nullable: false, minValue: 1000000
+		nombre blank: false
+	}
+}
 
 @Transactional(readOnly = true)
 class ChoferController {
@@ -22,32 +31,32 @@ class ChoferController {
     }
 
     def create() {
-		def agencia = Agencia.get(session.agencia.id)		
-		params.agencia = agencia;
 		respond new Chofer(params)
-		
     }
 
     @Transactional
-    def save(Chofer choferInstance) {
-        if (choferInstance == null) {
+    def save(NuevoChoferCommand choferInstanceCommand) {
+        if (choferInstanceCommand == null) {
             notFound()
             return
         }
 		
-        if (choferInstance.hasErrors()) {
-            respond choferInstance.errors, view:'create'
+        if (choferInstanceCommand.hasErrors()) {
+            respond choferInstanceCommand.errors, view:'create'
             return
         }
+		Chofer chofer = new Chofer()
+		chofer.properties = choferInstanceCommand;
+		chofer.agencia =  Agencia.get(session.agencia.id)	
 
-        choferInstance.save flush:true
+        chofer.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'choferInstance.label', default: 'Chofer'), choferInstance])
-                redirect choferInstance
+                flash.message = message(code: 'default.created.message', args: [message(code: 'chofer.label', default: 'Chofer'), chofer])
+                redirect chofer
             }
-            '*' { respond choferInstance, [status: CREATED] }
+            '*' { respond chofer, [status: CREATED] }
         }
     }
 
@@ -66,7 +75,7 @@ class ChoferController {
             respond choferInstance.errors, view:'edit'
             return
         }
-
+		
         choferInstance.save flush:true
 
         request.withFormat {
