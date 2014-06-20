@@ -11,9 +11,6 @@
 
 </div>
 
-
-<g:select id="agencia" name="agencia.id" from="${remisesonline.Agencia.list()}" optionKey="id" value="${remiseInstance?.agencia?.id}" style="display:none;" noSelection="['null': '']"/>
-
 <div class="fieldcontain ${hasErrors(bean: remiseInstance, field: 'comodidades', 'error')} ">
 	<label for="comodidades">
 		<g:message code="remise.comodidades.label" default="Comodidades" />

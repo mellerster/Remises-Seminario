@@ -10,7 +10,10 @@ class NuevoChoferCommand{
 	String licencia
 	static constraints = {
 		dni blank: false, nullable: false, minValue: 1000000
-		nombre blank: false
+		nombre blank: false, nullable: false
+		telefono blank:false, nullable: false
+		direccion blank:false, nullable: false
+		licencia blank:false, nullable: false
 	}
 }
 
@@ -49,7 +52,7 @@ class ChoferController {
 		chofer.properties = choferInstanceCommand;
 		chofer.agencia =  Agencia.get(session.agencia.id)	
 
-        chofer.save flush:true
+        chofer.save flush:true , failOnError:true
 
         request.withFormat {
             form multipartForm {

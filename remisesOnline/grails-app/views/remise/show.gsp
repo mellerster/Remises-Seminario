@@ -48,7 +48,7 @@
 				<g:if test="${remiseInstance?.foto}">
 				<li class="fieldcontain">
 					<span id="foto-label" class="property-label"><g:message code="remise.foto.label" default="Foto" /></span>
-					
+					<img src="${createLink(action:'displayFoto', id:remiseInstance?.id)}" />
 				</li>
 				</g:if>
 			

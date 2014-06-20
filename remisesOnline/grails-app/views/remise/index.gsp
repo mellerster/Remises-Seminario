@@ -39,7 +39,11 @@
 					
 						<td>${fieldValue(bean: remiseInstance, field: "chofer")}</td>
 					
-						<td>${fieldValue(bean: remiseInstance, field: "foto")}</td>
+						<td><g:if test="${remiseInstance?.foto}">
+							<g:link action='displayFoto' id="${remiseInstance?.id}" target="_blank">
+								Ver Foto
+								</g:link>
+							</g:if></td>
 					
 					</tr>
 				</g:each>
