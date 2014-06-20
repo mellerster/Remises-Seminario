@@ -13,12 +13,12 @@
       </li>
       <li>
         <g:link class="reservas" controller="agencia" action="searchReservas">
-				reservas
+				Mis Reservas
         </g:link>
       </li>
       <li>
         <g:link controller="agencia" action="show" id="${session.agencia.id }">
-        Agencia: ${session.agencia}
+       		Mis Datos
         </g:link>
       </li>
       <li>
