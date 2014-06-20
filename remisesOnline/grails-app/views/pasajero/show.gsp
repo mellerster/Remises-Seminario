@@ -58,7 +58,7 @@
 				<li class="fieldcontain">
 					<span id="fechaNacimiento-label" class="property-label"><g:message code="pasajero.fechaNacimiento.label" default="Fecha Nacimiento" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaNacimiento-label"><g:formatDate date="${pasajeroInstance?.fechaNacimiento}" format="dd/MM/yyyy" /></span>
+					<span class="property-value" aria-labelledby="fechaNacimiento-label"><g:formatDate date="${pasajeroInstance?.fechaNacimiento}" format="dd/MM/yyyy" /></span>
 					
 				</li>
 				</g:if>
