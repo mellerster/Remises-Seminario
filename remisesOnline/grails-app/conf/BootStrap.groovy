@@ -76,7 +76,7 @@ class BootStrap {
 		itinerario.addToParadas(parada)
 
 		def pasajero = new Pasajero(nombre: 'Hugo el cliente', email: 'h@gmail.com',\
-								telefono: '54', fechaNacimiento: new Date())
+								telefono: '54', fechaNacimiento: new Date(80,5,5))
 		pasajero.save(failOnError: true)
 
 		itinerario.addToPasajeros(pasajero)
@@ -85,7 +85,7 @@ class BootStrap {
 
 
 		pasajero = new Pasajero(nombre: 'Diego el cliente', email: 'm@gmail.com',\
-							telefono: '54', fechaNacimiento: new Date())
+							telefono: '54', fechaNacimiento: new Date(90,5,5))
 		pasajero.save(failOnError: true)
 
 		def reserva = new Reserva(remise: remisAAA000, agencia: agencia, destinos: itinerario,\

@@ -32,6 +32,6 @@
 		<g:message code="pasajero.fechaNacimiento.label" default="Fecha Nacimiento" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaNacimiento" precision="day"  value="${pasajeroInstance?.fechaNacimiento}"  />
+	<g:datePicker name="fechaNacimiento" precision="day"  value="${pasajeroInstance?.fechaNacimiento}" relativeYears="[-10..-100]"  />
 
 </div>
