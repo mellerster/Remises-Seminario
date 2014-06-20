@@ -71,9 +71,7 @@ class RemiseController {
 	def edit(Remise remiseInstance) {
 		def agencia = Agencia.get(session.agencia.id)
 		def choferesSinRemise = agencia.choferesSinRemise()
-		println choferesSinRemise
 		choferesSinRemise.add(remiseInstance.chofer)
-		println choferesSinRemise
 		[remiseInstance: remiseInstance, choferes: choferesSinRemise]
 	}
 
