@@ -56,12 +56,4 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'pasajero', 'error')} required">
-	<label for="pasajero">
-		<g:message code="reserva.pasajero.label" default="Pasajero" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="pasajero" name="pasajero.id" from="${remisesonline.Pasajero.list()}" optionKey="id" required="" value="${reservaInstance?.pasajero?.id}" class="many-to-one"/>
-
-</div>
 
