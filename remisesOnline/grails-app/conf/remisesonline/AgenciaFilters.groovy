@@ -12,5 +12,22 @@ class AgenciaFilters {
 				}
 			}
 		}
+		
+		agenciaAdmin(controller:'agencia',
+		action:"edit|show|delete|update") {
+			before={
+				if(!session?.agencia){
+					flash.message = "Solo pueden ingresar agencias que han iniciado sesión"
+					redirect(controller:"agencia", action:"login")
+					return false
+				}else{
+					if(!session?.agencia.id.toString().equals( params.id.toString())){
+						flash.message = "Solo puede ver y modificar sus datos"
+						redirect(action:"show", id:session?.agencia.id,controller:"agencia")
+						return false
+					}
+				}
+			}
+		}
 	}
 }
