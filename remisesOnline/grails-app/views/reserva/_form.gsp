@@ -20,30 +20,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'estado', 'error')} ">
-	<label for="estado">
-		<g:message code="reserva.estado.label" default="Estado" />
-		
-	</label>
-	<g:select name="estado" from="${reservaInstance.constraints.estado.inList}" value="${reservaInstance?.estado}" valueMessagePrefix="reserva.estado" noSelection="['': '']"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'agencia', 'error')} required">
 	<label for="agencia">
 		<g:message code="reserva.agencia.label" default="Agencia" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="agencia" name="agencia.id" from="${remisesonline.Agencia.list()}" optionKey="id" required="" value="${reservaInstance?.agencia?.id}" class="many-to-one"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'creado', 'error')} required">
-	<label for="creado">
-		<g:message code="reserva.creado.label" default="Creado" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:datePicker name="creado" precision="day"  value="${reservaInstance?.creado}"  />
 
 </div>
 

@@ -6,11 +6,9 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 class ReservaCommand {
-	static final ESTADOS_VALIDOS = ['Pendiente', 'En curso', 'Cerrada', 'Cancelada']
 	Itinerario destinos = new Itinerario()
 	Remise remise
 	Date fechaReserva
-	String estado = ESTADOS_VALIDOS[0]
   Agencia agencia
 
 	static constraints = {
@@ -28,7 +26,6 @@ class ReservaCommand {
 				if	(it < now || it > calendar.time)
 					return ['invalid.rango']
 		}
-		estado inList: ESTADOS_VALIDOS
 	}
 }
 
