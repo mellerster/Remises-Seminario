@@ -5,30 +5,6 @@ package remisesonline
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-class ReservaCommand {
-	Itinerario destinos = new Itinerario()
-	Remise remise
-	Date fechaReserva
-  Agencia agencia
-
-	static constraints = {
-		remise nullable: true,
-					validator: { remis_param, reserva_ref ->
-							if (remis_param && reserva_ref?.agencia)
-								if (!(reserva_ref.agencia.remises.find{it.patente == remis_param.patente}))
-									return ['invalid.remisenopertenece']
-					 }
-
-		fechaReserva validator: {
-				def now = new Date()
-				def calendar = now.toCalendar()
-				calendar.add(Calendar.MONTH, 1)
-				if	(it < now || it > calendar.time)
-					return ['invalid.rango']
-		}
-	}
-}
-
 @Transactional(readOnly = true)
 class ReservaController {
 
@@ -39,8 +15,8 @@ class ReservaController {
         respond Reserva.list(params), model:[reservaInstanceCount: Reserva.count()]
     }
 
-    def show(Reserva reserva) {
-        respond reserva
+    def show(Reserva reservaInstance) {
+        respond reservaInstance
     }
 
     def create() {
@@ -48,76 +24,74 @@ class ReservaController {
     }
 
     @Transactional
-    def save(ReservaCommand reservaCommandInstance) {
-        if (reservaCommandInstance == null) {
+    def save(Reserva reservaInstance) {
+        if (reservaInstance == null) {
             notFound()
             return
         }
+        
+        reservaInstance.pasajero =  Pasajero.get(session.pasajero.id)
+        reservaInstance.validate()
 
-        if (reservaCommandInstance.hasErrors()) {
-            respond reservaCommandInstance.errors, view:'create'
+        if (reservaInstance.hasErrors()) {
+            respond reservaInstance.errors, view:'create'
             return
         }
 
-        Reserva reserva = new Reserva()
-        reserva.properties = reservaCommandInstance;
-        reserva.pasajero =  Pasajero.get(session.pasajero.id)
-
-        reserva.save flush:true
+        reservaInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'reserva.label', default: 'Reserva'), reserva.id])
-                redirect reserva
+                flash.message = message(code: 'default.created.message', args: [message(code: 'reservaInstance.label', default: 'Reserva'), reservaInstance.id])
+                redirect reservaInstance
             }
-            '*' { respond reserva, [status: CREATED] }
+            '*' { respond reservaInstance, [status: CREATED] }
         }
     }
 
-    def edit(Reserva reserva) {
-        respond reserva
+    def edit(Reserva reservaInstance) {
+        respond reservaInstance
     }
 
     @Transactional
-    def update(ReservaCommand reservaCommandInstance) {
-        if (reservaCommandInstance == null) {
+    def update(Reserva reservaInstance) {
+        if (reservaInstance == null) {
             notFound()
             return
         }
+        
+        reservaInstance.pasajero =  Pasajero.get(session.pasajero.id)
+        reservaInstance.validate()
 
-        if (reservaCommandInstance.hasErrors()) {
-            respond reservaCommandInstance.errors, view:'create'
+        if (reservaInstance.hasErrors()) {
+            respond reservaInstance.errors, view:'edit'
             return
         }
 
-        Reserva reserva = new Reserva()
-        reserva.properties = reservaCommandInstance;
-        reserva.pasajero =  Pasajero.get(session.pasajero.id)
-
-        reserva.save flush:true
+        reservaInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Reserva.label', default: 'Reserva'), reserva.id])
-                redirect reserva
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'Reserva.label', default: 'Reserva'), reservaInstance.id])
+                redirect reservaInstance
             }
-            '*'{ respond reserva, [status: OK] }
+            '*'{ respond reservaInstance, [status: OK] }
         }
     }
 
     @Transactional
-    def delete(Reserva reserva) {
+    def delete(Reserva reservaInstance) {
 
-        if (reserva == null) {
+        if (reservaInstance == null) {
             notFound()
             return
         }
 
-        reserva.delete flush:true
+        reservaInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Reserva.label', default: 'Reserva'), reserva.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Reserva.label', default: 'Reserva'), reservaInstance.id])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -127,7 +101,7 @@ class ReservaController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'reserva.label', default: 'Reserva'), params.id])
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'reservaInstance.label', default: 'Reserva'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }
