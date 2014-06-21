@@ -110,4 +110,21 @@ class PasajeroController {
 					'*'{ render status: NOT_FOUND }
 			}
 	}
+	
+	def amigos(){
+	}
+	
+	def agregarAmigos(){
+		def p = Pasajero.get(session.pasajero.id)
+		[pasajeros: Pasajero.findAllByIdNotEqual(p.id)]
+	}
+	
+
+	def verAmigos(){
+		def p = Pasajero.get(session.pasajero.id)
+		[amigos: p.amigos]
+	}
+	
+	
+	
 }
