@@ -16,7 +16,7 @@
 		<g:message code="reserva.fechaReserva.label" default="Fecha Reserva" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaReserva" precision="day"  value="${reservaInstance?.fechaReserva}"  />
+	<g:datePicker name="fechaReserva" precision="minute"  value="${reservaInstance?.fechaReserva}"  />
 
 </div>
 

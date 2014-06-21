@@ -12,7 +12,10 @@
 				<g:select name="pasajero" from="${pasajeros}" value="pasajero?.id"
 					optionKey="id" class="many-to-one"
 					noSelection="['null':'Seleccione sus datos...']" />
+        <br/><br/>Password: 
+        <g:passwordField name="myPasswordField"/>
 			</fieldset>
+      
 			<fieldset class="buttons">
 				<g:submitButton name="ingresar" class="ingresar" value="Ingresar"
 					action="entrar" />
