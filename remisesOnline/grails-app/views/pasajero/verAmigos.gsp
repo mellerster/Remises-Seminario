@@ -1,6 +1,10 @@
+<!DOCTYPE html>
 <html>
-   <head>
-   </head>
+	<head>
+		<meta name="layout" content="main">
+		<g:set var="entityName" value="${message(code: 'pasajero.label', default: 'Pasajero')}" />
+		<title>Mis amigos</title>
+	</head>
    <body>
         <ul>
         <g:each in="${amigos}" var="amigo">
