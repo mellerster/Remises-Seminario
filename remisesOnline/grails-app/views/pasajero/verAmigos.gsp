@@ -3,7 +3,7 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'pasajero.label', default: 'Pasajero')}" />
-		<title>Mis amigos</title>
+		<title>Ver amigos</title>
 	</head>
    <body>
         <ul>
