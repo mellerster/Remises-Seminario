@@ -1,17 +1,22 @@
 package remisesonline
 
+import org.apache.commons.collections.Factory;
+import org.apache.commons.collections.ListUtils;
+
 class Reserva {
 	static final ESTADOS_VALIDOS = ['Pendiente', 'En curso', 'Cerrada', 'Cancelada']
-	Itinerario destinos = new Itinerario()
+	//Itinerario destinos = new Itinerario()
 	Remise remise
 	Date fechaReserva
 	String estado = ESTADOS_VALIDOS[0]
 	Date creado = new Date()
+	//List paradas = new ArrayList()
+	List<Parada> paradas =  ListUtils.lazyList(new ArrayList(), {new Parada()} as Factory)
 
 	static belongsTo = [agencia: Agencia, pasajero: Pasajero]
+  static hasMany = [paradas: Parada]
 
 	static constraints = {
-		// destinos nullable: true
 		remise nullable: true, //en la reserva puede preferir algun remise o no
 					validator: { remis_param, reserva_ref ->
 							if (remis_param && reserva_ref?.agencia)
@@ -30,6 +35,15 @@ class Reserva {
 	}
 
 	String toString() {
-		"$destinos $fechaReserva $estado"
+		"$fechaReserva $estado"
 	}
+  
+	static mapping = {
+		paradas cascade: "all-delete-orphan"
+	}
+	
+	/*def getParadasList() {
+		return LazyList.decorate(paradas,	FactoryUtils.instantiateFactory(Parada.class))
+		//[].withLazyDefault {new Parada()}
+	}*/
 }

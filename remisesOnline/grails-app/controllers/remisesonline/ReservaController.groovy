@@ -30,6 +30,14 @@ class ReservaController {
             return
         }
         
+				println 'grabando reserva...'
+				
+				println reservaInstance.paradas
+				println 'params...'
+				println params
+				
+				reservaInstance.properties = params
+				
         reservaInstance.pasajero =  Pasajero.get(session.pasajero.id)
         reservaInstance.validate()
 

@@ -30,12 +30,14 @@
 
 </div>
 
+
+    
 <div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'destinos', 'error')} required">
 	<label for="destinos">
 		<g:message code="reserva.destinos.label" default="Destinos" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="destinos" name="destinos.id" from="${remisesonline.Itinerario.list()}" optionKey="id" required="" value="${reservaInstance?.destinos?.id}" class="many-to-one"/>
+	<g:render template="paradas" model="['reservaInstance':reservaInstance]" />
 
 </div>
 

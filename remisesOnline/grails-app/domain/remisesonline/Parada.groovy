@@ -5,14 +5,17 @@ class Parada {
 	String calle
 	Integer numero
 	String descripcion
+  
+  //boolean deleted
+  //static transients = [ 'deleted' ]
 	
 	static belongsTo = [Itinerario]
 
 	static constraints = {
 		calle blank: false, nullable: false
 		numero blank: false, nullable: false
-		descripcion blank: false, nullable: true
-		localidad blank: false, nullable: true
+		descripcion blank: true, nullable: true
+		localidad blank: true, nullable: true
 	}
 	
 	String toString() {

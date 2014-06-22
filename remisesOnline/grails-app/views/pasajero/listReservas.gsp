@@ -14,7 +14,6 @@
             <g:sortableColumn property="fechaReserva" title="${message(code: 'reserva.fechaReserva.label', default: 'Fecha Reserva')}" />
 						<g:sortableColumn property="estado" title="${message(code: 'reserva.estado.label', default: 'Estado')}" />
 						<th><g:message code="reserva.agencia.label" default="Agencia" /></th>
-						<th><g:message code="reserva.destinos.label" default="Destinos" /></th>
             <th><g:message code="reserva.remise.label" default="Remise" /></th>
             <g:sortableColumn property="creado" title="${message(code: 'reserva.creado.label', default: 'Creado')}" />
 					</tr>
@@ -26,7 +25,6 @@
               <td><g:formatDate date="${reserva.fechaReserva}" format="dd/MM/yyyy HH:mm" /></td>
               <td>${fieldValue(bean: reserva, field: "estado")}</td>
               <td>${fieldValue(bean: reserva, field: "agencia")}</td>
-              <td>${fieldValue(bean: reserva, field: "destinos")}</td>
               <td><g:link action="show" controller="remise" id="${reserva.remise?.id}">${fieldValue(bean: reserva, field: "remise")}</g:link></td>
               <td><g:formatDate date="${reserva.creado}" format="dd/MM/yyyy HH:mm" /></td>
             </tr>

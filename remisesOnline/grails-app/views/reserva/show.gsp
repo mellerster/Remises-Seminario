@@ -68,14 +68,6 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${reservaInstance?.destinos}">
-				<li class="fieldcontain">
-					<span id="destinos-label" class="property-label"><g:message code="reserva.destinos.label" default="Destinos" /></span>
-					
-						<span class="property-value" aria-labelledby="destinos-label"><g:link controller="itinerario" action="show" id="${reservaInstance?.destinos?.id}">${reservaInstance?.destinos?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
 			
 				<g:if test="${reservaInstance?.pasajero}">
 				<li class="fieldcontain">

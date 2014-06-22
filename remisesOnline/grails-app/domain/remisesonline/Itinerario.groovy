@@ -1,9 +1,12 @@
 package remisesonline
 
+import org.apache.commons.collections.list.LazyList;
+import org.apache.commons.collections.FactoryUtils;
+
 class Itinerario {
 
 	String descripcion
-	Set paradas = []
+	List paradas = new ArrayList()
 	Set pasajeros = []
 
 	static hasMany = [paradas: Parada, reserva: Reserva, pasajeros: Pasajero]
@@ -16,4 +19,14 @@ class Itinerario {
 	String toString() {
 		return descripcion
 	}
+	
+	static mapping = {
+		paradas cascade:"all-delete-orphan"
+	}
+	
+	def getParadasList() {
+		return LazyList.decorate(
+							paradas,
+							FactoryUtils.instantiateFactory(Parada.class))
+		}
 }

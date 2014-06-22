@@ -62,7 +62,7 @@ class BootStrap {
 															estado: 'Vacio', agencia: agencia)
 		agencia.addToRemises(remisAAA000)
 
-		def itinerario = new Itinerario(descripcion: 'Un paseo por CABA')
+		/*def itinerario = new Itinerario(descripcion: 'Un paseo por CABA')
 
 		def parada = new Parada(calle: 'H. Yrigoyen', numero: 370, descripcion: 'en plaza de mayo')
 		parada.localidad = 'CABA'
@@ -73,35 +73,48 @@ class BootStrap {
 			descripcion: 'no se donde es')
 		parada.numero = 1400
 
-		itinerario.addToParadas(parada)
+		itinerario.addToParadas(parada)*/
 
 		def pasajero = new Pasajero(nombre: 'Hugo el cliente', email: 'h@gmail.com',\
 								telefono: '54', fechaNacimiento: new Date(80,5,5))
 		pasajero.save(failOnError: true)
 
-		itinerario.addToPasajeros(pasajero)
-		itinerario.save(failOnError: true)
-		pasajero.addToViajes(itinerario)
+		//itinerario.addToPasajeros(pasajero)
+		//itinerario.save(failOnError: true)
+		//pasajero.addToViajes(itinerario)
 
 
 		pasajero = new Pasajero(nombre: 'Diego el cliente', email: 'm@gmail.com',\
 							telefono: '54', fechaNacimiento: new Date(90,5,5))
 		pasajero.save(failOnError: true)
 
-		def reserva = new Reserva(remise: remisAAA000, agencia: agencia, destinos: itinerario,\
+		def reserva = new Reserva(remise: remisAAA000, agencia: agencia,\
 								pasajero: pasajero, fechaReserva: new Date() + 1)
+		def parada1 = new Parada(calle: 'H. Yrigoyen', numero: 370, descripcion: 'en plaza de mayo')
+		parada1.localidad = 'CABA'
+		reserva.paradas[0] = parada1
+		
+		def parada2 = new Parada(calle: 'Corrientes', localidad: 'CABA',\
+			descripcion: 'no se donde es')
+		parada2.numero = 1400
+		reserva.paradas[1] = parada2
 
 		agencia.addToReservas(reserva)
 
 		agencia = Agencia.findByNombre('El remis loco')
 
-		reserva = new Reserva(remise: remisDKP123, destinos: itinerario,\
+		reserva = new Reserva(remise: remisDKP123,\
 							fechaReserva: new Date() + 1)
 		reserva.pasajero = Pasajero.findByNombre('Hugo el cliente')
 		agencia = Agencia.findByEmail('remises@remisloco.com')
 		reserva.agencia = agencia
 		agencia.addToReservas(reserva)
 		reserva.estado = Reserva.ESTADOS_VALIDOS[1]
+		def parada3 = new Parada(calle: 'Ucrania', localidad: 'Posadas',\
+		descripcion: 'esta es lejos')
+		parada3.numero = 756
+		reserva.paradas[0] = parada1
+		reserva.paradas[1] = parada3
 
 	}
 
