@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<g:layoutHead/>
 		<g:javascript library="application"/>
-		<g:javascript src="jquery-1.4.2.min.js" />
+		<g:javascript library="jquery"/>
 		<r:layoutResources />
 	</head>
 	<body>
