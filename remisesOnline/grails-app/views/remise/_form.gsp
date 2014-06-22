@@ -11,15 +11,6 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: remiseInstance, field: 'comodidades', 'error')} ">
-	<label for="comodidades">
-		<g:message code="remise.comodidades.label" default="Comodidades" />
-		
-	</label>
-	<g:select name="comodidades" from="${remisesonline.Comodidad.list()}" multiple="multiple" optionKey="id" size="5" value="${remiseInstance?.comodidades*.id}" class="many-to-many"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: remiseInstance, field: 'chofer', 'error')} required">
 	<label for="chofer">
 		<g:message code="remise.chofer.label" default="Chofer" />

@@ -30,7 +30,7 @@
 					<span id="comodidades-label" class="property-label"><g:message code="remise.comodidades.label" default="Comodidades" /></span>
 					
 						<g:each in="${remiseInstance.comodidades}" var="c">
-						<span class="property-value" aria-labelledby="comodidades-label"><g:link controller="comodidad" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="comodidades-label">${c?.encodeAsHTML()}</span>
 						</g:each>
 					
 				</li>
@@ -60,6 +60,7 @@
 			<g:form url="[resource:remiseInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${remiseInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:link class="comodidades" action="modificar" controller="comodidad" id="${remiseInstance.id}">Modificar Comodidades</g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
