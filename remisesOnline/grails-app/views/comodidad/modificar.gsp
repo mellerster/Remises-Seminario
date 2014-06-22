@@ -38,10 +38,9 @@
 			<fieldset class="buttons">
 				<g:actionSubmit class="save" action="actualizar"
 					value="${message(code: 'default.button.update.label', default: 'Update')}" />
+				<g:link class="nuevacomodidad" action="create" controller="comodidad" onclick="return confirm('Se perderan los cambios realizados, ¿Esta Seguro de continuar?');">Agregar Comodidad</g:link>
 			</fieldset>
 		</g:form>
-		<!-- <input type="checkbox" name="comodidades" value="${comodidad?.id}"
-					${checked} /> -->
 	</div>
 </body>
 </html>
