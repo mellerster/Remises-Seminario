@@ -39,9 +39,12 @@
 				<g:if test="${remiseInstance?.chofer}">
 				<li class="fieldcontain">
 					<span id="chofer-label" class="property-label"><g:message code="remise.chofer.label" default="Chofer" /></span>
-					
+						<g:if test="${session.agencia }">
 						<span class="property-value" aria-labelledby="chofer-label"><g:link controller="chofer" action="show" id="${remiseInstance?.chofer?.id}">${remiseInstance?.chofer?.encodeAsHTML()}</g:link></span>
-					
+						</g:if>
+						<g:else>
+						<span class="property-value" aria-labelledby="chofer-label">${remiseInstance?.chofer?.nombre.encodeAsHTML()}</span>
+						</g:else>
 				</li>
 				</g:if>
 			
@@ -53,12 +56,14 @@
 				</g:if>
 			
 			</ol>
+			<g:if test="${session.agencia }">
 			<g:form url="[resource:remiseInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
 					<g:link class="edit" action="edit" resource="${remiseInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
+			</g:if>
 		</div>
 	</body>
 </html>
