@@ -5,7 +5,7 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'remise.label', default: 'Remise')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
+		<title>Mis Remises</title>
 	</head>
 	<body>
 		<a href="#list-remise" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

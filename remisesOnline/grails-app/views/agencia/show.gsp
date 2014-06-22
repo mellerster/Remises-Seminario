@@ -5,12 +5,12 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'agencia.label', default: 'Agencia')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		<title>Mis Datos</title>
 	</head>
 	<body>
 		<a href="#show-agencia" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="show-agencia" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+			<h1>Mis Datos</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

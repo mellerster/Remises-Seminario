@@ -17,7 +17,7 @@
         </g:link>
       </li>
       <li>
-        <g:link controller="agencia" action="show" id="${session.agencia.id }">
+        <g:link class="list" controller="agencia" action="show" id="${session.agencia.id }">
        		Mis Datos
         </g:link>
       </li>
