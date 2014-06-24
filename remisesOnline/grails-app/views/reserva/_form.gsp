@@ -17,7 +17,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 
-  <calendar:datePicker name="fechaReserva" value="${reservaInstance?.fechaReserva}" dateFormat=" %d/%m/%Y %H:%M" showTime="true"/>
+	<g:field type="text" name="fechaReserva" value="${reservaInstance?.fechaReserva}" class="datepicker" size="10" />
 
 </div>
 
@@ -33,10 +33,15 @@
 
     
 <div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'destinos', 'error')} required">
-	<label for="destinos">
-		<g:message code="reserva.destinos.label" default="Destinos" />
-		<span class="required-indicator">*</span>
-	</label>
+	<h3>Paradas</h3>
+	<table width="50%" >
+	<tr>
+		<th width="21%">Calle</th>
+		<th width="22%">Numero</th>
+		<th width="21.5%">Localidad</th>
+		<th width="40%">Descripcion</th>
+	</tr>
+	</table>
 	<g:render template="paradas" model="['reservaInstance':reservaInstance]" />
 
 </div>

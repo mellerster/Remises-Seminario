@@ -87,5 +87,6 @@ grails.project.dependency.resolution = {
         //compile ":joda-time:1.4"
         compile ":console:1.3"
         compile ":calendar:1.2.1"
+				compile ":jquery-ui:1.10.3"
     }
 }

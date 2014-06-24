@@ -5,6 +5,7 @@
 		<g:set var="entityName" value="${message(code: 'reserva.label', default: 'Reserva')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
     <calendar:resources lang="es"/>
+
 	</head>
 	<body>
 		<a href="#create-reserva" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

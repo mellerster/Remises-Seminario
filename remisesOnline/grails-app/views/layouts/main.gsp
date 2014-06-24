@@ -15,8 +15,11 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 		<g:layoutHead/>
-		<g:javascript library="application"/>
 		<g:javascript library="jquery"/>
+		<g:javascript library="application"/>
+		
+		<r:require module="jquery-ui"/>
+		<r:require module="datepick" /> 
 		<r:layoutResources />
 	</head>
 	<body>

@@ -33,13 +33,14 @@ class ReservaController {
 				//reservaInstance.properties = params
 				
         reservaInstance.pasajero =  Pasajero.get(session.pasajero.id)
+				reservaInstance.fechaReserva =  params.date( 'fechaReserva', 'dd/MM/yy' )
         reservaInstance.validate()
 
         if (reservaInstance.hasErrors()) {
             respond reservaInstance.errors, view:'create'
             return
         }
-
+				
         reservaInstance.save flush:true
 
         request.withFormat {
@@ -63,6 +64,8 @@ class ReservaController {
         }
         
         reservaInstance.pasajero =  Pasajero.get(session.pasajero.id)
+				
+				reservaInstance.fechaReserva = Date.parse( 'dd/MM/yyyy', params.fechaReserva )
         reservaInstance.validate()
 
         if (reservaInstance.hasErrors()) {
