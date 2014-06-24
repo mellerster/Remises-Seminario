@@ -615,8 +615,42 @@ th:hover, tr:hover {
 	background-image: url(../images/skin/ruby.png);
 }
 
-.buttons .nuevacomodidad {
+.nuevacomodidad {	
+	background-color: #efefef;
+	border: 1 black solid;
+	color: #666666;
+	cursor: pointer;
+	display: inline-block;
+	margin: 0 0.25em 0;
+	overflow: visible;
+	padding: 0.25em 0.7em;
+	text-decoration: none;
+
+	   -moz-border-radius: 0.3em;
+	-webkit-border-radius: 0.3em;
+	        border-radius: 0.3em;
+	        background-position: 0.7em center;
+	background-repeat: no-repeat;
+	text-indent: 25px;
 	background-image: url(../images/skin/ruby_add.png);
+}
+
+.nuevacomodidad input:hover, .nuevacomodidad input:focus,
+.nuevacomodidad a:hover, .nuevacomodidad a:focus {
+	background-color: #999999;
+	color: #ffffff;
+	outline: none;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+	   -moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	        box-shadow: none;
+}
+
+.no-borderradius .nuevacomodidad input:hover, .no-borderradius .nuevacomodidad input:focus,
+.no-borderradius .nuevacomodidad a:hover, .no-borderradius .nuevacomodidad a:focus {
+	background-color: transparent;
+	color: #444444;
+	text-decoration: underline;
 }
 
 .buttons .save {

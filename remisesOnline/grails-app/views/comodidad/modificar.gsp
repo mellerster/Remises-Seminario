@@ -8,9 +8,7 @@
 <title>Comodidades</title>
 </head>
 <body>
-	<a href="#show-remise" class="skip" tabindex="-1"><g:message
-			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
-	<div id="show-remise" class="content scaffold-show" role="main">
+	<div id="modificar-comodidades" class="content scaffold-show" role="main">
 		<h1>Comodidades</h1>
 		<g:if test="${flash.message}">
 			<div class="message" role="status">
@@ -35,12 +33,15 @@
 
 				</div>
 			</g:each>
+			<div class="fieldcontain">
+				<label for="${comodidad?.descripcion}"> Nueva Comodidad:
+					</label>
+					<g:textField name="nuevacomodidad"/>
+					<g:actionSubmit class="nuevacomodidad" value="Agregar Comodidad" action="agregar"/>
+			</div>
 			<fieldset class="buttons">
 				<g:actionSubmit class="save" action="actualizar"
 					value="${message(code: 'default.button.update.label', default: 'Update')}" />
-				<g:link class="nuevacomodidad" action="create"
-					controller="comodidad"
-					onclick="return confirm('Se perderan los cambios realizados, ¿Esta Seguro de continuar?');">Agregar Comodidad</g:link>
 			</fieldset>
 		</g:form>
 	</div>

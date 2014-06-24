@@ -9,7 +9,7 @@ import grails.transaction.Transactional
 class ComodidadController {
 
 
-	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", actualizar:"PUT"]
+	static allowedMethods = [ actualizar:"PUT"]
 
 	def modificar(Remise remiseInstance){
 		respond remiseInstance
@@ -25,48 +25,28 @@ class ComodidadController {
 		remise.save flush:true
 		redirect action:'show', controller:'remise',id:remiseInstance.id
 	}
-	
-
-	def create() {
-		respond new Comodidad(params)
-	}
-
 	@Transactional
-	def save(Comodidad comodidadInstance) {
-		if (comodidadInstance == null) {
-			notFound()
+	def agregar(){
+		Comodidad comodidad = new Comodidad()
+		comodidad.descripcion = params.nuevacomodidad
+		comodidad.validate()
+		if(comodidad.hasErrors()){
+			flash.message = "Error,no se pudo crear la comodidad ${params.nuevacomodidad}"
+			redirect controller:'comodidad', action:'modificar',id:params.id
 			return
 		}
-
-		if (comodidadInstance.hasErrors()) {
-			respond comodidadInstance.errors, view:'create'
-			return
-		}
-
-		comodidadInstance.save flush:true
-
+		
+		comodidad.save flush:true
+		
 		request.withFormat {
 			form multipartForm {
 				flash.message = message(code: 'default.created.message', args: [
 					message(code: 'comodidadInstance.label', default: 'Comodidad'),
-					comodidadInstance
+					comodidad
 				])
-				redirect controller:'remise',action:'index'
+				redirect controller:'comodidad',action:'modificar',id:params.id
 			}
-			'*' { respond comodidadInstance, [status: CREATED] }
-		}
-	}
-
-	protected void notFound() {
-		request.withFormat {
-			form multipartForm {
-				flash.message = message(code: 'default.not.found.message', args: [
-					message(code: 'comodidadInstance.label', default: 'Comodidad'),
-					params.id
-				])
-				redirect action: "index", method: "GET"
-			}
-			'*'{ render status: NOT_FOUND }
+			'*' { respond comodidad, [status: CREATED] }
 		}
 	}
 }
