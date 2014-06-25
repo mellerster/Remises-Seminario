@@ -17,9 +17,9 @@
 		<g:layoutHead/>
 		<g:javascript library="jquery"/>
 		<g:javascript library="application"/>
-		
 		<r:require module="jquery-ui"/>
-		<r:require module="datepick" /> 
+		<r:require module="datepick" />
+		<r:require module="timepick" />
 		<r:layoutResources />
 	</head>
 	<body>

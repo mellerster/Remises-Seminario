@@ -17,7 +17,9 @@
 		<span class="required-indicator">*</span>
 	</label>
 
-	<g:field type="text" name="fechaReserva" value="${reservaInstance?.fechaReserva}" class="datepicker" size="10" />
+
+	
+	<g:field type="text" name="fechaReserva" value="${reservaInstance?.fechaReserva}" class="datetimepicker" size="14" />
 
 </div>
 
