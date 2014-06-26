@@ -127,4 +127,7 @@ class PasajeroController {
 		render p
 	}
 	
+	def verSolicitudes(){
+	}
+	
 }
