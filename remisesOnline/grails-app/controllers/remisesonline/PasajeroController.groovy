@@ -112,6 +112,8 @@ class PasajeroController {
 	}
 	
 	def amigos(){
+		def p = Pasajero.get(session.pasajero.id)
+		[amigos: p.amigos]
 	}
 	
 	def agregarAmigos(){
@@ -120,11 +122,9 @@ class PasajeroController {
 	}
 	
 
-	def verAmigos(){
-		def p = Pasajero.get(session.pasajero.id)
-		[amigos: p.amigos]
+	def enviarSolicitud(){
+		def p = params.pasajeroSeleccionado
+		render p
 	}
-	
-	
 	
 }
