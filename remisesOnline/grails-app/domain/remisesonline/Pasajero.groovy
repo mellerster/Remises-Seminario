@@ -19,4 +19,10 @@ class Pasajero {
 	String toString() {
 		return "${nombre} - ${email}"
 	}
+	
+	def getReservasCompartibles() {
+		reservas.grep { reserva ->
+			reserva.compartible && reserva.pendiente
+		}
+	}
 }

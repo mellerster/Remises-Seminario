@@ -37,6 +37,10 @@ class Reserva {
 	String toString() {
 		"$fechaReserva $estado"
 	}
+	
+	def getPendiente() {
+		estado == ESTADOS_VALIDOS[0]
+	}
   
 	static mapping = {
 		paradas cascade: "all-delete-orphan"
