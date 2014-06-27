@@ -143,12 +143,14 @@ class RemiseController {
 		response.outputStream.write(remise?.foto)
 	}
 
-	def calificar(){
+	def calificar(Remise remiseInstance){
+		respond remiseInstance
 		
 	}
 
 	@Transactional
 	def guardarCalificacion(){
+		println params
 		def remiseInstance = Remise.get(params.id)
 		if(params.puntaje){
 			Calificacion calificacion = new Calificacion(puntaje:params.puntaje)
