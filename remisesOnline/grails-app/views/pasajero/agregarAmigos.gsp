@@ -1,24 +1,21 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'pasajero.label', default: 'Pasajero')}" />
-		<title>Agregar amigo</title>
-	</head>
-	<body>
-		<g:select name="pasajero.nombre" from="${pasajeros}" value="${nombre}" noSelection="['':'Pasajeros']"/>  
-	</body>
-</html>	
-
-
-
-
-
-
-
-
-
-
-
-        
- 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="layout" content="main" />
+<title>Agregar un amigo</title>
+</head>
+<body>
+	<div class="body">
+		<g:form action="enviarSolicitud">
+			<fieldset class="form">
+				<g:select name="pasajeroSeleccionado" from="${pasajeros}"
+					noSelection="['null':'Pasajeros...']" />
+			</fieldset>
+			<fieldset class="buttons">
+				<g:submitButton name="enviar" value="Enviar solicitud de amistad" />
+			</fieldset>
+		</g:form>
+	</div>
+</body>
+</html>
