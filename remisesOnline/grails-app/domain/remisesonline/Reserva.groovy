@@ -10,7 +10,7 @@ class Reserva {
 	Date fechaReserva
 	String estado = ESTADOS_VALIDOS[0]
 	Date creado = new Date()
-	//List paradas = new ArrayList()
+	Boolean compartible = false
 	List<Parada> paradas =  ListUtils.lazyList(new ArrayList(), {new Parada()} as Factory)
 
 	static belongsTo = [agencia: Agencia, pasajero: Pasajero]

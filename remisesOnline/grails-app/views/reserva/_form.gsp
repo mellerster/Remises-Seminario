@@ -5,7 +5,6 @@
 <div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'remise', 'error')} ">
 	<label for="remise">
 		<g:message code="reserva.remise.label" default="Remise" />
-		
 	</label>
 	<g:select id="remise" name="remise.id" from="${remisesonline.Remise.list()}" optionKey="id" value="${reservaInstance?.remise?.id}" class="many-to-one" noSelection="['null': '']"/>
 
@@ -16,9 +15,6 @@
 		<g:message code="reserva.fechaReserva.label" default="Fecha Reserva" />
 		<span class="required-indicator">*</span>
 	</label>
-
-
-	
 	<g:field type="text" name="fechaReserva" value="${reservaInstance?.fechaReserva}" class="datetimepicker" size="14" />
 
 </div>
@@ -29,6 +25,14 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="agencia" name="agencia.id" from="${remisesonline.Agencia.list()}" optionKey="id" required="" value="${reservaInstance?.agencia?.id}" class="many-to-one"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'compartible', 'error')} ">
+	<label for="compartible">
+		Compartible
+	</label>
+	<g:checkBox name="compartible" value="${reservaInstance?.compartible}" />
 
 </div>
 
