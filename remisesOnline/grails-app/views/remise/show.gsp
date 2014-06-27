@@ -54,6 +54,15 @@
 					<img src="${createLink(action:'displayFoto', id:remiseInstance?.id)}" />
 				</li>
 				</g:if>
+				
+				<g:if test="${remiseInstance?.calificacion}">
+				<li class="fieldcontain">
+					<span id="patente-label" class="property-label">Calificación</span>
+					
+						<span class="property-value" aria-labelledby="calificacion-label"><g:fieldValue bean="${remiseInstance}" field="calificacion"/></span>
+					
+				</li>
+				</g:if>
 			
 			</ol>
 			<g:if test="${session.agencia }">

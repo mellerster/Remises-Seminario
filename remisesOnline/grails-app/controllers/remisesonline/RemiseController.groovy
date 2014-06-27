@@ -16,7 +16,7 @@ class RemiseCommand{
 		foto nullable: true, maxSize: 1024 * 1024 * 2 /* 2MB */
 	}
 }
-	
+
 @Transactional(readOnly = true)
 class RemiseController {
 
@@ -49,7 +49,7 @@ class RemiseController {
 			respond remiseInstance.errors, view:'create'
 			return
 		}
-		
+
 		Remise remise = new Remise()
 		remise.properties = remiseInstance
 		remise.agencia = Agencia.get(session.agencia.id)
@@ -135,11 +135,26 @@ class RemiseController {
 			'*'{ render status: NOT_FOUND }
 		}
 	}
-	
+
 	def displayFoto = {
 		def remise = Remise.get(params.id)
 		response.contentType = "image/jpeg"
 		response.contentLength = remise?.foto.length
 		response.outputStream.write(remise?.foto)
+	}
+
+	def calificar(){
+		
+	}
+
+	@Transactional
+	def guardarCalificacion(){
+		def remiseInstance = Remise.get(params.id)
+		if(params.puntaje){
+			Calificacion calificacion = new Calificacion(puntaje:params.puntaje)
+			calificacion.save(failOnError : true)
+			remiseInstance.calificaciones.add(calificacion)
+		}
+		redirect action:'show', id:params.id
 	}
 }

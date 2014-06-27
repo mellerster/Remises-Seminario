@@ -26,6 +26,8 @@
 						<g:sortableColumn property="patente" title="${message(code: 'remise.patente.label', default: 'Patente')}" />
 					
 						<th><g:message code="remise.chofer.label" default="Chofer" /></th>
+						
+						<th>Calificación</th>
 					
 						<g:sortableColumn property="foto" title="${message(code: 'remise.foto.label', default: 'Foto')}" />
 					
@@ -38,6 +40,8 @@
 						<td><g:link action="show" id="${remiseInstance.id}">${fieldValue(bean: remiseInstance, field: "patente")}</g:link></td>
 					
 						<td>${fieldValue(bean: remiseInstance, field: "chofer")}</td>
+						
+						<td>${fieldValue(bean: remiseInstance, field: "calificacion")}</td>
 					
 						<td><g:if test="${remiseInstance?.foto}">
 							<g:link action='displayFoto' id="${remiseInstance?.id}" target="_blank">

@@ -5,25 +5,34 @@ class Remise {
 	byte[] foto
 	Chofer chofer
 	def estado
-	static hasMany = [comodidades: Comodidad]
+	Set comodidades = []
+	Set calificaciones = []
+	static hasMany = [comodidades: Comodidad, calificaciones : Calificacion]
 	static belongsTo = [agencia: Agencia]
-	
+
 	static constraints = {
 		patente unique: true, nullable: false, blank: false
 		agencia nullable: true
-		comodidades min: 0 
+		comodidades min: 0
 		chofer nullable: false,unique:true
-					 /*, validator: { param_chof, param_remi ->
-								Set dniChoferesPropios = []
-								dniChoferesPropios.addAll(param_remi.agencia?.choferes.collect{it.dni})
-								if (!dniChoferesPropios.contains(param_chof.dni))
-									return ['invalid.choferInvalido'] 
-					 }*/
 		foto nullable: true, maxSize: 1024 * 1024 * 2 /* 2MB */
-		estado inList: ["Con Pasajeros", "Vacio", "Reservado"]
-		}
-	
+		estado inList: [
+			"Con Pasajeros",
+			"Vacio",
+			"Reservado"
+		]
+		calificaciones minSize:0
+	}
+
 	String toString() {
 		return	patente
+	}
+
+	def getCalificacion(){
+		if(calificaciones.size() > 0){
+			return (calificaciones.inject(0) { acc, val -> acc + val.puntaje } / calificaciones.size())			
+		}else {
+			return 5
+		}
 	}
 }
