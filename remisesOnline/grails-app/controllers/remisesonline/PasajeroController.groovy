@@ -126,12 +126,13 @@ class PasajeroController {
 	}
 	
 
-	def enviarSolicitud(){
-		def p = params.pasajeroSeleccionado
-		render p
+	def listSolicitudesEnviadas(){
+		def p = Pasajero.get(session.pasajero.id)
+		[solicitudesEnviadas: p.solicitudes]
 	}
 	
-	def verSolicitudes(){
+	def listSolicitudesRecibidas(){
+		render "hola"
 	}
 	
 }
