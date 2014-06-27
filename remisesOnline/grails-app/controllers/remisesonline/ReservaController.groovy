@@ -102,6 +102,9 @@ class ReservaController {
 						'*'{ render status: NO_CONTENT }
 				}
 		}
+		
+		def eliminarParada() {
+		}
 
 		protected void notFound() {
 				request.withFormat {

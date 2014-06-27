@@ -70,7 +70,7 @@
 				
 				<g:if test="${reservaInstance?.paradas}">
 					<li class="fieldcontain">
-						<h4>Resultados</h4>
+						<h4>Paradas</h4>
 						<table>
 							<thead>
 								<tr>
@@ -78,6 +78,7 @@
 									<th>Número</th>
 									<th>Localidad</th>
 									<th>Descripción</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -87,6 +88,9 @@
 										<td>${fieldValue(bean: parada, field: "numero")}</td>
 										<td>${fieldValue(bean: parada, field: "localidad")}</td>
 										<td>${fieldValue(bean: parada, field: "descripcion")}</td>
+										<td>
+											<g:actionSubmit class="delete" action="eliminarParada" value="Eliminar esta parada" onclick="return confirm('Seguro que desea quitar la parada?');" />
+										</td>
 									</tr>
 								</g:each>
 							</tbody>
