@@ -25,8 +25,10 @@ class PasajeroController {
 	}
 	
 	def listReservas() {
-		def pasajeroLogueado = Pasajero.get(session.pasajero.id)
-		return [reservas: pasajeroLogueado.reservas]
+		def pasajeroLogueado = Pasajero.get(session.pasajero?.id)
+		if (pasajeroLogueado)
+			return [reservas: pasajeroLogueado.reservas]
+		flash.message = "Sesion invalida"
 	}
 	
 	def index(Integer max) {
@@ -112,8 +114,10 @@ class PasajeroController {
 	}
 	
 	def amigos(){
-		def p = Pasajero.get(session.pasajero.id)
-		[amigos: p.amigos]
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p)
+			[amigos: p?.amigos] //aca puede explotar si amigos no esta inicializado
+		flash.message = "Sesion invalida"
 	}
 	
 	def agregarAmigos(){

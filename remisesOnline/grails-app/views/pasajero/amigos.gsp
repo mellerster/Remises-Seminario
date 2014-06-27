@@ -17,7 +17,9 @@
 		<div id="list-pasajero" class="content scaffold-list" role="main">
 			<h1>Mis amigos</h1>
 			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
+				<ul class="errors" role="alert">
+					<li ><g:message error="${flash.message}"/></li>
+				</ul>
 			</g:if>
 			<table>
 			<thead>
