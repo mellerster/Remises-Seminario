@@ -15,7 +15,8 @@
 		<g:message code="reserva.fechaReserva.label" default="Fecha Reserva" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field type="text" name="fechaReserva" value="${reservaInstance?.fechaReserva}" class="datetimepicker" size="14" />
+
+	<g:textField  class="datetimepicker" size="14" type="datetime" name="fechaReserva" value="${formatDate(format:"dd/MM/yyyy HH:mm", date:reservaInstance?.fechaReserva)}" />
 
 </div>
 

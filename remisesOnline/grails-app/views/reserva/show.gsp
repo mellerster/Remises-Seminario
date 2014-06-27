@@ -30,7 +30,9 @@
 				<li class="fieldcontain">
 					<span id="fechaReserva-label" class="property-label"><g:message code="reserva.fechaReserva.label" default="Fecha Reserva" /></span>
 					
-						<span class="property-value" aria-labelledby="fechaReserva-label"><g:formatDate date="${reservaInstance?.fechaReserva}" /></span>
+						<span class="property-value" aria-labelledby="fechaReserva-label">
+							<g:formatDate date="${reservaInstance?.fechaReserva}" type="datetime" format="dd/MM/yyyy HH:mm" />
+						</span>
 					
 				</li>
 				</g:if>
@@ -39,7 +41,9 @@
 				<li class="fieldcontain">
 					<span id="estado-label" class="property-label"><g:message code="reserva.estado.label" default="Estado" /></span>
 					
-						<span class="property-value" aria-labelledby="estado-label"><g:fieldValue bean="${reservaInstance}" field="estado"/></span>
+						<span class="property-value" aria-labelledby="estado-label">
+							<g:fieldValue bean="${reservaInstance}" field="estado"/>
+						</span>
 					
 				</li>
 				</g:if>
@@ -57,20 +61,13 @@
 				<li class="fieldcontain">
 					<span id="creado-label" class="property-label"><g:message code="reserva.creado.label" default="Creado" /></span>
 					
-						<span class="property-value" aria-labelledby="creado-label"><g:formatDate date="${reservaInstance?.creado}" /></span>
+						<span class="property-value" aria-labelledby="creado-label">
+							<g:formatDate date="${reservaInstance?.creado}" type="datetime" format="dd/MM/yyyy HH:mm" />
+						</span>
 					
 				</li>
 				</g:if>
-			
-			
-				<g:if test="${reservaInstance?.pasajero}">
-				<li class="fieldcontain">
-					<span id="pasajero-label" class="property-label"><g:message code="reserva.pasajero.label" default="Pasajero" /></span>
-					
-						<span class="property-value" aria-labelledby="pasajero-label"><g:link controller="pasajero" action="show" id="${reservaInstance?.pasajero?.id}">${reservaInstance?.pasajero?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
+
 			
 			</ol>
 			<g:form url="[resource:reservaInstance, action:'delete']" method="DELETE">
