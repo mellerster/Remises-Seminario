@@ -1,15 +1,6 @@
 <%@ page import="remisesonline.Reserva" %>
 
 
-
-<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'remise', 'error')} ">
-	<label for="remise">
-		<g:message code="reserva.remise.label" default="Remise" />
-	</label>
-	<g:select id="remise" name="remise.id" from="${remisesonline.Remise.list()}" optionKey="id" value="${reservaInstance?.remise?.id}" class="many-to-one" noSelection="['null': '']"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'fechaReserva', 'error')} required">
 	<label for="fechaReserva">
 		<g:message code="reserva.fechaReserva.label" default="Fecha Reserva" />
@@ -25,7 +16,17 @@
 		<g:message code="reserva.agencia.label" default="Agencia" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="agencia" name="agencia.id" from="${remisesonline.Agencia.list()}" optionKey="id" required="" value="${reservaInstance?.agencia?.id}" class="many-to-one"/>
+	<g:select id="agencia" name="agencia.id" from="${remisesonline.Agencia.list()}" optionKey="id"
+		onchange=" ${remoteFunction( controller:'agencia', action:'getRemises', update:'remise',  params: '\'agenciaid=\' + this.value')} " 
+		required="" value="${reservaInstance?.agencia?.id}" noSelection="['null': 'Seleccione una agencia']" class="many-to-one"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'remise', 'error')} ">
+	<label for="remise">
+		<g:message code="reserva.remise.label" default="Remise" />
+	</label>
+	<g:select id="remise" name="remise.id" from="" optionKey="id" value="${reservaInstance?.remise?.id}" class="many-to-one" noSelection="['null': '']"/>
 
 </div>
 

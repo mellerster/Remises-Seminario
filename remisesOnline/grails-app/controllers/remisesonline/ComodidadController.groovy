@@ -18,8 +18,7 @@ class ComodidadController {
 	def actualizar(Remise remiseInstance){
 		Remise remise = Remise.get(remiseInstance.id)
 		remise.comodidades.clear()
-		params.each {
-			if (it.key.startsWith("comodidad_"))
+		params.grep{it.key.startsWith("comodidad_")}.each {
 				remise.comodidades << Comodidad.get((it.key - "comodidad_") as Integer)
 		}
 		remise.save flush:true

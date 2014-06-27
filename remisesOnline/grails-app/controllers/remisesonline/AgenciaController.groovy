@@ -20,7 +20,7 @@ class AgenciaCommand{
 @Transactional(readOnly = true)
 class AgenciaController {
 
-	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",getRemises: "POST"]
 
 	def logout() {
 		session.agencia = null
@@ -148,4 +148,12 @@ class AgenciaController {
 			'*'{ render status: NOT_FOUND }
 		}
 	}
+	
+	def getRemises()  {
+		def remises = Agencia.get(params.agenciaid).remises
+		def lista = []
+		lista.add("""<option value="null"></option>""")
+		lista.addAll(remises.collect{remise-> """<option value="${remise.id}">${remise.patente}</option>""" })
+		render lista
+  } 
 }

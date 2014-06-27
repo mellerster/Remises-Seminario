@@ -38,7 +38,7 @@ class ReservaController {
 
 				if (reservaInstance.hasErrors()) {
 						respond reservaInstance.errors, view:'create'
-						return
+						return false
 				}
 				
 				reservaInstance.save flush:true
