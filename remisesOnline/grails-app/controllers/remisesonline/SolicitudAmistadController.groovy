@@ -30,6 +30,11 @@ class SolicitudAmistadController {
             return
         }
 
+		solicitudAmistadInstance.pasajero =	Pasajero.get(session.pasajero.id)
+		solicitudAmistadInstance.fechaCreada =	new Date()
+		solicitudAmistadInstance.estado = 'Pendiente'
+		solicitudAmistadInstance.validate()
+		
         if (solicitudAmistadInstance.hasErrors()) {
             respond solicitudAmistadInstance.errors, view:'create'
             return
@@ -101,4 +106,5 @@ class SolicitudAmistadController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
 }
