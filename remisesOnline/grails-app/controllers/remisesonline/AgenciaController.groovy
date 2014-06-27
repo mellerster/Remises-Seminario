@@ -21,7 +21,8 @@ class AgenciaCommand{
 class AgenciaController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",getRemises: "POST"]
-
+	def agenciaService 
+	
 	def logout() {
 		session.agencia = null
 		redirect(action: 'login')
@@ -150,10 +151,6 @@ class AgenciaController {
 	}
 	
 	def getRemises()  {
-		def remises = Agencia.get(params.agenciaid).remises
-		def lista = []
-		lista.add("""<option value="null"></option>""")
-		lista.addAll(remises.collect{remise-> """<option value="${remise.id}">${remise.patente}</option>""" })
-		render lista
+		render agenciaService.getRemisesParaCombo(params.agenciaid)
   } 
 }
