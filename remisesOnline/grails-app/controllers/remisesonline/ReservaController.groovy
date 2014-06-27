@@ -9,6 +9,8 @@ import grails.transaction.Transactional
 class ReservaController {
 
 		static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+		
+		def reservaService
 
 		def index(Integer max) {
 				params.max = Math.min(max ?: 10, 100)
@@ -103,7 +105,15 @@ class ReservaController {
 				}
 		}
 		
-		def eliminarParada() {
+		def eliminarParada(Reserva reservaInstance) {
+			println 'Id ' + reservaInstance?.id
+			println 'fechaReserva ' + reservaInstance?.fechaReserva
+			println 'Agencia ' + reservaInstance?.agencia
+			println params
+			if (reservaInstance) {
+				reservaService.eliminarParada(reservaInstance.id, params.id)
+			}
+			respond reservaInstance.errors, view:'show'
 		}
 
 		protected void notFound() {

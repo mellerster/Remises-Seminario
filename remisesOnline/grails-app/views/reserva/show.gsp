@@ -89,7 +89,8 @@
 										<td>${fieldValue(bean: parada, field: "localidad")}</td>
 										<td>${fieldValue(bean: parada, field: "descripcion")}</td>
 										<td>
-											<g:actionSubmit class="delete" action="eliminarParada" value="Eliminar esta parada" onclick="return confirm('Seguro que desea quitar la parada?');" />
+											<g:link class="reserva" controller="reserva" action="eliminarParada" id="${parada.id }">Eliminar parada</g:link>
+											
 										</td>
 									</tr>
 								</g:each>
