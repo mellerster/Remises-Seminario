@@ -116,7 +116,7 @@ class PasajeroController {
 	def amigos(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p)
-			[amigos: p.amigos] //aca puede explotar si amigos no esta inicializado
+			return [amigos: p.amigos] //aca puede explotar si amigos no esta inicializado
 		flash.message = "Sesion invalida"
 	}
 	
