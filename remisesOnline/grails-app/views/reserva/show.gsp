@@ -67,6 +67,32 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${reservaInstance?.paradas}">
+					<li class="fieldcontain">
+						<h4>Resultados</h4>
+						<table>
+							<thead>
+								<tr>
+									<th>Calle</th>
+									<th>Número</th>
+									<th>Localidad</th>
+									<th>Descripción</th>
+								</tr>
+							</thead>
+							<tbody>
+								<g:each in="${reservaInstance?.paradas}" status="i" var="parada">
+									<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+										<td>${fieldValue(bean: parada, field: "calle")}</td>
+										<td>${fieldValue(bean: parada, field: "numero")}</td>
+										<td>${fieldValue(bean: parada, field: "localidad")}</td>
+										<td>${fieldValue(bean: parada, field: "descripcion")}</td>
+									</tr>
+								</g:each>
+							</tbody>
+						</table>
+					</li>
+				</g:if>
 
 			
 			</ol>
