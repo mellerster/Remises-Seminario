@@ -89,7 +89,7 @@
 										<td>${fieldValue(bean: parada, field: "localidad")}</td>
 										<td>${fieldValue(bean: parada, field: "descripcion")}</td>
 										<td>
-											<g:link class="reserva" controller="reserva" action="eliminarParada" id="${parada.id }" params="[calle: ${parada.calle }, numero: ${parada.numero }]">Eliminar parada</g:link>
+											<g:link class="reserva" controller="reserva" action="eliminarParada" id="${parada.id }" params="[calle: parada.calle, numero: parada.numero ]">Eliminar parada</g:link>
 										</td>
 									</tr>
 								</g:each>

@@ -41,6 +41,10 @@ class Reserva {
 	def getPendiente() {
 		estado == ESTADOS_VALIDOS[0]
 	}
+	
+	def cancelar() {
+		estado = ESTADOS_VALIDOS[3]
+	}
   
 	static mapping = {
 		paradas cascade: "all-delete-orphan"

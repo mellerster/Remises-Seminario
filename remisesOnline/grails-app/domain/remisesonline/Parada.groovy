@@ -2,15 +2,15 @@ package remisesonline
 
 import groovy.transform.EqualsAndHashCode
 
-@EqualsAndHashCode()
+//@EqualsAndHashCode()
 class Parada {
 	String localidad
 	String calle
 	Integer numero
 	String descripcion
 	
-	//boolean deleted
-	//static transients = [ 'deleted' ]
+	boolean deleted = false
+	static transients = [ 'deleted' ]
 	
 	static belongsTo = [Itinerario]
 
@@ -25,16 +25,16 @@ class Parada {
 		return "${calle} ${numero} - ${localidad}"
 	}
 	
-	/*@Override
+	@Override
 	boolean equals(o) {
 		if(this.is(o)) return true
 		if(o == null) return false
 		// hibernate creates dynamic subclasses, so 
 		// checking o.class == class would fail most of the time
-		if(!o.getClass().isAssignableFrom(getClass()) && 
-				!getClass().isAssignableFrom(o.getClass())) return false
+		if(!o.instanceOf(Parada)) return false
 		
-		return this.toString() == o.toString()
+		return this.calle == o.calle
+		
 	}
 
 	@Override
@@ -46,5 +46,5 @@ class Parada {
 		result = prime*result + localidad?.hashCode()
 		result = prime*result + descripcion?.hashCode()
 		result
-	}*/
+	}
 }

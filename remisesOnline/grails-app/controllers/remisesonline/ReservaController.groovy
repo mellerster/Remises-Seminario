@@ -109,11 +109,36 @@ class ReservaController {
 			println 'Id ' + reservaInstance?.id
 			println 'fechaReserva ' + reservaInstance?.fechaReserva
 			println 'Agencia ' + reservaInstance?.agencia
-			println params
-			if (reservaInstance) {
-				reservaService.eliminarParada(reservaInstance.id, params.id)
+			println 'params.id '
+			println params.id
+			
+			def reserva = Reserva.get(reservaInstance?.id)
+			println 'fechaReserva2 ' + reserva?.fechaReserva
+			def parada1 = reserva.paradas.find{ it.id == Long.parseLong(params.id) }
+			
+			if (reserva) {
+				
+				
+				//def parada2 = Parada.get(Long.parseLong(params.id))
+				if (parada1) {
+					println 'parada1 ok '
+				}
+				println parada1.calle + ' ' + parada1.numero 
+				
+				//reservaService.eliminarParada(reservaInstance.id, params.id)
+				
+				if (parada1) {
+					reserva.removeFromParadas(parada1)
+					reserva.save()
+				}
 			}
-			respond reservaInstance.errors, view:'show'
+			respond reserva, view:'show'
+		}
+		
+		def cancelarReserva() {
+			println params
+			def reserva = reservaService.cancelarReserva(Long.parseLong(params.id))
+			respond reserva, controller: 'pasajero', view:'show'
 		}
 
 		protected void notFound() {
