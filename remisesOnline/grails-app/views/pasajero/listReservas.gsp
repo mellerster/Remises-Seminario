@@ -21,7 +21,7 @@
 						<th><g:message code="reserva.agencia.label" default="Agencia" /></th>
 						<th><g:message code="reserva.remise.label" default="Remise" /></th>
 						<g:sortableColumn property="creado" title="${message(code: 'reserva.creado.label', default: 'Creado')}" />
-						<th>gsd</th>
+						<th></th>
 					</tr>
 					</thead>
 					<tbody>
