@@ -78,16 +78,35 @@ class BootStrap {
 		def pasajero = new Pasajero(nombre: 'Hugo el cliente', email: 'h@gmail.com',\
 								telefono: '54', fechaNacimiento: new Date(80,5,5))
 		pasajero.save(failOnError: true)
+		
+		def pasajero2 = new Pasajero(nombre: 'Seba el cliente', email: 's@gmail.com',\
+								telefono: '54', fechaNacimiento: new Date(80,5,5))
+		pasajero2.save(failOnError: true)
+		
+		pasajero.addToAmigos(pasajero2)
+		pasajero2.addToAmigos(pasajero)
+		def pasajero3 = new Pasajero(nombre: 'Jose el cliente', email: 'j@gmail.com',\
+								telefono: '54', fechaNacimiento: new Date(80,5,5))
+		pasajero3.save(failOnError: true)
+		
+		def pasajero4 = new Pasajero(nombre: 'Pepe el cliente', email: 'p@gmail.com',\
+								telefono: '54', fechaNacimiento: new Date(80,5,5))
+		pasajero4.save(failOnError: true)
 
 		//itinerario.addToPasajeros(pasajero)
 		//itinerario.save(failOnError: true)
 		//pasajero.addToViajes(itinerario)
 
 
-		pasajero = new Pasajero(nombre: 'Diego el cliente', email: 'm@gmail.com',\
+		def pasajero5 = new Pasajero(nombre: 'Diego el cliente', email: 'm@gmail.com',\
 							telefono: '54', fechaNacimiento: new Date(90,5,5))
-		pasajero.save(failOnError: true)
+		pasajero5.save(failOnError: true)
+		pasajero.addToAmigos(pasajero5)
+		pasajero5.addToAmigos(pasajero)
+		
+		
 
+		
 		def reserva = new Reserva(remise: remisAAA000, agencia: agencia,\
 								pasajero: pasajero, fechaReserva: new Date() + 1)
 		def parada1 = new Parada(calle: 'H. Yrigoyen', numero: 370, descripcion: 'en plaza de mayo')
