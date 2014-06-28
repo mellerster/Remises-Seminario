@@ -33,6 +33,7 @@ class ReservaService {
     def cancelarReserva(Long idReserva) {
 		def reserva = Reserva.get(idReserva)
 		reserva.cancelar()
+		reserva.save(flush: true)
 		reserva
 	}
 }
