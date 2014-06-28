@@ -17,6 +17,6 @@ class SolicitudAmistad {
     }
 	
 		String toString() {
-		"$fechaCreada $estado"
+		"$solicitado - $pasajero - $fechaCreada $estado"
 	}
 }

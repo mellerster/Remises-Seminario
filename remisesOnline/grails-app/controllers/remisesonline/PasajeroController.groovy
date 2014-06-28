@@ -156,8 +156,17 @@ class PasajeroController {
 		redirect(action: "amigos")
 	}
 	
-	def aceptarAmigo(){
-	render "En construccion"
-	
+	def aceptarSolicitud(SolicitudAmistad instance){
+		instance.estado = 'Aprobada'
+		instance.save flush:true
+		
+		render "hola"
 	}
+	
+	def denegarSolicitud(){
+		def solicitud = SolicitudAmistad(params.id)
+		println "$solicitud" 
+		render "caca"
+	}
+	
 }

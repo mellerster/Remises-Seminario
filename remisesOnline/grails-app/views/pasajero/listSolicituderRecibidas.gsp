@@ -23,8 +23,8 @@
 						<g:sortableColumn property="fechaCreada" title="${message(code: 'solicitudAmistad.fechaCreada.label', default: 'Fecha Creada')}" />
 					
 						<th><g:message code="solicitudAmistad.pasajero.label" default="Pasajero" /></th>
-				
-
+						
+						<th><g:message code="solicitudAmistad.pasajero.label" default="Opcion" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,9 +37,10 @@
 					
 						<td>${fieldValue(bean: solicitud, field: "pasajero")}</td>
 						
-						<td><g:link action="aceptarAmigo" controller="pasajero" id="${solicitud.id}"><input type="button" value="Aceptar" /></g:link></td>
-		
-						
+						<td><g:link action="aprobarSolicitud" controller="solicitudAmistad" id="${solicitud.id}"><input type="button" value="Aceptar" /></g:link>
+						     <g:link action="denegarSolicitud" controller="solicitudAmistad" id="${solicitud.id}"><input type="button" value="Denegar" /></g:link>
+						</td>
+
 					</tr>
 				</g:each>
 				</tbody>
