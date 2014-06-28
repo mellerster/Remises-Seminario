@@ -115,6 +115,7 @@ class PasajeroController {
 	
 	def amigos(){
 		def p = Pasajero.get(session.pasajero?.id)
+		println p.amigos
 		if (p)
 			return [amigos: p.amigos] //aca puede explotar si amigos no esta inicializado
 		flash.message = "Sesion invalida"
@@ -131,8 +132,24 @@ class PasajeroController {
 		[solicitudesEnviadas: p.solicitudes]
 	}
 	
-	def listSolicitudesRecibidas(){
-		render "hola"
+	def listSolicituderRecibidas(){
+		//Esto parece mas un servicio o algo de la solicitud, pero por ahora lo dejo aca
+		println "--------------------------"
+		def p = Pasajero.get(session.pasajero.id)
+
+		def solicitudesRecibidas
+		
+	}
+	
+	def quieroIrJunto(){
+		def p = Pasajero.get(session.pasajero.id)
+		[amigos: p.amigos]
+	}
+	
+	def listarReservasDeAmigo(){
+		def p = Pasajero.get(params.pasajero)
+		println "$p"
+		[reservas: p.reservas]	
 	}
 	
 }

@@ -22,20 +22,22 @@
 					
 						<g:sortableColumn property="fechaCreada" title="${message(code: 'solicitudAmistad.fechaCreada.label', default: 'Fecha Creada')}" />
 					
-						<th><g:message code="solicitudAmistad.solicitado.label" default="Solicitado" /></th>
-					
+						<th><g:message code="solicitudAmistad.pasajero.label" default="Pasajero" /></th>
+				
+						<th><g:message code="Aprobar" default="Aprobar" /></th>
+
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${solicitudesEnviadas}" status="i" var="solicitud">
+				<g:each in="${solicitudesRecibidas}" status="i" var="solicitud">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${solicitud.id}">${fieldValue(bean: solicitud, field: "estado")}</g:link></td>
 					
 						<td><g:formatDate date="${solicitud.fechaCreada}" /></td>
 					
-						<td>${fieldValue(bean: solicitud, field: "solicitado")}</td>
-					
+						<td>${fieldValue(bean: solicitud, field: "pasajero")}</td>
+						
 					</tr>
 				</g:each>
 				</tbody>

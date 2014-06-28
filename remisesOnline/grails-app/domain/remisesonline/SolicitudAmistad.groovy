@@ -4,8 +4,8 @@ class SolicitudAmistad {
 	static final ESTADOS_VALIDOS = ['Pendiente', 'Aprobada', 'Denegada']
 
 	Pasajero solicitado
-	Date fechaCreada
-	String estado
+	Date fechaCreada = new Date()
+	String estado = new String('Pendiente')
 	
 	static belongsTo = [pasajero: Pasajero]
 

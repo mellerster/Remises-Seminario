@@ -31,8 +31,6 @@ class SolicitudAmistadController {
         }
 
 		solicitudAmistadInstance.pasajero =	Pasajero.get(session.pasajero.id)
-		solicitudAmistadInstance.fechaCreada =	new Date()
-		solicitudAmistadInstance.estado = 'Pendiente'
 		solicitudAmistadInstance.validate()
 		
         if (solicitudAmistadInstance.hasErrors()) {
