@@ -24,7 +24,6 @@
 					
 						<th><g:message code="solicitudAmistad.pasajero.label" default="Pasajero" /></th>
 				
-						<th><g:message code="Aprobar" default="Aprobar" /></th>
 
 					</tr>
 				</thead>
@@ -37,6 +36,9 @@
 						<td><g:formatDate date="${solicitud.fechaCreada}" /></td>
 					
 						<td>${fieldValue(bean: solicitud, field: "pasajero")}</td>
+						
+						<td><g:link action="aceptarAmigo" controller="pasajero" id="${solicitud.id}"><input type="button" value="Aceptar" /></g:link></td>
+		
 						
 					</tr>
 				</g:each>

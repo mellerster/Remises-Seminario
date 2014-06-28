@@ -134,7 +134,10 @@ class PasajeroController {
 	
 	def listSolicituderRecibidas(){
 		def p = Pasajero.get(session.pasajero.id)
-		def solicitudesRecibidas
+		println "pasajero $p.id"
+		def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
+		def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.estado == 'Pendiente'}
+		[solicitudesRecibidas: solicitudesPendientes]
 	}
 	
 	def quieroIrJunto(){
@@ -144,7 +147,7 @@ class PasajeroController {
 	
 	def listarReservasDeAmigo(){
 		def p = Pasajero.get(params.pasajero)
-		def reservaCompartibles = p.reservas.findAll{reserva -> reserva.compartible}.findAll{reserva -> reserva.estado = 'Pendiente'}	
+		def reservaCompartibles = p.reservas.findAll{reserva -> reserva.compartible}.findAll{reserva -> reserva.estado == 'Pendiente'}	
 		[reservas: reservaCompartibles]	
 	}
 	
@@ -153,4 +156,8 @@ class PasajeroController {
 		redirect(action: "amigos")
 	}
 	
+	def aceptarAmigo(){
+	render "En construccion"
+	
+	}
 }
