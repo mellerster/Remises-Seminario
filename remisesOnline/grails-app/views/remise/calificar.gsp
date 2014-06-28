@@ -35,21 +35,38 @@
 				</g:if>
 
 				<g:if test="${remiseInstance?.calificacion}">
-					<li class="fieldcontain"><span id="patente-label"
-						class="property-label">Calificación</span> <span
-						class="property-value" aria-labelledby="calificacion-label"><g:fieldValue
-								bean="${remiseInstance}" field="calificacion" /></span></li>
-				</g:if>
-
+				<li class="fieldcontain"><span id="patente-label"
+					class="property-label">Calificación</span> <span
+					class="property-value" aria-labelledby="calificacion-label">
+						<div id="calificacion"></div></span></li>
+				<g:javascript>
+				$(function() {
+						$.fn.raty.defaults.path = '${resource(dir:'images') }';
+					    $('#calificacion').raty({
+  							readOnly   : true
+  							,score: ${remiseInstance.calificacion }
+  							});
+					    })
+				</g:javascript>
+			</g:if>
+			<li class="fieldcontain">
+				<span id="puntaje-label" class="property-label">Puntaje</span>
+				<span class="property-value" aria-labelledby="puntaje-label">
+					<div id="selectpuntaje"></div>
+					
+				</span>
+				<g:javascript>
+					$.fn.raty.defaults.path = '${resource(dir:'images') }';
+					$('#selectpuntaje').raty({
+					  click: function(score, evt) {
+					  	$('#puntaje').val(score);
+					  }
+					});
+				</g:javascript>
+			</li>
 			</ol>
-<fieldset class="form">
-			<div
-				class="fieldcontain ${hasErrors(bean: remiseInstance, field: 'puntaje')} required">
-				<label for="puntaje"> <g:message code="remise.puntaje.label"
-						default="Puntaje" /> <span class="required-indicator">*</span>
-				</label>
-				<g:select name="puntaje" required="" from="${1..5 }"/>
-			</div>
+<fieldset class="form">	
+			<g:hiddenField name="puntaje"/>
 			</fieldset>
 			<fieldset class="buttons">
 					<g:submitButton name="puntuar" class="save" value="Puntuar" />
