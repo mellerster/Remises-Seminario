@@ -15,6 +15,7 @@
 				<li><g:link class="pasajero" controller="pasajero" action="listSolicitudesEnviadas"><g:message code="Solicitudes Enviadas" args="[entityName]" /></g:link></li>
 				<li><g:link class="pasajero" controller="pasajero" action="listSolicituderRecibidas"><g:message code="Solicitudes Recibidas" args="[entityName]" /></g:link></li>
 				<li><g:link class="pasajero" controller="pasajero" action="quieroIrJunto"><g:message code="Quiero ir junto" args="[entityName]" /></g:link></li>
+				
 			</ul>
 		</div>
 		<div id="list-pasajero" class="content scaffold-list" role="main">
@@ -35,7 +36,7 @@
 						<g:sortableColumn property="telefono" title="${message(code: 'pasajero.telefono.label', default: 'Telefono')}" />
 					
 						<g:sortableColumn property="fechaNacimiento" title="${message(code: 'pasajero.fechaNacimiento.label', default: 'Fecha Nacimiento')}" />
-					
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -49,7 +50,7 @@
 						<td>${fieldValue(bean: pasajeroInstance, field: "telefono")}</td>
 					
 						<td><g:formatDate date="${pasajeroInstance.fechaNacimiento}" /></td>
-					
+						<td><g:link action="eliminarAmigo" controller="pasajero" id="${pasajeroInstance.id}"><input type="button" value="Eliminar" /></g:link></td>
 					</tr>
 				</g:each>
 				</tbody>

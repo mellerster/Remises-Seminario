@@ -148,4 +148,9 @@ class PasajeroController {
 		[reservas: reservaCompartibles]	
 	}
 	
+	def eliminarAmigo(){
+		//Eliminar el amigo de ambos lados
+		redirect(action: "amigos")
+	}
+	
 }
