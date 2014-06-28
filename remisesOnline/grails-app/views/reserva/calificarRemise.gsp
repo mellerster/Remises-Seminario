@@ -43,8 +43,9 @@
 				$(function() {
 						$.fn.raty.defaults.path = '${resource(dir:'images') }';
 					    $('#calificacion').raty({
-  							readOnly   : true
-  							,score: ${reservaInstance?.remise?.calificacion }
+  								readOnly   : true
+  								,score: ${reservaInstance?.remise?.calificacion
+								,hints: ['Pesimo', 'Malo', 'Bueno', 'Muy Bueno', 'Excelente'] }
   							});
 					    })
 				</g:javascript>
@@ -58,6 +59,7 @@
 				<g:javascript>
 					$.fn.raty.defaults.path = '${resource(dir:'images') }';
 					$('#selectpuntaje').raty({
+						hints: ['Pesimo', 'Malo', 'Bueno', 'Muy Bueno', 'Excelente'],
 					  click: function(score, evt) {
 					  	$('#puntaje').val(score);
 					  }

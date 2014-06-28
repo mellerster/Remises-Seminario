@@ -75,6 +75,7 @@
 						$.fn.raty.defaults.path = '${resource(dir:'images') }';
 					    $('#calificacion').raty({
   							readOnly   : true
+  							,hints: ['Pesimo', 'Malo', 'Bueno', 'Muy Bueno', 'Excelente']
   							,score: ${remiseInstance.calificacion }
   							});
 					    })
