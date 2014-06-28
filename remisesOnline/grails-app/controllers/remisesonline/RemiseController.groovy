@@ -143,21 +143,5 @@ class RemiseController {
 		response.outputStream.write(remise?.foto)
 	}
 
-	def calificar(Remise remiseInstance){
-		respond remiseInstance
-	}
-
-	@Transactional
-	def guardarCalificacion(){
-		def remiseInstance = Remise.get(params.id)
-		if(params.puntaje){
-			Calificacion calificacion = new Calificacion(puntaje:params.puntaje)
-			calificacion.save(failOnError : true)
-			remiseInstance.calificaciones.add(calificacion)
-			redirect action:'show', id:params.id
-		}else{
-			flash.message = "Debe seleccionar un puntaje para asignar"
-			respond remiseInstance,view:'calificar'
-		}
-	}
+	
 }
