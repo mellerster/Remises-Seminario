@@ -49,7 +49,7 @@
 					
 						<td>${fieldValue(bean: pasajeroInstance, field: "telefono")}</td>
 					
-						<td><g:formatDate date="${pasajeroInstance.fechaNacimiento}" /></td>
+						<td><g:formatDate date="${pasajeroInstance.fechaNacimiento}"  format="dd/MM/yyyy HH:mm" /></td>
 						
 						<td><g:link action="eliminarAmigo" controller="pasajero" id="${pasajeroInstance.id}"><input type="button" value="Eliminar" /></g:link></td>
 					</tr>
