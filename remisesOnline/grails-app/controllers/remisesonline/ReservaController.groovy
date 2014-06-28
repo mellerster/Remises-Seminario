@@ -145,13 +145,6 @@ class ReservaController {
 		respond reserva, view:'show'
 	}
 
-	def cancelarReserva() {
-		println params
-		def reserva = reservaService.cancelarReserva(Long.parseLong(params.id))
-		redirect controller:'reserva', action:'show', id:params.id
-		//respond reserva, controller: 'pasajero', view:'show'
-	}
-
 	protected void notFound() {
 		request.withFormat {
 			form multipartForm {
@@ -163,16 +156,17 @@ class ReservaController {
 			}
 			'*'{ render status: NOT_FOUND }
 		}
+	}
 		
-		def cancelarReserva() {
-			def reserva = reservaService.cancelarReserva(Long.parseLong(params.id))
-			
-			if (reserva.hasErrors()) {
-					respond reserva.errors, view:'show'
-					return
-			}
-			flash.message = 'Reserva cancelada'
-			redirect controller:'reserva', action:'show', id:params.id
+	def cancelarReserva() {
+		def reserva = reservaService.cancelarReserva(Long.parseLong(params.id))
+		
+		if (reserva.hasErrors()) {
+				respond reserva.errors, view:'show'
+				return
+		}
+		flash.message = 'Reserva cancelada'
+		redirect controller:'reserva', action:'show', id:params.id
 	}
 
 	def calificarRemise(Reserva reservaInstance){
