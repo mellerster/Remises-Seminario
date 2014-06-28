@@ -12,7 +12,8 @@ class Reserva {
 	Date creado = new Date()
 	Boolean compartible = false
 	List<Parada> paradas =  ListUtils.lazyList(new ArrayList(), {new Parada()} as Factory)
-
+	Calificacion calificacionRemise = null
+	Calificacion calificacionPasajero = null
 	static belongsTo = [agencia: Agencia, pasajero: Pasajero]
 	static hasMany = [paradas: Parada]
 
@@ -32,6 +33,8 @@ class Reserva {
 					return ['invalid.rango']
 		}
 		estado inList: ESTADOS_VALIDOS
+		calificacionRemise nullable:true
+		calificacionPasajero nullable:true
 	}
 
 	String toString() {
@@ -62,4 +65,28 @@ class Reserva {
 		return LazyList.decorate(paradas,	FactoryUtils.instantiateFactory(Parada.class))
 		//[].withLazyDefault {new Parada()}
 	}*/
+	
+	def calificarRemise(def puntaje){
+		calificacionRemise = new Calificacion(puntaje:puntaje)
+		calificacionRemise.save(flush:true)
+		remise.addToCalificaciones(calificacionRemise)
+	}
+	
+	def calificarPasajero(def puntaje){
+		calificacionPasajero = new Calificacion(puntaje:puntaje)
+		calificacionPasajero.save(flush:true)
+		//pasajero.addToCalificaciones(calificacionPasajero)
+	}
+	
+	def getEsRemiseCalificable(){
+		(estaCerrada && calificacionRemise == null)
+	}
+	
+	def getEsPasajeroCalificable(){
+		(estaCerrada && calificacionPasajero == null)
+	}
+	
+	def getEstaCerrada(){
+		(estado == 'Cerrada')
+	}
 }

@@ -33,7 +33,13 @@
 							<td>${fieldValue(bean: reserva, field: "agencia")}</td>
 							<td><g:link action="show" controller="remise" id="${reserva.remise?.id}">${fieldValue(bean: reserva, field: "remise")}</g:link></td>
 							<td><g:formatDate date="${reserva.creado}" format="dd/MM/yyyy HH:mm" /></td>
-							<td><g:link action="cancelarReserva" controller="reserva" id="${reserva.id}"><input type="button" value="Cancelar" /></g:link></td>
+							<td>
+								<g:link action="cancelarReserva" controller="reserva" id="${reserva.id}"><input type="button" value="Cancelar" /></g:link>
+								<g:if test="${reserva.esRemiseCalificable}">
+									<br/>
+									<g:link action="calificarRemise" controller="reserva" id="${reserva.id }">Calificar</g:link>
+								</g:if>
+							</td>
 						</tr>
 					</g:each>
 					</tbody>

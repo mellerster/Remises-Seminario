@@ -163,6 +163,7 @@ class ReservaController {
 			}
 			'*'{ render status: NOT_FOUND }
 		}
+<<<<<<< HEAD
 		
 		def cancelarReserva() {
 			def reserva = reservaService.cancelarReserva(Long.parseLong(params.id))
@@ -173,6 +174,7 @@ class ReservaController {
 			}
 			flash.message = 'Reserva cancelada'
 			redirect controller:'reserva', action:'show', id:params.id
+=======
 	}
 
 	def calificarRemise(Reserva reservaInstance){
@@ -181,7 +183,7 @@ class ReservaController {
 		}else{
 			flash.message = "No se puede calificar esta reserva"
 			redirect controller:'pasajero',action:'listReservas'
-
+>>>>>>> e4eb25777dd25ce3b9de808632c407455c1c64c5
 		}
 	}
 

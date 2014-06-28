@@ -14,13 +14,16 @@
 		<link rel="remises-new-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'remises-new-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.raty.css')}" type="text/css">		
 		<g:layoutHead/>
 		<g:javascript library="jquery"/>
 		<g:javascript library="application"/>
 		<r:require module="jquery-ui"/>
 		<r:require module="datepick" />
 		<r:require module="timepick" />
+		
 		<r:layoutResources />
+		<g:javascript src="jquery.raty.js" />
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="${createLink(uri: '/')}"><img src="${resource(dir: 'images', file: 'remises_new_logo.png')}" alt="Grails"/></a></div>
