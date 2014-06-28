@@ -149,10 +149,8 @@ class RemiseController {
 
 	@Transactional
 	def guardarCalificacion(){
-		println "Guardando..."
 		def remiseInstance = Remise.get(params.id)
 		if(params.puntaje){
-			println params.puntaje
 			Calificacion calificacion = new Calificacion(puntaje:params.puntaje)
 			calificacion.save(failOnError : true)
 			remiseInstance.calificaciones.add(calificacion)
