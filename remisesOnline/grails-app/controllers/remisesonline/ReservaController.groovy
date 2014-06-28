@@ -132,13 +132,15 @@ class ReservaController {
 					reserva.save()
 				}
 			}
+			redirect controller:'reserva', action:'show', id:params.id
 			respond reserva, view:'show'
 		}
 		
 		def cancelarReserva() {
 			println params
 			def reserva = reservaService.cancelarReserva(Long.parseLong(params.id))
-			respond reserva, controller: 'pasajero', view:'show'
+			redirect controller:'reserva', action:'show', id:params.id
+			//respond reserva, controller: 'pasajero', view:'show'
 		}
 
 		protected void notFound() {
