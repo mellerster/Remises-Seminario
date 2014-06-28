@@ -115,7 +115,6 @@ class PasajeroController {
 	
 	def amigos(){
 		def p = Pasajero.get(session.pasajero?.id)
-		println p.amigos
 		if (p)
 			return [amigos: p.amigos] //aca puede explotar si amigos no esta inicializado
 		flash.message = "Sesion invalida"
@@ -134,7 +133,6 @@ class PasajeroController {
 	
 	def listSolicituderRecibidas(){
 		def p = Pasajero.get(session.pasajero.id)
-		println "pasajero $p.id"
 		def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
 		def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.estado == 'Pendiente'}
 		[solicitudesRecibidas: solicitudesPendientes]
@@ -154,19 +152,6 @@ class PasajeroController {
 	def eliminarAmigo(){
 		//Eliminar el amigo de ambos lados
 		redirect(action: "amigos")
-	}
-	
-	def aceptarSolicitud(SolicitudAmistad instance){
-		instance.estado = 'Aprobada'
-		instance.save flush:true
-		
-		render "hola"
-	}
-	
-	def denegarSolicitud(){
-		def solicitud = SolicitudAmistad(params.id)
-		println "$solicitud" 
-		render "caca"
 	}
 	
 }
