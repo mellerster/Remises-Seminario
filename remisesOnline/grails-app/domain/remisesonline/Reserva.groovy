@@ -14,7 +14,7 @@ class Reserva {
 	List<Parada> paradas =  ListUtils.lazyList(new ArrayList(), {new Parada()} as Factory)
 
 	static belongsTo = [agencia: Agencia, pasajero: Pasajero]
-  static hasMany = [paradas: Parada]
+	static hasMany = [paradas: Parada]
 
 	static constraints = {
 		remise nullable: true, //en la reserva puede preferir algun remise o no
@@ -43,7 +43,15 @@ class Reserva {
 	}
 	
 	def cancelar() {
-		estado = ESTADOS_VALIDOS[3]
+		if (pendiente) {
+			def limite = new Date().toCalendar()
+			limite.add(Calendar.MINUTE, -10)
+			if (limite.before(fechaReserva.toCalendar())) {
+				estado = ESTADOS_VALIDOS[3]
+				return true
+			}
+		}
+		false
 	}
   
 	static mapping = {

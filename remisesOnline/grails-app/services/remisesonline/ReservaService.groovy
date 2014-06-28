@@ -32,8 +32,12 @@ class ReservaService {
     
     def cancelarReserva(Long idReserva) {
 		def reserva = Reserva.get(idReserva)
-		reserva.cancelar()
-		reserva.save(flush: true)
+		if (reserva.cancelar()) {
+			reserva.save(flush: true)
+			
+		} else {
+			reserva.errors.reject('reserva.estado.cantcancel', 'No se puede cancelar debido al estado comuniquese con la agencia')
+		}
 		reserva
 	}
 }
