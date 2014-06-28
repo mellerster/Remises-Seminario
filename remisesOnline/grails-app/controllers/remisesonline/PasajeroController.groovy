@@ -46,42 +46,42 @@ class PasajeroController {
 
 	@Transactional
 	def guardar(Pasajero pasajeroInstance) {
-			if (pasajeroInstance == null) {
-					notFound()
-					return
-			}
+		if (pasajeroInstance == null) {
+				notFound()
+				return
+		}
 
-			if (pasajeroInstance.hasErrors()) {
-					respond pasajeroInstance.errors, view:'crear'
-					return
-			}
+		if (pasajeroInstance.hasErrors()) {
+				respond pasajeroInstance.errors, view:'crear'
+				return
+		}
 
-			pasajeroInstance.save flush:true
+		pasajeroInstance.save flush:true
 
-			session.pasajero = pasajeroInstance
-      redirect action: 'listReservas', controller: 'pasajero'
+		session.pasajero = pasajeroInstance
+		redirect action: 'listReservas', controller: 'pasajero'
 	}
 
 	def edit(Pasajero pasajeroInstance) {
-			respond pasajeroInstance
+		respond pasajeroInstance
 	}
 
 	@Transactional
 	def update(Pasajero pasajeroInstance) {
-			if (pasajeroInstance == null) {
-					notFound()
-					return
-			}
+		if (pasajeroInstance == null) {
+				notFound()
+				return
+		}
 
-			if (pasajeroInstance.hasErrors()) {
-					respond pasajeroInstance.errors, view:'edit'
-					return
-			}
+		if (pasajeroInstance.hasErrors()) {
+				respond pasajeroInstance.errors, view:'edit'
+				return
+		}
 
-			pasajeroInstance.save flush:true
+		pasajeroInstance.save flush:true
 
-			request.withFormat {
-					form multipartForm {
+		request.withFormat {
+				form multipartForm {
 							flash.message = message(code: 'default.updated.message', args: [message(code: 'Pasajero.label', default: 'Pasajero'), pasajeroInstance.id])
 							redirect pasajeroInstance
 					}
@@ -98,7 +98,7 @@ class PasajeroController {
 			}
 
 			pasajeroInstance.delete flush:true
-      session.pasajero = null
+			session.pasajero = null
 			redirect action: 'login', controller: 'pasajero'
 				
 	}
@@ -115,38 +115,54 @@ class PasajeroController {
 	
 	def amigos(){
 		def p = Pasajero.get(session.pasajero?.id)
-		if (p)
+		if (p) {
 			return [amigos: p.amigos] //aca puede explotar si amigos no esta inicializado
+		}
 		flash.message = "Sesion invalida"
 	}
 	
 	def agregarAmigos(){
-		def p = Pasajero.get(session.pasajero.id)
-		[pasajeros: Pasajero.findAllByIdNotEqual(p.id)]
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p) {
+			return [pasajeros: Pasajero.findAllByIdNotEqual(p.id)]
+		}
+		flash.message = "Sesion invalida"
 	}
 	
 
 	def listSolicitudesEnviadas(){
-		def p = Pasajero.get(session.pasajero.id)
-		[solicitudesEnviadas: p.solicitudes]
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p) {
+			return [solicitudesEnviadas: p.solicitudes]
+		}
+		flash.message = "Sesion invalida"
 	}
 	
 	def listSolicituderRecibidas(){
-		def p = Pasajero.get(session.pasajero.id)
-		def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
-		def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.estado == 'Pendiente'}
-		[solicitudesRecibidas: solicitudesPendientes]
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p) {
+			def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
+			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.estado == 'Pendiente'}
+			return [solicitudesRecibidas: solicitudesPendientes]
+		}
+		flash.message = "Sesion invalida"
 	}
 	
 	def quieroIrJunto(){
-		def p = Pasajero.get(session.pasajero.id)
-		[amigos: p.amigos]
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p) {
+			return [amigos: p.amigos]
+		}
+		flash.message = "Sesion invalida"
 	}
 	
 	def listarReservasDeAmigo(){
-		def p = Pasajero.get(params.pasajero)
-		def reservaCompartibles = p.reservas.findAll{reserva -> reserva.compartible}.findAll{reserva -> reserva.estado == 'Pendiente'}	
-		[reservas: reservaCompartibles]	
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p) {
+			def reservaCompartibles = p.reservas.findAll{reserva -> reserva.compartible}.findAll{reserva -> reserva.estado == 'Pendiente'}	
+			return [reservas: reservaCompartibles]	
+		}
+		flash.message = "Sesion invalida"
 	}
 	
 	def eliminarAmigo(){
