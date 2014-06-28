@@ -32,12 +32,12 @@ class PasajeroController {
 	}
 	
 	def index(Integer max) {
-			params.max = Math.min(max ?: 10, 100)
-			respond Pasajero.list(params), model:[pasajeroInstanceCount: Pasajero.count()]
+		params.max = Math.min(max ?: 10, 100)
+		respond Pasajero.list(params), model:[pasajeroInstanceCount: Pasajero.count()]
 	}
 
 	def show(Pasajero pasajeroInstance) {
-			respond pasajeroInstance
+		respond pasajeroInstance
 	}
 
 	def crear() {
@@ -92,15 +92,14 @@ class PasajeroController {
 	@Transactional
 	def delete(Pasajero pasajeroInstance) {
 
-			if (pasajeroInstance == null) {
-					notFound()
-					return
-			}
+		if (pasajeroInstance == null) {
+				notFound()
+				return
+		}
 
-			pasajeroInstance.delete flush:true
-			session.pasajero = null
-			redirect action: 'login', controller: 'pasajero'
-				
+		pasajeroInstance.delete flush:true
+		session.pasajero = null
+		redirect action: 'login', controller: 'pasajero'
 	}
 
 	protected void notFound() {
@@ -142,7 +141,7 @@ class PasajeroController {
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
-			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.estado == 'Pendiente'}
+			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.pendiente}
 			return [solicitudesRecibidas: solicitudesPendientes]
 		}
 		flash.message = "Sesion invalida"
@@ -159,7 +158,7 @@ class PasajeroController {
 	def listarReservasDeAmigo(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
-			def reservaCompartibles = p.reservas.findAll{reserva -> reserva.compartible}.findAll{reserva -> reserva.estado == 'Pendiente'}	
+			def reservaCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}
 			return [reservas: reservaCompartibles]	
 		}
 		flash.message = "Sesion invalida"

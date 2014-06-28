@@ -7,6 +7,11 @@
 </head>
 <body>
 	<div class="body">
+		<g:if test="${flash.message}">
+			<ul class="errors" role="alert">
+				<li ><g:message error="${flash.message}"/></li>
+			</ul>
+		</g:if>
 		<g:form action="listarReservasDeAmigo">
 			<fieldset class="form">
 				<g:select name="pasajero" from="${amigos}" value="pasajero?.id"
