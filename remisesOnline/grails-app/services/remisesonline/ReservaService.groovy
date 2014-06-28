@@ -6,8 +6,9 @@ import grails.transaction.Transactional
 class ReservaService {
 
     def eliminarParada(Long idReserva, String idParada) {
-			def parada = Parada.get(idParada)
 			def reserva = Reserva.get(idReserva)
+			def parada = reserva.paradas.find{ it.id == idParada }
+			
 			if (parada && reserva) {
 				reserva.removeFromParadas(parada)
 				reserva.save()
@@ -15,7 +16,7 @@ class ReservaService {
 				println parada.calle + ' eliminada'
 			} else {
 				println 'error'
-				println 'parada: ' + parada.calle
+				println 'parada: ' + parada?.calle
 				println 'reserva: ' + reserva
 				
 			}
