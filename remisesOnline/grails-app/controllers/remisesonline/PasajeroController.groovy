@@ -133,12 +133,8 @@ class PasajeroController {
 	}
 	
 	def listSolicituderRecibidas(){
-		//Esto parece mas un servicio o algo de la solicitud, pero por ahora lo dejo aca
-		println "--------------------------"
 		def p = Pasajero.get(session.pasajero.id)
-
 		def solicitudesRecibidas
-		
 	}
 	
 	def quieroIrJunto(){
@@ -148,8 +144,8 @@ class PasajeroController {
 	
 	def listarReservasDeAmigo(){
 		def p = Pasajero.get(params.pasajero)
-		println "$p"
-		[reservas: p.reservas]	
+		def reservaCompartibles = p.reservas.findAll{reserva -> reserva.compartible}.findAll{reserva -> reserva.estado = 'Pendiente'}	
+		[reservas: reservaCompartibles]	
 	}
 	
 }
