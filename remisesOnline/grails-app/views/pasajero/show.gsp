@@ -10,7 +10,7 @@
 	<body>
 		<a href="#show-pasajero" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="show-pasajero" class="content scaffold-show" role="main">
-			<h1>Mis Datos</h1>
+			<h1>Datos de Pasajero</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>

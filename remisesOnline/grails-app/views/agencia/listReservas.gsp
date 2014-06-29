@@ -25,6 +25,7 @@
 					<th><g:message code="reserva.remise.label" default="Remise" /></th>
 					<g:sortableColumn property="creado"
 						title="${message(code: 'reserva.creado.label', default: 'Creado')}" />
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,6 +49,11 @@
 							</g:link></td>
 						<td><g:formatDate date="${reserva.creado}"
 								format="dd/MM/yyyy HH:mm" /></td>
+						<td>
+							<g:if test="${reserva.esPasajeroCalificable}">
+									<g:link action="calificarPasajero" controller="reserva" id="${reserva.id }">Calificar</g:link>
+								</g:if>
+						</td>
 					</tr>
 				</g:each>
 			</tbody>
