@@ -7,8 +7,8 @@ class Pasajero {
 	Date fechaNacimiento
 	Set destinosFrecuentes = []
 	Set viajes = []
-
-	static hasMany = [solicitudes: SolicitudAmistad, amigos: Pasajero, reservas: Reserva, destinosFrecuentes: Parada, viajes: Itinerario]
+	Set calificaciones = []
+	static hasMany = [solicitudes: SolicitudAmistad, amigos: Pasajero, reservas: Reserva, destinosFrecuentes: Parada, viajes: Itinerario,calificaciones: Calificacion]
 
 	static constraints = {
 		nombre nullable: false, blank: false
@@ -23,6 +23,14 @@ class Pasajero {
 	def getReservasCompartibles() {
 		reservas.grep { reserva ->
 			reserva.compartible && reserva.pendiente
+		}
+	}
+	
+	def getCalificacion(){
+		if(calificaciones.size() > 0){
+			return (calificaciones.inject(0) { acc, val -> acc + val.puntaje } / calificaciones.size())
+		}else {
+			return 5
 		}
 	}
 }
