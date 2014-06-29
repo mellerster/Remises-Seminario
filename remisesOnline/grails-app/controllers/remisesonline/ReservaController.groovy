@@ -195,4 +195,9 @@ class ReservaController {
 			redirect controller:'pasajero',action:'listReservas'
 		}
 	}
+	
+	
+	def unirseAReserva(){
+		render "completar"
+	}
 }
