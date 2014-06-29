@@ -9,13 +9,11 @@
 	</head>
 	<body>
 		<a href="#list-solicitudAmistad" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-				<div class="nav" role="navigation">
+		<div class="nav" role="navigation">
 			<ul>
 				<li><g:link class="pasajero" controller="solicitudAmistad" action="create"><g:message code="Agregar amigo" args="[entityName]" /></g:link></li>
 				<li><g:link class="pasajero" controller="pasajero" action="listSolicitudesEnviadas"><g:message code="Solicitudes Enviadas" args="[entityName]" /></g:link></li>
 				<li><g:link class="pasajero" controller="pasajero" action="listSolicituderRecibidas"><g:message code="Solicitudes Recibidas" args="[entityName]" /></g:link></li>
-				<li><g:link class="pasajero" controller="pasajero" action="quieroIrJunto"><g:message code="Quiero ir junto" args="[entityName]" /></g:link></li>
-				
 			</ul>
 		</div>
 		<div id="list-solicitudAmistad" class="content scaffold-list" role="main">

@@ -108,7 +108,7 @@ class BootStrap {
 
 		
 		def reserva = new Reserva(remise: remisAAA000, agencia: agencia,\
-								pasajero: pasajero, fechaReserva: new Date() + 1)
+								pasajero: pasajero, fechaReserva: new Date() + 1, compartible: true)
 		def parada1 = new Parada(calle: 'H. Yrigoyen', numero: 370, descripcion: 'en plaza de mayo')
 		parada1.localidad = 'CABA'
 		reserva.paradas[0] = parada1

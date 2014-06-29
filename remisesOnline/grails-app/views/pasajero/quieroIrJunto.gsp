@@ -6,15 +6,12 @@
 <title>Quiero ir junto</title>
 </head>
 <body>
-		<div class="nav" role="navigation">
+<div class="nav" role="navigation">
 			<ul>
-				<li><g:link class="pasajero" controller="solicitudAmistad" action="create"><g:message code="Agregar amigo" args="[entityName]" /></g:link></li>
-				<li><g:link class="pasajero" controller="pasajero" action="listSolicitudesEnviadas"><g:message code="Solicitudes Enviadas" args="[entityName]" /></g:link></li>
-				<li><g:link class="pasajero" controller="pasajero" action="listSolicituderRecibidas"><g:message code="Solicitudes Recibidas" args="[entityName]" /></g:link></li>
-				<li><g:link class="pasajero" controller="pasajero" action="quieroIrJunto"><g:message code="Quiero ir junto" args="[entityName]" /></g:link></li>
-				
+				aca van a ir botones 
 			</ul>
 		</div>
+<h1>Nueva Solicitud</h1>
 	<div class="body">
 		<g:if test="${flash.message}">
 			<ul class="errors" role="alert">
@@ -26,12 +23,10 @@
 				<g:select name="pasajero" from="${amigos}" value="pasajero?.id"
 					optionKey="id" class="many-to-one"
 					noSelection="['null':'Seleccione el amigo']" />
- 			</fieldset>
- 
-			<fieldset class="buttons">
-				<g:submitButton name="irJunto" value="Listar reservas"
+					<g:submitButton name="irJunto" value="Listar reservas"
 					action="listarReservasDeAmigo" />
-			</fieldset>
+ 			</fieldset>
+
 		</g:form>
 	</div>
 </body>

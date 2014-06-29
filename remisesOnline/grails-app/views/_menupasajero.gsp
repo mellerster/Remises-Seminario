@@ -13,6 +13,9 @@
 	   <li>
         <g:link class="pasajero" controller="pasajero" action="amigos">Mis Amigos</g:link>
       </li>
+	  <li>
+        <g:link  class="pasajero" controller="pasajero" action="quieroIrJunto">Quiero ir junto</g:link>
+      </li>
 	   <li>
         <g:link  controller="pasajero" action="listPromociones">Ver Promociones</g:link>
       </li>
