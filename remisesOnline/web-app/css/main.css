@@ -187,7 +187,8 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create , .nav a.remises, .nav a.logout, .nav a.choferes, .nav a.reservas , .nav a.pasajero {
+.nav a.home, .nav a.list, .nav a.create , .nav a.remises, .nav a.logout, .nav a.choferes, .nav a.reservas , .nav a.pasajero,.nav a.amigos
+,.nav a.agregarAmigo,.nav a.solicitudesRecibidas,.nav a.solicitudesEnviadas {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -211,6 +212,22 @@ img {
 
 .nav a.choferes {
 	background-image: url(../images/skin/group.png);
+}
+
+.nav a.amigos{
+	background-image: url(../images/skin/group.png);	
+}
+
+.nav a.agregarAmigo{
+	background-image: url(../images/skin/user_add.png);	
+}
+
+.nav a.solicitudesRecibidas{
+	background-image: url(../images/skin/email_open.png);	
+}
+
+.nav a.solicitudesEnviadas{
+	background-image: url(../images/skin/email_go.png);	
 }
 
 .nav a.reservas {

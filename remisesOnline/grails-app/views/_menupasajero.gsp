@@ -11,7 +11,7 @@
         <g:link class="list" controller="pasajero" action="show" id="${session.pasajero.id }">Mis Datos</g:link>
       </li>
 	   <li>
-        <g:link class="pasajero" controller="pasajero" action="amigos">Mis Amigos</g:link>
+        <g:link class="amigos" controller="pasajero" action="amigos">Mis Amigos</g:link>
       </li>
 	  <li>
         <g:link  class="pasajero" controller="pasajero" action="quieroIrJunto">Quiero ir junto</g:link>
