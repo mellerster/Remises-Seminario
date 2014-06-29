@@ -166,7 +166,23 @@ class PasajeroController {
 	
 	def eliminarAmigo(){
 		//Eliminar el amigo de ambos lados
-		redirect(action: "amigos")
+		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
+		if (pasajeroSesion) {
+			println "entro la sesion"
+			def pasajeroAEliminar = Pasajero.get(Long.parseLong(params.id))
+			if (pasajeroAEliminar) {
+				println "entro a eliminar pasajeros"
+				pasajeroSesion.removeFromAmigos(pasajeroAEliminar)
+				pasajeroSesion.save flush:true
+				pasajeroAEliminar.removeFromAmigos(pasajeroSesion)
+				pasajeroAEliminar.save flush:true
+			}				
+			return [redirect(action: "amigos")]
+		}
+		
+		flash.message = "Cagamos"
+		
+	
 	}
 	
 	def listPromociones(){

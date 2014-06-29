@@ -36,7 +36,8 @@
 						<g:sortableColumn property="telefono" title="${message(code: 'pasajero.telefono.label', default: 'Telefono')}" />
 					
 						<g:sortableColumn property="fechaNacimiento" title="${message(code: 'pasajero.fechaNacimiento.label', default: 'Fecha Nacimiento')}" />
-						
+						<th><g:message code="Pasajero.pasajero.label" default="Eliminar Amigo" /></th>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -51,7 +52,7 @@
 					
 						<td><g:formatDate date="${pasajeroInstance.fechaNacimiento}"  format="dd/MM/yyyy" /></td>
 						
-						<td><g:link action="eliminarAmigo" controller="pasajero" id="${pasajeroInstance.id}"><input type="button" value="Eliminar" /></g:link></td>
+						<td><g:link action="eliminarAmigo" controller="pasajero" id="${pasajeroInstance.id}"><input type="button" value="Si" /></g:link></td>
 					</tr>
 				</g:each>
 				</tbody>
