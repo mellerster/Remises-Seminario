@@ -10,7 +10,7 @@ class Agencia {
 	Set reservas = []
 	Set choferes = []
 
-	static hasMany = [remises: Remise, choferes: Chofer, reservas: Reserva]
+	static hasMany = [remises: Remise, choferes: Chofer, reservas: Reserva, promociones: Promocion]
 
 	static constraints = {
 		nombre nullable: false, unique: true
