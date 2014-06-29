@@ -75,7 +75,7 @@ class Reserva {
 	def calificarPasajero(def puntaje){
 		calificacionPasajero = new Calificacion(puntaje:puntaje)
 		calificacionPasajero.save(flush:true)
-		//pasajero.addToCalificaciones(calificacionPasajero)
+		pasajero.addToCalificaciones(calificacionPasajero)
 	}
 	
 	def getEsRemiseCalificable(){

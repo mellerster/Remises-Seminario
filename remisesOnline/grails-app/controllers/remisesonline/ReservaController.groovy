@@ -196,6 +196,32 @@ class ReservaController {
 		}
 	}
 	
+	def calificarPasajero(Reserva reservaInstance){
+		if(reservaInstance.agencia.id == session?.agencia?.id && reservaInstance.esPasajeroCalificable){
+			respond reservaInstance
+		}else{
+			flash.message = "No se puede calificar esta reserva"
+			redirect controller:'agencia',action:'listReservas',params:[estadoSeleccionado:'Cerrada']
+		}
+	}
+
+	@Transactional
+	def guardarCalificacionPasajero(){
+		def reserva = Reserva.get(params.id)
+		if(reserva.agencia.id == session?.agencia?.id && reserva.esPasajeroCalificable){
+			if(params.puntaje){
+				reserva.calificarPasajero(params.puntaje)
+				redirect controller:'pasajero', action:'show', id:reserva.pasajero.id
+			}else{
+				flash.message = "Debe seleccionar un puntaje para asignar"
+				respond reserva,view:'calificarPasajero'
+			}
+		}else{
+			flash.message = "No se puede calificar esta reserva"
+			redirect controller:'agencia',action:'listReservas',params:[estadoSelccionado:'Cerrada']
+		}
+	}
+	
 	
 	def unirseAReserva(){
 		render "completar"

@@ -69,6 +69,23 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${pasajeroInstance?.calificacion}">
+				<li class="fieldcontain"><span id="patente-label"
+					class="property-label">Calificación</span> <span
+					class="property-value" aria-labelledby="calificacion-label">
+						<div id="calificacion"></div></span></li>
+				<g:javascript>
+				$(function() {
+						$.fn.raty.defaults.path = '${resource(dir:'images') }';
+					    $('#calificacion').raty({
+  							readOnly   : true
+  							,hints: ['Pesimo', 'Malo', 'Bueno', 'Muy Bueno', 'Excelente']
+  							,score: ${pasajeroInstance.calificacion }
+  							});
+					    })
+				</g:javascript>
+			</g:if>
 			
 			</ol>
 			<g:form url="[resource:pasajeroInstance, action:'delete']" method="DELETE">

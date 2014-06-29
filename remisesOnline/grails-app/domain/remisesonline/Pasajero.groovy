@@ -14,6 +14,7 @@ class Pasajero {
 		nombre nullable: false, blank: false
 		email email: true, blank: false, unique: true
 		telefono blank: false
+		calificaciones minSize:0
 	}
 
 	String toString() {
