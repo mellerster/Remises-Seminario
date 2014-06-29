@@ -1,16 +1,5 @@
 <%@ page import="remisesonline.Promocion" %>
 
-
-
-<div class="fieldcontain ${hasErrors(bean: promocionInstance, field: 'agencia', 'error')} required">
-	<label for="agencia">
-		<g:message code="promocion.agencia.label" default="Agencia" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="agencia" name="agencia.id" from="${remisesonline.Agencia.list()}" optionKey="id" required="" value="${promocionInstance?.agencia?.id}" class="many-to-one"/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: promocionInstance, field: 'descripcion', 'error')} ">
 	<label for="descripcion">
 		<g:message code="promocion.descripcion.label" default="Descripcion" />

@@ -169,4 +169,12 @@ class PasajeroController {
 		redirect(action: "amigos")
 	}
 	
+	def listPromociones(){
+		//Esto lo tiene que hacer la promocion, pero me tira un error y quiero dejarlo para hacer bien las vistas
+		def fechaActual = new Date()
+		def promos = Promocion.findAllByFechaHastaGreaterThanEquals(fechaActual)
+		[promociones: promos]
+		
+	}
+	
 }

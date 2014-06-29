@@ -21,6 +21,11 @@
        		Mis Datos
         </g:link>
       </li>
+	   <li>
+        <g:link class="list" controller="promocion" action="index" id="${session.agencia.id }">
+       		Mis Promociones
+        </g:link>
+      </li>
       <li>
         <g:link class="logout" controller="agencia" action="logout">
 				Salir

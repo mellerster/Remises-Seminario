@@ -30,6 +30,9 @@ class PromocionController {
             return
         }
 
+		promocionInstance.agencia = Agencia.get(session.agencia.id)
+		promocionInstance.validate()
+		
         if (promocionInstance.hasErrors()) {
             respond promocionInstance.errors, view:'create'
             return
@@ -101,4 +104,11 @@ class PromocionController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	def listPromocionesVigentes(){
+		def fechaActual = new Date()
+		def promosVigentes = Promocion.list()
+		[ promos: promosVigentes ]
+	}
+	
 }

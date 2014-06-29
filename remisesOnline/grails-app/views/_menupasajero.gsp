@@ -13,9 +13,13 @@
 	   <li>
         <g:link class="pasajero" controller="pasajero" action="amigos">Mis Amigos</g:link>
       </li>
+	   <li>
+        <g:link class="pasajero" controller="pasajero" action="listPromociones">Ver Promociones</g:link>
+      </li>
       <li>
         <g:link class="logout" controller="pasajero" action="logout">Salir</g:link>
       </li>
+
     </ul>
   </div>
 </g:if>
