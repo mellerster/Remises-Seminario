@@ -105,26 +105,27 @@ class SolicitudAmistadController {
         }
     }
 	
+	//Esto tengo mis dudas de donde va, dsp hablamos al respecto.
 	def aprobarSolicitud(SolicitudAmistad instance){
-		def pasajeroSolicitante = Pasajero.get(instance.pasajero.id)
-		def pasajeroSolicitado = Pasajero.get(instance.solicitado.id)
-		pasajeroSolicitante.addToAmigos(pasajeroSolicitado)
-		pasajeroSolicitante.save flush:true
-		pasajeroSolicitado.addToAmigos(pasajeroSolicitante)
-		pasajeroSolicitado.save flush:true
-		
-		instance.estado = 'Aprobada'
-		instance.save flush:true
-		render "listo aprob"
-		
-	
-	
+		if (instance){
+			instance.estado = 'Aprobada'
+			def pasajeroSolicitante = Pasajero.get(instance.pasajero.id)
+			def pasajeroSolicitado = Pasajero.get(instance.solicitado.id)
+			pasajeroSolicitante.addToAmigos(pasajeroSolicitado)
+			pasajeroSolicitante.save flush:true
+			pasajeroSolicitado.addToAmigos(pasajeroSolicitante)
+			pasajeroSolicitado.save flush:true
+			instance.save flush:true
+			redirect action: 'amigos', controller: 'pasajero'
+			}
 	}
 	
 	def denegarSolicitud(SolicitudAmistad instance){
-	
-	
-	render "listo den"
+		if (instance){
+			instance.estado = 'Denegada'
+			instance.save flush:true
+			redirect action: 'amigos', controller: 'pasajero'
+			}
 	}
 	
 }

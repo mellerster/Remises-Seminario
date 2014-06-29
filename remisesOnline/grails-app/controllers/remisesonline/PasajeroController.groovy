@@ -174,11 +174,12 @@ class PasajeroController {
 				pasajeroSesion.save flush:true
 				pasajeroAEliminar.removeFromAmigos(pasajeroSesion)
 				pasajeroAEliminar.save flush:true
+				return [redirect(action: "amigos")]
 			}				
-			return [redirect(action: "amigos")]
+			flash.message = "Pasajero a eliminar error"
 		}
 		
-		flash.message = "Cagamos"
+		flash.message = "Sesion invalida"
 		
 	
 	}
