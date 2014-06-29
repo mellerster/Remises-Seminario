@@ -141,7 +141,7 @@ class PasajeroController {
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
-			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.pendiente}
+			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.estado == 'Pendiente'}
 			return [solicitudesRecibidas: solicitudesPendientes]
 		}
 		flash.message = "Sesion invalida"
@@ -156,10 +156,10 @@ class PasajeroController {
 	}
 	
 	def listarReservasDeAmigo(){
-		def p = Pasajero.get(session.pasajero?.id)
+		def p = Pasajero.get(params.pasajero)
 		if (p) {
-			def reservaCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}
-			return [reservas: reservaCompartibles]	
+			def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
+			return [reservas: reservasCompartibles]	
 		}
 		flash.message = "Sesion invalida"
 	}
@@ -168,10 +168,8 @@ class PasajeroController {
 		//Eliminar el amigo de ambos lados
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		if (pasajeroSesion) {
-			println "entro la sesion"
 			def pasajeroAEliminar = Pasajero.get(Long.parseLong(params.id))
 			if (pasajeroAEliminar) {
-				println "entro a eliminar pasajeros"
 				pasajeroSesion.removeFromAmigos(pasajeroAEliminar)
 				pasajeroSesion.save flush:true
 				pasajeroAEliminar.removeFromAmigos(pasajeroSesion)
