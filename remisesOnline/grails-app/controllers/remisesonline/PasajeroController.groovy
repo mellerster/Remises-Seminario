@@ -137,7 +137,7 @@ class PasajeroController {
 		flash.message = "Sesion invalida"
 	}
 	
-	def listSolicituderAmigosRecibidas(){
+	def listSolicitudesAmigosRecibidas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
