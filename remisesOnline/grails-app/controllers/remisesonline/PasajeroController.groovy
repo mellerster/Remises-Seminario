@@ -129,15 +129,15 @@ class PasajeroController {
 	}
 	
 
-	def listSolicitudesEnviadas(){
+	def listSolicitudesAmigosEnviadas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
-			return [solicitudesEnviadas: p.solicitudes]
+			return [solicitudesEnviadas: p.solicitudesAmistad]
 		}
 		flash.message = "Sesion invalida"
 	}
 	
-	def listSolicituderRecibidas(){
+	def listSolicituderAmigosRecibidas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			def solicitudes = SolicitudAmistad.findAllBySolicitado(p)

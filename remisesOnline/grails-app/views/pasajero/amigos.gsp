@@ -12,8 +12,8 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><g:link class="agregarAmigo" controller="solicitudAmistad" action="create"><g:message code="Agregar amigo" args="[entityName]" /></g:link></li>
-				<li><g:link class="solicitudesEnviadas" controller="pasajero" action="listSolicitudesEnviadas"><g:message code="Solicitudes Enviadas" args="[entityName]" /></g:link></li>
-				<li><g:link class="solicitudesRecibidas" controller="pasajero" action="listSolicituderRecibidas"><g:message code="Solicitudes Recibidas" args="[entityName]" /></g:link></li>
+				<li><g:link class="solicitudesEnviadas" controller="pasajero" action="listSolicitudesAmigosEnviadas"><g:message code="Solicitudes Enviadas" args="[entityName]" /></g:link></li>
+				<li><g:link class="solicitudesRecibidas" controller="pasajero" action="listSolicitudesAmigosRecibidas"><g:message code="Solicitudes Recibidas" args="[entityName]" /></g:link></li>
 				
 			</ul>
 		</div>

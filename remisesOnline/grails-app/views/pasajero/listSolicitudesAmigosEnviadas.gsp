@@ -9,11 +9,12 @@
 	</head>
 	<body>
 		<a href="#list-solicitudAmistad" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
+				<div class="nav" role="navigation">
 			<ul>
 				<li><g:link class="pasajero" controller="solicitudAmistad" action="create"><g:message code="Agregar amigo" args="[entityName]" /></g:link></li>
-				<li><g:link class="pasajero" controller="pasajero" action="listSolicitudesEnviadas"><g:message code="Solicitudes Enviadas" args="[entityName]" /></g:link></li>
-				<li><g:link class="pasajero" controller="pasajero" action="listSolicituderRecibidas"><g:message code="Solicitudes Recibidas" args="[entityName]" /></g:link></li>
+				<li><g:link class="pasajero" controller="pasajero" action="listSolicitudesAmigosEnviadas"><g:message code="Solicitudes Enviadas" args="[entityName]" /></g:link></li>
+				<li><g:link class="pasajero" controller="pasajero" action="listSolicitudesAmigosRecibidas"><g:message code="Solicitudes Recibidas" args="[entityName]" /></g:link></li>
+		
 			</ul>
 		</div>
 		<div id="list-solicitudAmistad" class="content scaffold-list" role="main">
@@ -29,25 +30,20 @@
 					
 						<g:sortableColumn property="fechaCreada" title="${message(code: 'solicitudAmistad.fechaCreada.label', default: 'Fecha Creada')}" />
 					
-						<th><g:message code="solicitudAmistad.pasajero.label" default="Pasajero" /></th>
-						
-						<th><g:message code="solicitudAmistad.pasajero.label" default="Opcion" /></th>
+						<th><g:message code="solicitudAmistad.solicitado.label" default="Solicitado" /></th>
+					
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${solicitudesRecibidas}" status="i" var="solicitud">
+				<g:each in="${solicitudesEnviadas}" status="i" var="solicitud">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${solicitud.id}">${fieldValue(bean: solicitud, field: "estado")}</g:link></td>
 					
 						<td><g:formatDate date="${solicitud.fechaCreada}" /></td>
 					
-						<td>${fieldValue(bean: solicitud, field: "pasajero")}</td>
-						
-						<td><g:link action="aprobarSolicitud" controller="solicitudAmistad" id="${solicitud.id}"><input type="button" value="Aceptar" /></g:link>
-						     <g:link action="denegarSolicitud" controller="solicitudAmistad" id="${solicitud.id}"><input type="button" value="Denegar" /></g:link>
-						</td>
-
+						<td>${fieldValue(bean: solicitud, field: "solicitado")}</td>
+					
 					</tr>
 				</g:each>
 				</tbody>
