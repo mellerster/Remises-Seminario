@@ -1,13 +1,11 @@
-
-<%@ page import="remisesonline.SolicitudAmistad" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'solicitudAmistad.label', default: 'SolicitudAmistad')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
-	</head>
-	<body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="layout" content="main" />
+<title>Quiero ir junto</title>
+</head>
+<body>
 		<a href="#list-solicitudAmistad" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
@@ -16,5 +14,22 @@
 				<li><g:link class="solicitudesRecibidas" controller="pasajero" action="listSolicitudesAcompaniamientoRecibidas"><g:message code="Solicitudes Recibidas" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
-	</body>
+	<div class="body">
+		<g:if test="${flash.message}">
+			<ul class="errors" role="alert">
+				<li ><g:message error="${flash.message}"/></li>
+			</ul>
+		</g:if>
+		<g:form action="listReservasDeAmigo">
+			<fieldset class="form">
+				<g:select name="pasajero" from="${amigos}" value="pasajero?.id"
+					optionKey="id" class="many-to-one"
+					noSelection="['null':'Seleccione el amigo']" />
+					<g:submitButton name="irJunto" value="Listar reservas"
+					action="listReservasDeAmigo" />
+ 			</fieldset>
+
+		</g:form>
+	</div>
+</body>
 </html>

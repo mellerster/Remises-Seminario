@@ -147,15 +147,7 @@ class PasajeroController {
 		flash.message = "Sesion invalida"
 	}
 	
-	def quieroIrJunto(){
-		def p = Pasajero.get(session.pasajero?.id)
-		if (p) {
-			return [amigos: p.amigos]
-		}
-		flash.message = "Sesion invalida"
-	}
-	
-	def listarReservasDeAmigo(){
+	def listReservasDeAmigo(){
 		def p = Pasajero.get(params.pasajero)
 		if (p) {
 			def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
@@ -190,6 +182,40 @@ class PasajeroController {
 		def promos = Promocion.findAllByFechaHastaGreaterThanEquals(fechaActual)
 		[promociones: promos]
 		
+	}
+		def quieroIrJunto(){
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p) {
+			return [amigos: p.amigos]
+		}
+		flash.message = "Sesion invalida"
+	}
+	
+	def showReservasAmigos(){
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p) {
+			return [amigos: p.amigos]
+		}
+		flash.message = "Sesion invalida"
+	
+	}
+	
+	
+	def listSolicitudesAcompaniamientoEnviadas(){
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p) {
+			return [solicitudes: p.solicitudesAcompaniamiento]
+		}
+		flash.message = "Sesion invalida"
+	}
+	
+	
+	def listSolicitudesAcompaniamientoRecibidas(){
+		def p = Pasajero.get(session.pasajero?.id)
+		if (p) {
+			//return 
+		}
+		flash.message = "Sesion invalida"
 	}
 	
 }

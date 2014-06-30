@@ -5,6 +5,14 @@
 		<title>Resultado reservas por pasajero</title>
 	</head>
 	<body>
+		<a href="#list-solicitudAmistad" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		<div class="nav" role="navigation">
+			<ul>
+				<li><g:link class="pasajero" controller="pasajero" action="showReservasAmigos"><g:message code="Ver reservas" args="[entityName]" /></g:link></li>
+				<li><g:link class="solicitudesEnviadas" controller="pasajero" action="listSolicitudesAcompaniamientoEnviadas"><g:message code="Solicitudes Enviadas" args="[entityName]" /></g:link></li>
+				<li><g:link class="solicitudesRecibidas" controller="pasajero" action="listSolicitudesAcompaniamientoRecibidas"><g:message code="Solicitudes Recibidas" args="[entityName]" /></g:link></li>
+			</ul>
+		</div>
 		<div class="body">
 			<g:if test="${flash.message}">
 			<ul class="errors" role="alert">
