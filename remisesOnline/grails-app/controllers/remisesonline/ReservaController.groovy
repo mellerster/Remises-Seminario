@@ -170,10 +170,10 @@ class ReservaController {
 	}
 
 	def calificarRemise(Reserva reservaInstance){
-		if(reservaInstance.pasajero.id == session?.pasajero?.id && reservaInstance.esRemiseCalificable){
+		if(reservaInstance.esRemiseCalificable){
 			respond reservaInstance
 		}else{
-			flash.message = "No se puede calificar esta reserva"
+			flash.message = "No se puede calificar esta reserva, no esta cerrada o ya fue calificada"
 			redirect controller:'pasajero',action:'listReservas'
 
 		}
@@ -182,7 +182,7 @@ class ReservaController {
 	@Transactional
 	def guardarCalificacionRemise(){
 		def reserva = Reserva.get(params.id)
-		if(reserva.pasajero.id == session?.pasajero?.id && reserva.esRemiseCalificable){
+		if(reserva.esRemiseCalificable){
 			if(params.puntaje){
 				reserva.calificarRemise(params.puntaje)
 				redirect controller:'remise', action:'show', id:reserva.remise.id
@@ -191,7 +191,7 @@ class ReservaController {
 				respond reserva,view:'calificarRemise'
 			}
 		}else{
-			flash.message = "No se puede calificar esta reserva"
+			flash.message = "No se puede calificar esta reserva, no esta cerrada o ya fue calificada"
 			redirect controller:'pasajero',action:'listReservas'
 		}
 	}

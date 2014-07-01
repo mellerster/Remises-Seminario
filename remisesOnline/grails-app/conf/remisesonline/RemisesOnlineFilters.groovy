@@ -95,5 +95,22 @@ class RemisesOnlineFilters {
 				}
 			}
 		}
+
+		pasajeroCalificarRemise(controller:'reserva', action:'(calificarRemise|guardarCalificacionRemise)'){
+			before={
+				if(!session?.pasajero){
+					flash.message = "Solo pueden ingresar pasajeros que han iniciado sesión"
+					redirect(controller:"pasajero", action:"login")
+					return false
+				}else{
+					def reserva = Reserva.get(params.id)
+					if(reserva.pasajero.id != session?.pasajero?.id){
+						flash.message = "No se puede calificar esta reserva ya que no le pertenece"
+						redirect controller:'pasajero',action:'listReservas'
+						return false
+					}
+				}
+			}
+		}
 	}
 }
