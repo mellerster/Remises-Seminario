@@ -142,7 +142,7 @@
 					<g:if test="${reservaInstance.esRemiseCalificable }">
 						<g:link class="calificar" action="calificarRemise"
 							id="${reservaInstance.id }">
-								Calificar
+								Calificar Remise
 							</g:link>
 					</g:if>
 				</fieldset>
@@ -170,7 +170,7 @@
 					<g:if test="${reservaInstance.esPasajeroCalificable }">
 						<g:link class="calificar" action="calificarPasajero"
 							id="${reservaInstance.id }">
-							Calificar
+							Calificar Pasajero
 						</g:link>
 					</g:if>
 				</fieldset>

@@ -607,7 +607,7 @@ th:hover, tr:hover {
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit,.buttons .nuevacomodidad, .buttons .comodidades,.buttons .nuevacomodidad, .buttons .save, .buttons .ingresar,.buttons .nuevaAgencia,.buttons .nuevoPasajero {
+.buttons .calificar,.buttons .delete, .buttons .edit,.buttons .nuevacomodidad, .buttons .comodidades,.buttons .nuevacomodidad, .buttons .save, .buttons .ingresar,.buttons .nuevaAgencia,.buttons .nuevoPasajero {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
@@ -616,7 +616,7 @@ th:hover, tr:hover {
 .ie6 .buttons input.delete, .ie6 .buttons input.edit, .ie6 .buttons input.save,
 .ie7 .buttons input.delete, .ie7 .buttons input.edit, .ie7 .buttons input.save,,.ie7 .buttons input.comodidades,.ie6 .buttons input.comodidades
 .ie6 .buttons input.ingresar, .ie7 .buttons input.ingresar, .buttons input.nuevaAgencia,.buttons input.nuevoPasajero 
-,.ie6 .buttons input.nuevacomodidad, .ie7 .buttons input.nuevacomodidad{
+,.ie6 .buttons input.nuevacomodidad, .ie7 .buttons input.nuevacomodidad, .ie6 .buttons input.calificar, .ie7 .buttons input.calificar{
 	padding-left: 36px;
 }
 
@@ -632,6 +632,9 @@ th:hover, tr:hover {
 	background-image: url(../images/skin/ruby.png);
 }
 
+.buttons .calificar{
+	background-image: url(../images/skin/star.png);
+}
 .nuevacomodidad {	
 	background-color: #efefef;
 	border: 1 black solid;
