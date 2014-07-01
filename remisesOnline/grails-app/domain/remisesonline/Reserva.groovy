@@ -45,6 +45,10 @@ class Reserva {
 		estado == ESTADOS_VALIDOS[0]
 	}
 	
+	def getEnCurso(){
+		estado == ESTADOS_VALIDOS[1]
+	}
+	
 	def esCancelablePorPasajero(def pasajeroId){
 		(pendiente && pasajero.id == pasajeroId)
 	}
@@ -67,6 +71,12 @@ class Reserva {
 			}
 		}
 		false
+	}
+	
+	def cerrar(){
+		if(enCurso){
+			estado = ESTADOS_VALIDOS[2]
+		}
 	}
   
 	static mapping = {

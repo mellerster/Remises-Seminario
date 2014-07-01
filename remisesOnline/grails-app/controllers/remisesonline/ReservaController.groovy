@@ -168,6 +168,16 @@ class ReservaController {
 		flash.message = 'Reserva cancelada'
 		redirect controller:'reserva', action:'show', id:params.id
 	}
+	
+	def cerrar(){
+		def reserva = reservaService.cerrar(params.id,session?.agencia?.id)
+		if(reserva.hasErrors()){
+			respond reserva.errors,view:'show'
+			return
+		}
+		flash.message = 'Reserva Cerrada'
+		redirect controller:'reserva',action:'show',id:params.id
+	}
 
 	def calificarRemise(Reserva reservaInstance){
 		if(reservaInstance.esRemiseCalificable){
