@@ -9,31 +9,26 @@ import grails.transaction.Transactional
 class PasajeroController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-	
+
 	def logout() {
 		session.pasajero = null
 		redirect(action: 'login')
 	}
-	
+
 	def login() {
 		[pasajeros: Pasajero.list()]
 	}
-	
+
 	def entrar() {
 		session.pasajero = Pasajero.get(params.pasajero)
 		redirect action: 'listReservas', controller: 'pasajero'
 	}
-	
+
 	def listReservas() {
 		def pasajeroLogueado = Pasajero.get(session.pasajero?.id)
 		if (pasajeroLogueado)
 			return [reservas: pasajeroLogueado.reservas]
 		flash.message = "Sesion invalida"
-	}
-	
-	def index(Integer max) {
-		params.max = Math.min(max ?: 10, 100)
-		respond Pasajero.list(params), model:[pasajeroInstanceCount: Pasajero.count()]
 	}
 
 	def show(Pasajero pasajeroInstance) {
@@ -47,13 +42,13 @@ class PasajeroController {
 	@Transactional
 	def guardar(Pasajero pasajeroInstance) {
 		if (pasajeroInstance == null) {
-				notFound()
-				return
+			notFound()
+			return
 		}
 
 		if (pasajeroInstance.hasErrors()) {
-				respond pasajeroInstance.errors, view:'crear'
-				return
+			respond pasajeroInstance.errors, view:'crear'
+			return
 		}
 
 		pasajeroInstance.save flush:true
@@ -69,32 +64,35 @@ class PasajeroController {
 	@Transactional
 	def update(Pasajero pasajeroInstance) {
 		if (pasajeroInstance == null) {
-				notFound()
-				return
+			notFound()
+			return
 		}
 
 		if (pasajeroInstance.hasErrors()) {
-				respond pasajeroInstance.errors, view:'edit'
-				return
+			respond pasajeroInstance.errors, view:'edit'
+			return
 		}
 
 		pasajeroInstance.save flush:true
 
 		request.withFormat {
-				form multipartForm {
-							flash.message = message(code: 'default.updated.message', args: [message(code: 'Pasajero.label', default: 'Pasajero'), pasajeroInstance.id])
-							redirect pasajeroInstance
-					}
-					'*'{ respond pasajeroInstance, [status: OK] }
+			form multipartForm {
+				flash.message = message(code: 'default.updated.message', args: [
+					message(code: 'Pasajero.label', default: 'Pasajero'),
+					pasajeroInstance.id
+				])
+				redirect pasajeroInstance
 			}
+			'*'{ respond pasajeroInstance, [status: OK] }
+		}
 	}
 
 	@Transactional
 	def delete(Pasajero pasajeroInstance) {
 
 		if (pasajeroInstance == null) {
-				notFound()
-				return
+			notFound()
+			return
 		}
 
 		pasajeroInstance.delete flush:true
@@ -103,15 +101,18 @@ class PasajeroController {
 	}
 
 	protected void notFound() {
-			request.withFormat {
-					form multipartForm {
-							flash.message = message(code: 'default.not.found.message', args: [message(code: 'pasajeroInstance.label', default: 'Pasajero'), params.id])
-							redirect action: "index", method: "GET"
-					}
-					'*'{ render status: NOT_FOUND }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.not.found.message', args: [
+					message(code: 'pasajeroInstance.label', default: 'Pasajero'),
+					params.id
+				])
+				redirect action: "index", method: "GET"
 			}
+			'*'{ render status: NOT_FOUND }
+		}
 	}
-	
+
 	def amigos(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
@@ -119,7 +120,7 @@ class PasajeroController {
 		}
 		flash.message = "Sesion invalida"
 	}
-	
+
 	def agregarAmigos(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
@@ -127,7 +128,7 @@ class PasajeroController {
 		}
 		flash.message = "Sesion invalida"
 	}
-	
+
 
 	def listSolicitudesAmigosEnviadas(){
 		def p = Pasajero.get(session.pasajero?.id)
@@ -136,7 +137,7 @@ class PasajeroController {
 		}
 		flash.message = "Sesion invalida"
 	}
-	
+
 	def listSolicitudesAmigosRecibidas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
@@ -146,16 +147,16 @@ class PasajeroController {
 		}
 		flash.message = "Sesion invalida"
 	}
-	
+
 	def listReservasDeAmigo(){
 		def p = Pasajero.get(params.pasajero)
 		if (p) {
-			def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
-			return [reservas: reservasCompartibles]	
+			def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}
+			return [reservas: reservasCompartibles]
 		}
 		flash.message = "Sesion invalida"
 	}
-	
+
 	def eliminarAmigo(){
 		//Eliminar el amigo de ambos lados
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
@@ -167,40 +168,40 @@ class PasajeroController {
 				pasajeroAEliminar.removeFromAmigos(pasajeroSesion)
 				pasajeroAEliminar.save flush:true
 				return [redirect(action: "amigos")]
-			}				
+			}
 			flash.message = "Pasajero a eliminar error"
 		}
-		
+
 		flash.message = "Sesion invalida"
-		
-	
+
+
 	}
-	
+
 	def listPromociones(){
 		//Esto lo tiene que hacer la promocion, pero me tira un error y quiero dejarlo para hacer bien las vistas
 		def fechaActual = new Date()
 		def promos = Promocion.findAllByFechaHastaGreaterThanEquals(fechaActual)
 		[promociones: promos]
-		
+
 	}
-		def quieroIrJunto(){
+	def quieroIrJunto(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			return [amigos: p.amigos]
 		}
 		flash.message = "Sesion invalida"
 	}
-	
+
 	def showReservasAmigos(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			return [amigos: p.amigos]
 		}
 		flash.message = "Sesion invalida"
-	
+
 	}
-	
-	
+
+
 	def listSolicitudesAcompaniamientoEnviadas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
@@ -208,14 +209,14 @@ class PasajeroController {
 		}
 		flash.message = "Sesion invalida"
 	}
-	
-	
+
+
 	def listSolicitudesAcompaniamientoRecibidas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
-			//return 
+			//return
 		}
 		flash.message = "Sesion invalida"
 	}
-	
+
 }

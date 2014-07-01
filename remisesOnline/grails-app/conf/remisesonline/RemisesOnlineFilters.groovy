@@ -74,5 +74,26 @@ class RemisesOnlineFilters {
 				}
 			}
 		}
+
+		pasajeroOnly(controller:'pasajero',
+		action:"(listReservas|edit|update|delete|amigos|listSolicitudesAmigosEnviadas|listSolicitudesAmigosRecibidas|quieroIrJunto|showReservasAmigos|listReservasDeAmigo|listSolicitudesAcompaniamientoEnviadas|listSolicitudesAcompaniamientoRecibidas|listPromociones)"){
+			before={
+				if(!session?.pasajero){
+					flash.message = "Solo pueden ingresar pasajeros que han iniciado sesión"
+					redirect(controller:"pasajero", action:"login")
+					return false
+				}
+			}
+		}
+
+		pasajeroCrearReserva(controller:'reserva',action:"(create|save)"){
+			before={
+				if(!session?.pasajero){
+					flash.message = "Solo pueden ingresar pasajeros que han iniciado sesión"
+					redirect(controller:"pasajero", action:"login")
+					return false
+				}
+			}
+		}
 	}
 }

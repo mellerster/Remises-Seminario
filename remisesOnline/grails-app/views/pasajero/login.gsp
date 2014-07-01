@@ -7,6 +7,9 @@
 </head>
 <body>
 	<div class="body">
+		<g:if test="${flash.message}">
+			<div class="message" role="status">${flash.message}</div>
+		</g:if>
 		<g:form action="entrar">
 			<fieldset class="form">
 				<g:select name="pasajero" from="${pasajeros}" value="pasajero?.id"
