@@ -125,21 +125,30 @@
 
 
 		</ol>
-		<g:if test="session.pasajero">
-			<g:if
-				test="${reservaInstance.esCancelablePorPasajero(session?.pasajero?.id)}">
+		<g:if test="${session?.pasajero}">
 				<g:form url="[resource:reservaInstance, action:'delete']"
 					method="DELETE">
 					<fieldset class="buttons">
+					<g:if
+				test="${reservaInstance.esCancelablePorPasajero(session?.pasajero?.id)}">
+			
+						<g:if test="${reservaInstance.pendiente }">
 						<g:link action="cancelarReserva" controller="reserva"
 							id="${reservaInstance.id}">
 							Cancelar
 						</g:link>
+						</g:if>
+						</g:if>
+						<g:if test="${reservaInstance.esRemiseCalificable }">
+							<g:link class="calificar" action="calificarRemise" id="${reservaInstance.id }">
+								Calificar
+							</g:link>
+						</g:if>
 					</fieldset>
 				</g:form>
-			</g:if>
+			
 		</g:if>
-		<g:if test="session.agencia">
+		<g:if test="${session.agencia}">
 			<g:form url="[resource:reservaInstance, action:'cerrar']"
 				method="DELETE">
 				<fieldset class="buttons">
@@ -155,6 +164,11 @@
 						<g:link action="pasarAEnCurso" controller="reserva"
 							id="${reservaInstance.id }">
 							Pasar a En Curso
+						</g:link>
+					</g:if>
+					<g:if test="${reservaInstance.esPasajeroCalificable }">
+						<g:link class="calificar" action="calificarPasajero" id="${reservaInstance.id }">
+							Calificar
 						</g:link>
 					</g:if>
 				</fieldset>

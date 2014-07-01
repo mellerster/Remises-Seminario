@@ -38,7 +38,6 @@
 									<g:link action="cancelarReserva" controller="reserva" id="${reserva.id}"><input type="button" value="Cancelar" /></g:link>
 								</g:if>
 								<g:if test="${reserva.esRemiseCalificable}">
-									<br/>
 									<g:link action="calificarRemise" controller="reserva" id="${reserva.id }">Calificar</g:link>
 								</g:if>
 							</td>

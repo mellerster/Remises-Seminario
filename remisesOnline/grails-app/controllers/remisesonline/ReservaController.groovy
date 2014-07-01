@@ -178,6 +178,16 @@ class ReservaController {
 		flash.message = 'Reserva Cerrada'
 		redirect controller:'reserva',action:'show',id:params.id
 	}
+	
+	def pasarAEnCurso(){
+		def reserva = reservaService.pasarAEnCurso(params.id,session?.agencia?.id)
+		if(reserva.hasErrors()){
+			respond reserva.errors,view:'show'
+			return
+		}
+		flash.message = 'Reserva En Curso'
+		redirect controller:'reserva',action:'show',id:params.id
+	}
 
 	def calificarRemise(Reserva reservaInstance){
 		if(reservaInstance.esRemiseCalificable){
