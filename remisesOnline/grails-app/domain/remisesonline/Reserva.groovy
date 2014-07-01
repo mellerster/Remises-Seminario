@@ -58,7 +58,7 @@ class Reserva {
 	}
 	
 	def esPasableAEnCursoPorAgencia(def agenciaId){
-		(pendiente && agencia.id == agenciaId)
+		(pendiente && agencia.id == agenciaId && remise != null)
 	}
 	
 	def cancelar() {
@@ -76,6 +76,12 @@ class Reserva {
 	def cerrar(){
 		if(enCurso){
 			estado = ESTADOS_VALIDOS[2]
+		}
+	}
+	
+	def pasarAEnCurso(){
+		if(pendiente){
+			estado = ESTADOS_VALIDOS[1]
 		}
 	}
   

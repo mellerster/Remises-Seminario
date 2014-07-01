@@ -48,4 +48,15 @@ class ReservaService {
 		}
 		reserva
 	}
+	
+	def pasarAEnCurso(def idReserva,def idAgencia){
+		def reserva = Reserva.get(idReserva)
+		if(reserva.esPasableAEnCursoPorAgencia(idAgencia)){
+			reserva.pasarAEnCurso()
+			reserva.save(flush:true)
+		}else{
+			reserva.errors.reject('reserva.estado.cantcurso','No se puede pasar a en curso debido al estado o falta de asignación de remise')
+		}
+		reserva
+	}
 }
