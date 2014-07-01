@@ -49,6 +49,14 @@ class Reserva {
 		(pendiente && pasajero.id == pasajeroId)
 	}
 	
+	def esCerrablePorAgencia(def agenciaId){
+		(estado == ESTADOS_VALIDOS[1] && agencia.id == agenciaId)
+	}
+	
+	def esPasableAEnCursoPorAgencia(def agenciaId){
+		(pendiente && agencia.id == agenciaId)
+	}
+	
 	def cancelar() {
 		if (pendiente) {
 			def limite = new Date().toCalendar()
