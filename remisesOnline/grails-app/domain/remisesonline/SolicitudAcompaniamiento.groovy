@@ -4,7 +4,7 @@ class SolicitudAcompaniamiento {
 	static final ESTADOS_VALIDOS = ['Pendiente', 'Aprobada', 'Denegada']
 
 	Pasajero solicitado
-	Reserva reservaSolicituada
+	Reserva reservaSolicitada
 	Date fechaCreada = new Date()
 	String estado = new String('Pendiente')
 	
@@ -15,4 +15,8 @@ class SolicitudAcompaniamiento {
 
 		estado inList: ESTADOS_VALIDOS
     }
+	
+	String toString() {
+		"$solicitado - $pasajero - $fechaCreada ---- $reservaSolicitada ---- $estado"
+	}
 }
