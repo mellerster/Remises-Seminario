@@ -1,10 +1,10 @@
 package remisesonline
 
+
 class Remise {
 	String patente
 	byte[] foto
 	Chofer chofer
-	def estado
 	Set comodidades = []
 	Set calificaciones = []
 	static hasMany = [comodidades: Comodidad, calificaciones : Calificacion]
@@ -16,11 +16,6 @@ class Remise {
 		comodidades min: 0
 		chofer nullable: false,unique:true
 		foto nullable: true, maxSize: 1024 * 1024 * 2 /* 2MB */
-		estado inList: [
-			"Con Pasajeros",
-			"Vacio",
-			"Reservado"
-		]
 		calificaciones minSize:0
 	}
 
