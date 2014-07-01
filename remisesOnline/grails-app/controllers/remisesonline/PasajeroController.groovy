@@ -146,15 +146,7 @@ class PasajeroController {
 		}
 		flash.message = "Sesion invalida"
 	}
-	
-	def listReservasDeAmigo(){
-		def p = Pasajero.get(params.pasajero)
-		if (p) {
-			def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
-			return [reservas: reservasCompartibles]	
-		}
-		flash.message = "Sesion invalida"
-	}
+
 	
 	def eliminarAmigo(){
 		//Eliminar el amigo de ambos lados
@@ -197,7 +189,6 @@ class PasajeroController {
 			return [amigos: p.amigos]
 		}
 		flash.message = "Sesion invalida"
-	
 	}
 	
 	
@@ -213,9 +204,36 @@ class PasajeroController {
 	def listSolicitudesAcompaniamientoRecibidas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
-			//return 
+			
 		}
 		flash.message = "Sesion invalida"
 	}
+	
+		
+	def listReservasDeAmigo(){
+		def p = Pasajero.get(params.pasajero)
+		if (p) {
+			def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
+			return [reservas: reservasCompartibles, pasajero: p.id]	
+		}
+		flash.message = "Sesion invalida"
+	}
+	
+	//Esto es un servicio y suena mas a competencia de la solicitud que del pasajero, pero lo dejo aqui por ahora
+	def unirseAReserva(){
+		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
+		if (pasajeroSesion) {
+			def re = Reserva.get(Long.parseLong(params.id))
+			def pas = Pasajero.get(Long.parseLong(params.pasajero))
+			
+			def solicitud = new SolicitudAcompaniamiento(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: re , fechaCreada: new Date(), estado: 'Pendiente')
+			solicitud.save flush:true
+
+			pasajeroSesion.addToSolicitudesAcompaniamiento(solicitud)
+			pasajeroSesion.save flush:true
+			return [redirect(action: "showReservasAmigos")]
+		}
+	}
+	
 	
 }
