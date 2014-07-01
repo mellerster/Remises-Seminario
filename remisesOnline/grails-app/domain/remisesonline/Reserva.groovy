@@ -45,6 +45,10 @@ class Reserva {
 		estado == ESTADOS_VALIDOS[0]
 	}
 	
+	def esCancelablePorPasajero(def pasajeroId){
+		(pendiente && pasajero.id == pasajeroId)
+	}
+	
 	def cancelar() {
 		if (pendiente) {
 			def limite = new Date().toCalendar()
