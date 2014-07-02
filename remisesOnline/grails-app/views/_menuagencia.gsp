@@ -22,7 +22,7 @@
         </g:link>
       </li>
 	   <li>
-        <g:link class="list" controller="promocion" action="index" id="${session.agencia.id }">
+        <g:link class="list" controller="promocion" action="index">
        		Mis Promociones
         </g:link>
       </li>
