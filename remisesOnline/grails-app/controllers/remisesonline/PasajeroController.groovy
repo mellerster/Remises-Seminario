@@ -195,7 +195,7 @@ class PasajeroController {
 	def listSolicitudesQuieroIrJuntoEnviadas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
-			return [solicitudes: p.solicitudesAcompaniamiento]
+			return [solicitudesEnviadas: p.solicitudesQuieroIrJunto]
 		}
 		flash.message = "Sesion invalida"
 	}
@@ -204,7 +204,9 @@ class PasajeroController {
 	def listSolicitudesQuieroIrJuntoRecibidas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
-			//return			
+			def solicitudes = SolicitudQuieroIrJunto.findAllBySolicitado(p)
+			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.estado == 'Pendiente'}
+			return [solicitudesRecibidas: solicitudesPendientes]
 		}
 		flash.message = "Sesion invalida"
 	}

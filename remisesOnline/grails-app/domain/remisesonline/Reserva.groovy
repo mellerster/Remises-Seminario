@@ -38,7 +38,7 @@ class Reserva {
 	}
 
 	String toString() {
-		"$fechaReserva $estado"
+		"Fecha: $fechaReserva - Paradas: $paradas - Estado: $estado"
 	}
 	
 	def getPendiente() {

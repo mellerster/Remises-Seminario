@@ -101,4 +101,25 @@ class SolicitudQuieroIrJuntoController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	def aprobarSolicitud(SolicitudQuieroIrJunto instance){
+		if (instance){
+			instance.estado = 'Aprobada'
+			def pasajeroSolicitante = Pasajero.get(instance.pasajero.id)
+			def reservaSolicitada = Reserva.get(instance.reserva.id)
+			
+			instance.save flush:true
+			redirect action: 'quieroIrJunto', controller: 'pasajero'
+			}
+	}
+	
+	
+	
+	def denegarSolicitud(SolicitudQuieroIrJunto instance){
+		if (instance){
+			instance.estado = 'Denegada'
+			instance.save flush:true
+			redirect action: 'quieroIrJunto', controller: 'pasajero'
+		}
+	}
 }
