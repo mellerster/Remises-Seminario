@@ -1,6 +1,6 @@
 package remisesonline
 
-class SolicitudAcompaniamiento {
+class SolicitudQuieroIrJunto {
 	static final ESTADOS_VALIDOS = ['Pendiente', 'Aprobada', 'Denegada']
 
 	Pasajero solicitado

@@ -192,7 +192,7 @@ class PasajeroController {
 	}
 
 
-	def listSolicitudesAcompaniamientoEnviadas(){
+	def listSolicitudesQuieroIrJuntoEnviadas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			return [solicitudes: p.solicitudesAcompaniamiento]
@@ -201,7 +201,7 @@ class PasajeroController {
 	}
 
 
-	def listSolicitudesAcompaniamientoRecibidas(){
+	def listSolicitudesQuieroIrJuntoRecibidas(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			//return			
@@ -226,10 +226,10 @@ class PasajeroController {
 			def re = Reserva.get(Long.parseLong(params.id))
 			def pas = Pasajero.get(Long.parseLong(params.pasajero))
 			
-			def solicitud = new SolicitudAcompaniamiento(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: re , fechaCreada: new Date(), estado: 'Pendiente')
+			def solicitud = new SolicitudQuieroIrJunto(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: re , fechaCreada: new Date(), estado: 'Pendiente')
 			solicitud.save flush:true
 
-			pasajeroSesion.addToSolicitudesAcompaniamiento(solicitud)
+			pasajeroSesion.addToSolicitudesQuieroIrJunto(solicitud)
 			pasajeroSesion.save flush:true
 			return [redirect(action: "showReservasAmigos")]
 		}

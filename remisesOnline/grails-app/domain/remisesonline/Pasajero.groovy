@@ -10,7 +10,9 @@ class Pasajero {
 	Set calificaciones = []
 	Set amigos = []
 	Set solicitudesAmistad = []
-	static hasMany = [solicitudesAcompaniamiento: SolicitudAcompaniamiento, solicitudesAmistad: SolicitudAmistad, amigos: Pasajero, reservas: Reserva, destinosFrecuentes: Parada,calificaciones: Calificacion]
+	Set solicitudesQuieroIrJunto = []
+	
+	static hasMany = [solicitudesQuieroIrJunto: SolicitudQuieroIrJunto, solicitudesAmistad: SolicitudAmistad, amigos: Pasajero, reservas: Reserva, destinosFrecuentes: Parada,calificaciones: Calificacion]
 
 	static constraints = {
 		nombre nullable: false, blank: false
