@@ -10,6 +10,8 @@ class PasajeroController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def pasajeroService
+	
 	def logout() {
 		session.pasajero = null
 		redirect(action: 'login')
@@ -149,23 +151,12 @@ class PasajeroController {
 	}
 
 	def eliminarAmigo(){
-		//Eliminar el amigo de ambos lados
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		if (pasajeroSesion) {
-			def pasajeroAEliminar = Pasajero.get(Long.parseLong(params.id))
-			if (pasajeroAEliminar) {
-				pasajeroSesion.removeFromAmigos(pasajeroAEliminar)
-				pasajeroSesion.save flush:true
-				pasajeroAEliminar.removeFromAmigos(pasajeroSesion)
-				pasajeroAEliminar.save flush:true
-				return [redirect(action: "amigos")]
-			}
-			flash.message = "Pasajero a eliminar error"
+			pasajeroService.eliminarAmistad(pasajeroSesion, Long.parseLong(params.id))
+			return [redirect(action: "amigos")] 		
 		}
-
 		flash.message = "Sesion invalida"
-
-
 	}
 
 	def listPromociones(){
