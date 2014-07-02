@@ -8,9 +8,14 @@ class Promocion {
 	static belongsTo = [agencia: Agencia]
 	
     static constraints = {
-	
-		//verificar que desde es mas chico que hasta y que ambas son mayores a la actual
-		
+		descripcion(nullable:false, maxSize:140)
+		fechaDesde validator: {
+				if ( it < new Date()) { 
+					return 'fechaDesde menor que dia actual'
+				}
+		}
+		//Aca quise poner que la fechaHasta sea mayor 
+		//que la fechaDesde y me tira errores, debe ser mas facil de lo que pienso y no lo encuentro en ningun lado.
     }
 	
 	String toString() {
