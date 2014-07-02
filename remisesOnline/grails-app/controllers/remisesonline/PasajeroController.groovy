@@ -160,12 +160,9 @@ class PasajeroController {
 	}
 
 	def listPromociones(){
-		//Esto lo tiene que hacer la promocion, pero me tira un error y quiero dejarlo para hacer bien las vistas
-		def fechaActual = new Date()
-		def promos = Promocion.findAllByFechaHastaGreaterThanEquals(fechaActual)
-		[promociones: promos]
-
+		[promociones: pasajeroService.getPromocionesVigentes()]
 	}
+	
 	def quieroIrJunto(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {

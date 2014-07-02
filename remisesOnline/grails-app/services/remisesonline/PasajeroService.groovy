@@ -27,4 +27,10 @@ class PasajeroService {
 				flash.message = "amigo error"
 			}
     }
+	
+	def getPromocionesVigentes(){
+		def fechaActual = new Date()
+		def promocionesVigentes = Promocion.findAllByFechaHastaGreaterThanEquals(fechaActual)
+		promocionesVigentes
+	}
 }
