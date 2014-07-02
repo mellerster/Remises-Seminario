@@ -45,8 +45,8 @@
 						<td><g:formatDate date="${promocionInstance.fechaDesde}" /></td>
 					
 						<td><g:formatDate date="${promocionInstance.fechaHasta}" /></td>
-						<td><g:link action="edit" controller="promocion" id="${promocionInstanceList.id}"><input type="button" value="Si" /></g:link></td>
-						<td><g:link action="eliminar" controller="promocion" id="${promocionInstanceList.id}"><input type="button" value="Si" /></g:link></td>
+						<td><g:link action="edit" controller="promocion" id="${promocionInstance.id}"><input type="button" value="Si" /></g:link></td>
+						<td><g:link action="eliminar" controller="promocion" id="${promocionInstance.id}"><input type="button" value="Si" /></g:link></td>
 					</tr>
 				</g:each>
 				</tbody>

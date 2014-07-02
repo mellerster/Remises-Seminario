@@ -110,4 +110,15 @@ class PromocionController {
 		[ promos: promosVigentes ]
 	}
 	
+	def eliminar(Promocion promocionInstance) {
+		println "promocion:"
+		println promocionInstance
+		if (promocionInstance == null) {
+            notFound()
+            return
+        }
+        promocionInstance.delete flush:true
+		redirect action: 'index', controller: 'promocion'
+	
+	}
 }

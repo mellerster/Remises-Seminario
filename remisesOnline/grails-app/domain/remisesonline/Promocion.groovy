@@ -12,4 +12,8 @@ class Promocion {
 		//verificar que desde es mas chico que hasta y que ambas son mayores a la actual
 		
     }
+	
+	String toString() {
+		return "Desde: $fechaDesde - Hasta: $fechaHasta - Descripcion: $descripcion"
+	}
 }
