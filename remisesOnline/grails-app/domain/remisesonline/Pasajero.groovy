@@ -13,7 +13,7 @@ class Pasajero {
 	Set solicitudesQuieroIrJunto = []
 	
 	static hasMany = [solicitudesQuieroIrJunto: SolicitudQuieroIrJunto, solicitudesAmistad: SolicitudAmistad, amigos: Pasajero, reservas: Reserva, destinosFrecuentes: Parada,calificaciones: Calificacion]
-	
+
 	static constraints = {
 		nombre nullable: false, blank: false
 		email email: true, blank: false, unique: true
@@ -23,12 +23,6 @@ class Pasajero {
 
 	String toString() {
 		return "${nombre} - ${email}"
-	}
-	
-	def getReservasCompartibles() {
-		reservas.grep { reserva ->
-			reserva.compartible && reserva.pendiente
-		}
 	}
 	
 	def getCalificacion(){

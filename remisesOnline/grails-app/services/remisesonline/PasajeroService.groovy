@@ -33,4 +33,9 @@ class PasajeroService {
 		def promocionesVigentes = Promocion.findAllByFechaHastaGreaterThanEquals(fechaActual)
 		promocionesVigentes
 	}
+	
+	def getReservasCompartibles(Pasajero p){
+		def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
+		reservasCompartibles
+	}
 }

@@ -203,10 +203,10 @@ class PasajeroController {
 	def listReservasDeAmigo(){
 		def p = Pasajero.get(params.pasajero)
 		if (p) {
-			def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
+			def reservasCompartibles = pasajeroService.getReservasCompartibles(p)		
 			return [reservas: reservasCompartibles, pasajero: p.id]	
 		}
-		flash.message = "Sesion invalida"
+		flash.message = "Pasajero invalido"
 	}
 	
 	//Esto es un servicio y suena mas a competencia de la solicitud que del pasajero, pero lo dejo aqui por ahora
