@@ -30,7 +30,8 @@
 						<g:sortableColumn property="fechaDesde" title="${message(code: 'promocion.fechaDesde.label', default: 'Fecha Desde')}" />
 					
 						<g:sortableColumn property="fechaHasta" title="${message(code: 'promocion.fechaHasta.label', default: 'Fecha Hasta')}" />
-					
+						<th>Editar</th>
+						<th>Eliminar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,7 +45,8 @@
 						<td><g:formatDate date="${promocionInstance.fechaDesde}" /></td>
 					
 						<td><g:formatDate date="${promocionInstance.fechaHasta}" /></td>
-					
+						<td><g:link action="edit" controller="promocion" id="${promocionInstanceList.id}"><input type="button" value="Si" /></g:link></td>
+						<td><g:link action="eliminar" controller="promocion" id="${promocionInstanceList.id}"><input type="button" value="Si" /></g:link></td>
 					</tr>
 				</g:each>
 				</tbody>

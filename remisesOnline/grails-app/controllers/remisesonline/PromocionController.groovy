@@ -78,12 +78,11 @@ class PromocionController {
 
     @Transactional
     def delete(Promocion promocionInstance) {
-
+			
         if (promocionInstance == null) {
             notFound()
             return
         }
-
         promocionInstance.delete flush:true
 
         request.withFormat {
