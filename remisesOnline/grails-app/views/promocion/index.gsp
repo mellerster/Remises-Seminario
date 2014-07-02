@@ -33,7 +33,7 @@
 						<th>Editar</th>
 						<th>Eliminar</th>
 					</tr>
-				</thead>
+			</thead>
 				<tbody>
 				<g:each in="${promocionInstanceList}" status="i" var="promocionInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">

@@ -1,5 +1,7 @@
 package remisesonline
 
+
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -74,21 +76,24 @@ class PromocionController {
         }
     }
 
-    protected void notFound() {
+    @Transactional
+    def delete(Promocion promocionInstance) {
+
+        if (promocionInstance == null) {
+            notFound()
+            return
+        }
+
+        promocionInstance.delete flush:true
+
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'promocionInstance.label', default: 'Promocion'), params.id])
-                redirect action: "index", method: "GET"
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Promocion.label', default: 'Promocion'), promocionInstance.id])
+                redirect action:"index", method:"GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*'{ render status: NO_CONTENT }
         }
     }
-	
-	def listPromocionesVigentes(){
-		def fechaActual = new Date()
-		def promosVigentes = Promocion.list()
-		[ promos: promosVigentes ]
-	}
 	
 	def eliminar(Promocion promocionInstance) {
 		if (promocionInstance == null) {
@@ -99,4 +104,6 @@ class PromocionController {
 		flash.message = "La promocion fue eliminada correctamente"
 		redirect action: 'index', controller: 'promocion'
 	}
+	
+	
 }

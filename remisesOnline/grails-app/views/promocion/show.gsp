@@ -9,21 +9,19 @@
 	</head>
 	<body>
 		<a href="#show-promocion" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+		<div class="nav" role="navigation">
+			<ul>
+				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+			</ul>
+		</div>
 		<div id="show-promocion" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list promocion">
-			
-				<g:if test="${promocionInstance?.agencia}">
-				<li class="fieldcontain">
-					<span id="agencia-label" class="property-label"><g:message code="promocion.agencia.label" default="Agencia" /></span>
-					
-						<span class="property-value" aria-labelledby="agencia-label"><g:link controller="agencia" action="show" id="${promocionInstance?.agencia?.id}">${promocionInstance?.agencia?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
 			
 				<g:if test="${promocionInstance?.descripcion}">
 				<li class="fieldcontain">
@@ -43,6 +41,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${promocionInstance?.agencia}">
+				<li class="fieldcontain">
+					<span id="agencia-label" class="property-label"><g:message code="promocion.agencia.label" default="Agencia" /></span>
+					
+						<span class="property-value" aria-labelledby="agencia-label"><g:link controller="agencia" action="show" id="${promocionInstance?.agencia?.id}">${promocionInstance?.agencia?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${promocionInstance?.fechaHasta}">
 				<li class="fieldcontain">
 					<span id="fechaHasta-label" class="property-label"><g:message code="promocion.fechaHasta.label" default="Fecha Hasta" /></span>
@@ -53,7 +60,6 @@
 				</g:if>
 			
 			</ol>
-
 		</div>
 	</body>
 </html>
