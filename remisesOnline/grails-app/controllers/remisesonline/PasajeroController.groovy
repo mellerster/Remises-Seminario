@@ -209,13 +209,12 @@ class PasajeroController {
 		flash.message = "Pasajero invalido"
 	}
 	
-	//Esto es un servicio y suena mas a competencia de la solicitud que del pasajero, pero lo dejo aqui por ahora
 	def unirseAReserva(){
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		if (pasajeroSesion) {
 			def re = Reserva.get(Long.parseLong(params.id))
 			def pas = Pasajero.get(Long.parseLong(params.pasajero))
-			
+
 			def solicitud = new SolicitudQuieroIrJunto(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: re , fechaCreada: new Date(), estado: 'Pendiente')
 			solicitud.save flush:true
 

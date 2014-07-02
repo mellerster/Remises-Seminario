@@ -10,11 +10,14 @@ import spock.lang.Specification
 class PasajeroControllerSpec extends Specification {
 
     def setup() {
+
     }
 
     def cleanup() {
     }
 
-    void "test something"() {
+    void "agregarAmigo"() {
+		
+	
     }
 }

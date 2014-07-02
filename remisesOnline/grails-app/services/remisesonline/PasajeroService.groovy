@@ -37,5 +37,5 @@ class PasajeroService {
 	def getReservasCompartibles(Pasajero p){
 		def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
 		reservasCompartibles
-	}
+	}	
 }
