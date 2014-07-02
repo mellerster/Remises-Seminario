@@ -14,7 +14,7 @@
 		<g:message code="promocion.fechaDesde.label" default="Fecha Desde" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaDesde" precision="day"  value="${promocionInstance?.fechaDesde}"  />
+	<g:datePicker name="fechaDesde" precision="hour"  value="${promocionInstance?.fechaDesde}"  />
 
 </div>
 
@@ -23,7 +23,7 @@
 		<g:message code="promocion.fechaHasta.label" default="Fecha Hasta" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="fechaHasta" precision="day"  value="${promocionInstance?.fechaHasta}"  />
+	<g:datePicker name="fechaHasta" precision="hour"  value="${promocionInstance?.fechaHasta}"  />
 
 </div>
 
