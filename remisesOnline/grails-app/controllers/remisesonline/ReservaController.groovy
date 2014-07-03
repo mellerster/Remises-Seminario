@@ -242,11 +242,7 @@ class ReservaController {
 		}
 	}
 	
-	
-	def unirseAReserva(){
-		render "completar"
-	}
-	
-	def asignarRemis () {
+	def asignarRemis(Reserva reservaInstance) {
+		respond reservaInstance
 	}
 }
