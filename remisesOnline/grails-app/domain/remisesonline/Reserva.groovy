@@ -49,6 +49,10 @@ class Reserva {
 		estado == ESTADOS_VALIDOS[1]
 	}
 	
+	def getRemisAsignado() {
+		estado == ESTADOS_VALIDOS[4]
+	}
+	
 	def esCancelablePorPasajero(def pasajeroId){
 		(pendiente && pasajero.id == pasajeroId)
 	}
@@ -58,7 +62,7 @@ class Reserva {
 	}
 	
 	def esPasableAEnCursoPorAgencia(def agenciaId){
-		(pendiente && agencia.id == agenciaId && remise != null)
+		(remisAsignado && agencia.id == agenciaId && remise != null)
 	}
 	
 	def cancelar() {
@@ -80,7 +84,7 @@ class Reserva {
 	}
 	
 	def pasarAEnCurso(){
-		if(pendiente){
+		if(remisAsignado){
 			estado = ESTADOS_VALIDOS[1]
 		}
 	}
