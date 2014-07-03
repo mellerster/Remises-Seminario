@@ -106,7 +106,7 @@ class SolicitudQuieroIrJuntoController {
 		if (instance){
 			instance.estado = 'Aprobada'
 			def pasajeroSolicitante = Pasajero.get(instance.pasajero.id)
-			def reservaSolicitada = Reserva.get(instance.reserva.id)
+			def reservaSolicitada = Reserva.get(instance.reservaSolicitada.id)
 			
 			instance.save flush:true
 			redirect action: 'quieroIrJunto', controller: 'pasajero'
