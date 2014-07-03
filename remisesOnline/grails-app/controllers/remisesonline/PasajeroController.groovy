@@ -122,7 +122,10 @@ class PasajeroController {
 
 	def agregarAmigos(){
 		def p = Pasajero.get(session.pasajero?.id)
-		[pasajeros: Pasajero.findAllByIdNotEqual(p.id)]
+		def pasajerosMenosYo =Pasajero.findAllByIdNotEqual(p.id)
+		def pasajeroAmigos = p.amigos 
+		def resultado = pasajerosMenosYo - pasajeroAmigos
+		redirect action: "create", controller: solicitudAmistad, pasajerosNoAmigos: resultado
 	}
 	
 	def listSolicitudesAmigosEnviadas(){
