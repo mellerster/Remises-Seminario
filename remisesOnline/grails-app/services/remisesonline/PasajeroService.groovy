@@ -38,4 +38,9 @@ class PasajeroService {
 		def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
 		reservasCompartibles
 	}	
+	
+	def solicitudesAmistadPendientesAprobacion(Pasajero p){
+		def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
+		solicitudes.grep{solicitud -> solicitud.pendiente}
+	}
 }
