@@ -42,7 +42,7 @@ class PasajeroService {
 	
 	def solicitudesQuieroIrJuntoPendientesAprobacion(Pasajero p){
 		def solicitudes = SolicitudQuieroIrJunto.findAllBySolicitado(p)
-		solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.pendiente}	
+		solicitudes.grep{solicitud -> solicitud.pendiente}	
 	}
 	
 	def unirAReserva(Pasajero pasajeroSesion, Map params){
