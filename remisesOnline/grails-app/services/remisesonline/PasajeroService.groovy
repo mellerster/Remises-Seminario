@@ -38,4 +38,9 @@ class PasajeroService {
 		def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
 		solicitudes.grep{solicitud -> solicitud.pendiente}
 	}
+	
+	def solicitudesQuieroIrJuntoPendientesAprobacion(Pasajero p){
+		def solicitudes = SolicitudQuieroIrJunto.findAllBySolicitado(p)
+		solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.pendiente}	
+	}
 }
