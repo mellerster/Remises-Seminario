@@ -52,7 +52,10 @@
 						<td>
 							<g:if test="${reserva.esPasajeroCalificable}">
 									<g:link action="calificarPasajero" controller="reserva" id="${reserva.id }">Calificar</g:link>
-								</g:if>
+							</g:if>
+							<g:if test="${reserva.pendiente && !reserva.remise}">
+									<g:link action="asignarRemis" controller="reserva" id="${reserva.id }">Asignar</g:link>
+							</g:if>
 						</td>
 					</tr>
 				</g:each>

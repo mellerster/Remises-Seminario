@@ -246,4 +246,7 @@ class ReservaController {
 	def unirseAReserva(){
 		render "completar"
 	}
+	
+	def asignarRemis () {
+	}
 }
