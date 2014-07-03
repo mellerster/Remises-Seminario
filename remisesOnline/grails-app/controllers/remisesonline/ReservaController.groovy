@@ -32,8 +32,6 @@ class ReservaController {
 			return
 		}
 
-		//reservaInstance.properties = params
-
 		reservaInstance.pasajero =	Pasajero.get(session.pasajero.id)
 		reservaInstance.fechaReserva =	params.date( 'fechaReserva', 'dd/MM/yy HH:mm' )
 		reservaInstance.validate()
