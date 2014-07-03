@@ -62,13 +62,12 @@
 							bean="${reservaInstance}" field="estado" />
 				</span></li>
 			</g:if>
-<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'remise', 'error')} ">
-	<label for="remise">
-		<g:message code="reserva.remise.label" default="Remise" />
-	</label>
-	<g:select id="remise" name="remise.id" from="${reservaInstance.agencia.remises}" optionKey="id" value="${reservaInstance?.remise?.id}" class="many-to-one" noSelection="['null': '']"/>
-
-</div>
+			<div class="fieldcontain ${hasErrors(bean: reservaInstance, field: 'remise', 'error')} ">
+				<label for="remise">
+					<g:message code="reserva.remise.label" default="Remise" />
+				</label>
+				<g:select id="remise" name="remise.id" from="${reservaInstance.agencia.remises}" optionKey="id" value="${reservaInstance?.remise?.id}" class="many-to-one" noSelection="['null': '']"/>
+			</div>
 			<g:if test="${reservaInstance?.creado}">
 				<li class="fieldcontain"><span id="creado-label"
 					class="property-label"><g:message
@@ -143,26 +142,12 @@
 			<g:form url="[resource:reservaInstance, action:'cerrar']"
 				method="DELETE">
 				<fieldset class="buttons">
-					<g:if
-						test="${reservaInstance.esCerrablePorAgencia(session?.agencia?.id)}">
-						<g:link action="cerrar" controller="reserva"
-							id="${reservaInstance.id}">
-							Cerrar
+
+						<g:link action="asignar" controller="reserva"
+							id="${reservaInstance.id}" params="[idRemis:reservaInstance?.remise?.id]">
+							Asignar
 						</g:link>
-					</g:if>
-					<g:if
-						test="${reservaInstance.esPasableAEnCursoPorAgencia(session?.agencia?.id) }">
-						<g:link action="pasarAEnCurso" controller="reserva"
-							id="${reservaInstance.id }">
-							Pasar a En Curso
-						</g:link>
-					</g:if>
-					<g:if test="${reservaInstance.esPasajeroCalificable }">
-						<g:link class="calificar" action="calificarPasajero"
-							id="${reservaInstance.id }">
-							Calificar Pasajero
-						</g:link>
-					</g:if>
+
 				</fieldset>
 			</g:form>
 		</g:if>

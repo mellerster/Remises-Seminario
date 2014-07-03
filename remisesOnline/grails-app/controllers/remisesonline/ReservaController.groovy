@@ -245,4 +245,9 @@ class ReservaController {
 	def asignarRemis(Reserva reservaInstance) {
 		respond reservaInstance
 	}
+	
+	def asignar(Reserva reservaInstance ) {
+		println params
+		respond reservaInstance, view: 'asignarRemis'
+	}
 }
