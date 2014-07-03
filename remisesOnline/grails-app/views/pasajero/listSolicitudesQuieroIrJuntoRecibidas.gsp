@@ -43,7 +43,7 @@
 					
 						<td><g:link action="show" id="${solicitudQuieroIrJuntoInstance.id}">${fieldValue(bean: solicitudQuieroIrJuntoInstance, field: "estado")}</g:link></td>
 					
-						<td><g:formatDate date="${solicitudQuieroIrJuntoInstance.fechaCreada}" /></td>
+						<td><g:formatDate date="${solicitudQuieroIrJuntoInstance.fechaCreada}"   format="dd/MM/yyyy HH:mm" /></td>
 					
 						<td>${fieldValue(bean: solicitudQuieroIrJuntoInstance, field: "pasajero")}</td>
 					

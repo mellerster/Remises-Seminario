@@ -75,7 +75,7 @@ class BootStrap {
 
 		itinerario.addToParadas(parada)*/
 
-		def pasajero = new Pasajero(nombre: 'Hugo el cliente', email: 'h@gmail.com',\
+		def pasajero = new Pasajero(nombre: 'Hugo, the client', email: 'h@gmail.com',\
 								telefono: '54', fechaNacimiento: new Date(80,5,5))
 		pasajero.save(failOnError: true)
 		
@@ -92,10 +92,6 @@ class BootStrap {
 		def pasajero4 = new Pasajero(nombre: 'Pepe el cliente', email: 'p@gmail.com',\
 								telefono: '54', fechaNacimiento: new Date(80,5,5))
 		pasajero4.save(failOnError: true)
-
-		//itinerario.addToPasajeros(pasajero)
-		//itinerario.save(failOnError: true)
-		//pasajero.addToViajes(itinerario)
 
 
 		def pasajero5 = new Pasajero(nombre: 'Diego el cliente', email: 'm@gmail.com',\
@@ -122,16 +118,25 @@ class BootStrap {
 
 		agencia = Agencia.findByNombre('El remis loco')
 
-		reserva = new Reserva(remise: remisDKP123,\
-							fechaReserva: new Date() + 1)
-		reserva.pasajero = Pasajero.findByNombre('Hugo el cliente')
-		agencia = Agencia.findByEmail('remises@remisloco.com')
-		reserva.agencia = agencia
+		reserva = new Reserva( fechaReserva: new Date() + 1)
+		reserva.pasajero = Pasajero.findByNombre('Hugo, the client')
+		reserva.agencia = Agencia.findByEmail('remises@remisloco.com')
 		agencia.addToReservas(reserva)
 		reserva.estado = Reserva.ESTADOS_VALIDOS[1]
 		def parada3 = new Parada(calle: 'Ucrania', localidad: 'Posadas',\
 		descripcion: 'esta es lejos')
 		parada3.numero = 756
+		reserva.paradas[0] = parada1
+		reserva.paradas[1] = parada3
+		
+		reserva = new Reserva(fechaReserva: new Date() + 6)
+		reserva.pasajero = Pasajero.findByNombre('Hugo, the client')
+		reserva.agencia = Agencia.findByEmail('remises@remisloco.com')
+		agencia.addToReservas(reserva)
+		reserva.estado = Reserva.ESTADOS_VALIDOS[1]
+		parada3 = new Parada(calle: 'Ucrania', localidad: 'Posadas',\
+		descripcion: 'esta es lejos')
+		parada3.numero = 777
 		reserva.paradas[0] = parada1
 		reserva.paradas[1] = parada3
 

@@ -40,7 +40,7 @@
 					
 						<td><g:link action="show" id="${solicitud.id}">${fieldValue(bean: solicitud, field: "estado")}</g:link></td>
 					
-						<td><g:formatDate date="${solicitud.fechaCreada}" /></td>
+						<td><g:formatDate date="${solicitud.fechaCreada}"  format="dd/MM/yyyy HH:mm" /></td>
 					
 						<td>${fieldValue(bean: solicitud, field: "pasajero")}</td>
 						

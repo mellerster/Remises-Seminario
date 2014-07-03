@@ -38,9 +38,9 @@
 				<g:each in="${solicitudesEnviadas}" status="i" var="solicitud">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${solicitud.id}">${fieldValue(bean: solicitud, field: "estado")}</g:link></td>
+						<td><g:link action="show" controller="solicitudquieroirjunto" id="${solicitud.id}">${fieldValue(bean: solicitud, field: "estado")}</g:link></td>
 					
-						<td><g:formatDate date="${solicitud.fechaCreada}" /></td>
+						<td><g:formatDate date="${solicitud.fechaCreada}"  format="dd/MM/yyyy HH:mm" /></td>
 					
 						<td>${fieldValue(bean: solicitud, field: "solicitado")}</td>
 					
