@@ -117,46 +117,27 @@ class PasajeroController {
 
 	def amigos(){
 		def p = Pasajero.get(session.pasajero?.id)
-		if (p) {
-			return [amigos: p.amigos]
-		}
-		flash.message = "Sesion invalida"
+		[amigos: p.amigos]
 	}
 
 	def agregarAmigos(){
 		def p = Pasajero.get(session.pasajero?.id)
-		if (p) {
-			return [pasajeros: Pasajero.findAllByIdNotEqual(p.id)]
-		}
-		flash.message = "Sesion invalida"
+		[pasajeros: Pasajero.findAllByIdNotEqual(p.id)]
 	}
-
-
+	
 	def listSolicitudesAmigosEnviadas(){
 		def p = Pasajero.get(session.pasajero?.id)
-		if (p) {
-			return [solicitudesEnviadas: p.solicitudesAmistad]
-		}
-		flash.message = "Sesion invalida"
+		[solicitudesEnviadas: p.solicitudesAmistad]
 	}
 
 	def listSolicitudesAmigosRecibidas(){
-		def p = Pasajero.get(session.pasajero?.id)
-		if (p) {
-			def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
-			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.pendiente}
-			return [solicitudesRecibidas: solicitudesPendientes]
-		}
-		flash.message = "Sesion invalida"
+		[solicitudesRecibidas: pasajeroService.solicitudesAmistadPendientesAprobacion(session.pasajero?.id)]
 	}
 
 	def eliminarAmigo(){
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
-		if (pasajeroSesion) {
-			pasajeroService.eliminarAmistad(pasajeroSesion, Long.parseLong(params.id))
-			return [redirect(action: "amigos")] 		
-		}
-		flash.message = "Sesion invalida"
+		pasajeroService.eliminarAmistad(pasajeroSesion, Long.parseLong(params.id))
+		[redirect(action: "amigos")] 		
 	}
 
 	def listPromociones(){
@@ -165,48 +146,31 @@ class PasajeroController {
 	
 	def quieroIrJunto(){
 		def p = Pasajero.get(session.pasajero?.id)
-		if (p) {
-			return [amigos: p.amigos]
-		}
-		flash.message = "Sesion invalida"
+		[amigos: p.amigos]	
 	}
 
 	def showReservasAmigos(){
 		def p = Pasajero.get(session.pasajero?.id)
-		if (p) {
-			return [amigos: p.amigos]
-		}
-		flash.message = "Sesion invalida"
+		[amigos: p.amigos]
 	}
 
 
 	def listSolicitudesQuieroIrJuntoEnviadas(){
 		def p = Pasajero.get(session.pasajero?.id)
-		if (p) {
-			return [solicitudesEnviadas: p.solicitudesQuieroIrJunto]
-		}
-		flash.message = "Sesion invalida"
+		[solicitudesEnviadas: p.solicitudesQuieroIrJunto]
 	}
 
 
 	def listSolicitudesQuieroIrJuntoRecibidas(){
 		def p = Pasajero.get(session.pasajero?.id)
-		if (p) {
-			def solicitudes = SolicitudQuieroIrJunto.findAllBySolicitado(p)
-			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.pendiente}
-			return [solicitudesRecibidas: solicitudesPendientes]
-		}
-		flash.message = "Sesion invalida"
+		[solicitudesRecibidas: pasajeroService.solicitudesQuieroIrJuntoPendientesAprobacion(session.pasajero?.id)]
 	}
 	
 		
 	def listReservasDeAmigo(){
 		def p = Pasajero.get(params.pasajero)
-		if (p) {
-			def reservasCompartibles = pasajeroService.getReservasCompartibles(p)		
-			return [reservas: reservasCompartibles, pasajero: p.id]	
-		}
-		flash.message = "Pasajero invalido"
+		def reservasCompartibles = pasajeroService.getReservasCompartibles(p)		
+		[reservas: reservasCompartibles, pasajero: p.id]	
 	}
 	
 	def unirseAReserva(){
@@ -224,7 +188,6 @@ class PasajeroController {
 				flash.message = 'La reserva que intenta unirse ha sido cancelada.'
 				
 			}
-
 			return [redirect(action: "showReservasAmigos")]
 		}
 	}
