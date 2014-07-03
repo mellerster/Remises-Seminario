@@ -26,6 +26,11 @@
        		Mis Promociones
         </g:link>
       </li>
+       <li>
+        <g:link class="list" controller="servicioDeRemiseria" action="index">
+       		Mis Servicios
+        </g:link>
+      </li>
       <li>
         <g:link class="logout" controller="agencia" action="logout">
 				Salir

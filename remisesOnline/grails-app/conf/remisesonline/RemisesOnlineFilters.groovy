@@ -2,7 +2,7 @@ package remisesonline
 
 class RemisesOnlineFilters {
 	def filters = {
-		agenciaOnly(controller:'(remise|chofer|comodidad)',
+		agenciaOnly(controller:'(remise|chofer|comodidad|servicioDeRemiseria)',
 		action:"(index|create|edit|save|update|delete|modificar|actualizar)") {
 			before = {
 				if(!session?.agencia){
@@ -27,6 +27,13 @@ class RemisesOnlineFilters {
 								return false
 							}
 							break;
+						case "servicioDeRemiseria":
+							if(!Agencia.get(session.agencia.id).servicios.id.toString().contains(params.id.toString())){
+								flash.message = "Solo puede modificar sus servicios"
+								redirect(action:"index", controller:"serivicioderemiseria")
+								return false
+							}
+							break
 					}
 				}
 			}
@@ -109,6 +116,16 @@ class RemisesOnlineFilters {
 						redirect controller:'pasajero',action:'listReservas'
 						return false
 					}
+				}
+			}
+		}
+		
+		pasajeroServicioDeRemiseria(controller:'servicioDeRemiseria', action:'adherirse|desadherirse|listServicios|misAdhesiones'){
+			before={
+				if(!session?.pasajero){
+					flash.message = "Solo pueden ingresar pasajeros que han iniciado sesión"
+					redirect(controller:"pasajero", action:"login")
+					return false
 				}
 			}
 		}

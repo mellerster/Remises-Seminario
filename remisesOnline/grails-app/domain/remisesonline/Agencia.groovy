@@ -9,8 +9,8 @@ class Agencia {
 	Set remises = []
 	Set reservas = []
 	Set choferes = []
-
-	static hasMany = [remises: Remise, choferes: Chofer, reservas: Reserva, promociones: Promocion]
+	Set servicios =  []
+	static hasMany = [remises: Remise, choferes: Chofer, reservas: Reserva, promociones: Promocion, servicios : ServicioDeRemiseria]
 
 	static constraints = {
 		nombre nullable: false, unique: true

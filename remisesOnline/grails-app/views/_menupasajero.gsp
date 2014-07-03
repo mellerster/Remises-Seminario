@@ -20,6 +20,9 @@
         <g:link  controller="pasajero" action="listPromociones">Ver Promociones</g:link>
       </li>
       <li>
+        <g:link  controller="servicioDeRemiseria" action="listServicios">Ver Servicios</g:link>
+      </li>
+      <li>
         <g:link class="logout" controller="pasajero" action="logout">Salir</g:link>
       </li>
 
