@@ -105,7 +105,6 @@ class SolicitudAmistadController {
         }
     }
 	
-	//Esto tengo mis dudas de donde va, dsp hablamos al respecto.
 	def aprobarSolicitud(SolicitudAmistad instance){
 		if (instance){
 			instance.estado = 'Aprobada'
