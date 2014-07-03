@@ -144,7 +144,7 @@ class PasajeroController {
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
-			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.estado == 'Pendiente'}
+			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.pendiente}
 			return [solicitudesRecibidas: solicitudesPendientes]
 		}
 		flash.message = "Sesion invalida"
@@ -193,7 +193,7 @@ class PasajeroController {
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
 			def solicitudes = SolicitudQuieroIrJunto.findAllBySolicitado(p)
-			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.estado == 'Pendiente'}
+			def solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.pendiente}
 			return [solicitudesRecibidas: solicitudesPendientes]
 		}
 		flash.message = "Sesion invalida"
@@ -209,7 +209,6 @@ class PasajeroController {
 		flash.message = "Pasajero invalido"
 	}
 	
-	//Esto es un servicio y suena mas a competencia de la solicitud que del pasajero, pero lo dejo aqui por ahora
 	def unirseAReserva(){
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		if (pasajeroSesion) {

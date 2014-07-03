@@ -11,12 +11,15 @@ class SolicitudQuieroIrJunto {
 	
 	static belongsTo = [pasajero: Pasajero]
 	
-    static constraints = {
-
+	static constraints = {
 		estado inList: ESTADOS_VALIDOS
-    }
+	}
 	
 	String toString() {
 		"$solicitado - $pasajero - $fechaCreada ---- $reservaSolicitada ---- $estado"
+	}
+	
+	def getPendiente() {
+		estado == 'Pendiente'
 	}
 }
