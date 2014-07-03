@@ -34,6 +34,7 @@
 		<g:form url="[resource:reservaInstance, action:'update']"	method="PUT">
 
 		<ol class="property-list reserva">
+			<g:hiddenField name="version" value="${reservaInstance?.version}" />
 			<g:if test="${reservaInstance?.remise}">
 				<li class="fieldcontain"><span id="remise-label"
 					class="property-label"><g:message

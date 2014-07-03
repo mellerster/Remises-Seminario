@@ -69,7 +69,7 @@ class ReservaController {
 			return
 		}
 		
-		reservaInstance = reservaService.updateRemise(reservaInstance)
+		reservaInstance = reservaService.updateRemise(reservaInstance, params.version)
 		/*reservaInstance.pasajero =	Pasajero.get(session.pasajero.id)
 
 		reservaInstance.fechaReserva =	params.date( 'fechaReserva', 'dd/MM/yy HH:mm' )

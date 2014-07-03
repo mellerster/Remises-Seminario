@@ -4,7 +4,7 @@ import org.apache.commons.collections.Factory;
 import org.apache.commons.collections.ListUtils;
 
 class Reserva {
-	static final ESTADOS_VALIDOS = ['Pendiente', 'En curso', 'Cerrada', 'Cancelada']
+	static final ESTADOS_VALIDOS = ['Pendiente', 'En curso', 'Cerrada', 'Cancelada', 'Remis asignado']
 	//Itinerario destinos = new Itinerario()
 	Remise remise
 	Date fechaReserva
