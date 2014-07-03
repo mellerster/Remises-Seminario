@@ -14,8 +14,13 @@ class Promocion {
 					return 'fechaDesde menor que dia actual'
 				}
 		}
-		//Aca quise poner que la fechaHasta sea mayor 
-		//que la fechaDesde y me tira errores, debe ser mas facil de lo que pienso y no lo encuentro en ningun lado.
+		
+		
+		fechaDesde validator: { fecha, obj -> 
+			if (fecha > obj.fechaHasta) {
+				return 'fechaDesde menor que dia actual'
+				}
+		}
     }
 	
 	String toString() {
