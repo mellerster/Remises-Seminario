@@ -118,7 +118,7 @@ class PasajeroController {
 	def amigos(){
 		def p = Pasajero.get(session.pasajero?.id)
 		if (p) {
-			return [amigos: p.amigos] //aca puede explotar si amigos no esta inicializado
+			return [amigos: p.amigos]
 		}
 		flash.message = "Sesion invalida"
 	}
@@ -209,17 +209,23 @@ class PasajeroController {
 		flash.message = "Pasajero invalido"
 	}
 	
+	//Esto es un servicio y suena mas a competencia de la solicitud que del pasajero, pero lo dejo aqui por ahora
 	def unirseAReserva(){
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		if (pasajeroSesion) {
 			def re = Reserva.get(Long.parseLong(params.id))
 			def pas = Pasajero.get(Long.parseLong(params.pasajero))
+			if (re.pendiente) {
+				def solicitud = new SolicitudQuieroIrJunto(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: re , fechaCreada: new Date(), estado: 'Pendiente')
+				solicitud.save flush:true
 
-			def solicitud = new SolicitudQuieroIrJunto(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: re , fechaCreada: new Date(), estado: 'Pendiente')
-			solicitud.save flush:true
+				pasajeroSesion.addToSolicitudesQuieroIrJunto(solicitud)
+				pasajeroSesion.save flush:true
+			} else {
+				flash.message = 'La reserva que intenta unirse ha sido cancelada.'
+				
+			}
 
-			pasajeroSesion.addToSolicitudesQuieroIrJunto(solicitud)
-			pasajeroSesion.save flush:true
 			return [redirect(action: "showReservasAmigos")]
 		}
 	}

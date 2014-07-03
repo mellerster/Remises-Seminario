@@ -30,8 +30,8 @@ class SolicitudAmistadController {
             return
         }
 
-		solicitudAmistadInstance.pasajero =	Pasajero.get(session.pasajero.id)
-		solicitudAmistadInstance.validate()
+				solicitudAmistadInstance.pasajero =	Pasajero.get(session.pasajero.id)
+				solicitudAmistadInstance.validate()
 		
         if (solicitudAmistadInstance.hasErrors()) {
             respond solicitudAmistadInstance.errors, view:'create'
