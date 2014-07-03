@@ -89,6 +89,20 @@ class RemisesOnlineFilters {
 					flash.message = "Solo pueden ingresar pasajeros que han iniciado sesión"
 					redirect(controller:"pasajero", action:"login")
 					return false
+				}else{
+					if(params?.id){
+						switch(params.action){
+							case "edit":
+							case "update":
+							case "delete":
+								if(!session.pasajero.id.toString().equals(params.id.toString())){
+									flash.message = "Solo puede modificar sus datos"
+									redirect(controller:"pasajero",action:"show",id:session.pasajero.id)
+									return false
+								}
+								break
+						}
+					}
 				}
 			}
 		}
