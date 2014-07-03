@@ -31,8 +31,9 @@
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
-		<ol class="property-list reserva">
+		<g:form url="[resource:reservaInstance, action:'update']"	method="PUT">
 
+		<ol class="property-list reserva">
 			<g:if test="${reservaInstance?.remise}">
 				<li class="fieldcontain"><span id="remise-label"
 					class="property-label"><g:message
@@ -114,43 +115,17 @@
 
 
 		</ol>
-		<g:if test="${session?.pasajero}">
-			<g:form url="[resource:reservaInstance, action:'delete']"
-				method="DELETE">
-				<fieldset class="buttons">
-					<g:if
-						test="${reservaInstance.esCancelablePorPasajero(session?.pasajero?.id)}">
-
-						<g:if test="${reservaInstance.pendiente }">
-							<g:link action="cancelarReserva" controller="reserva"
-								id="${reservaInstance.id}">
-							Cancelar
-						</g:link>
-						</g:if>
-					</g:if>
-					<g:if test="${reservaInstance.esRemiseCalificable }">
-						<g:link class="calificar" action="calificarRemise"
-							id="${reservaInstance.id }">
-								Calificar Remise
-							</g:link>
-					</g:if>
-				</fieldset>
-			</g:form>
-
-		</g:if>
+		
 		<g:if test="${session.agencia}">
-			<g:form url="[resource:reservaInstance, action:'cerrar']"
-				method="DELETE">
-				<fieldset class="buttons">
 
-						<g:link action="asignar" controller="reserva"
-							id="${reservaInstance.id}" params="[idRemis:reservaInstance?.remise?.id]">
-							Asignar
-						</g:link>
+				<fieldset class="buttons">
+						
+						<g:submitButton name="asignarRemis" class="update" value="Asignar" />
 
 				</fieldset>
-			</g:form>
 		</g:if>
+
+		</g:form>
 	</div>
 </body>
 </html>

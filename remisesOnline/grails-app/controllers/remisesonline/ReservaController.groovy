@@ -63,18 +63,23 @@ class ReservaController {
 
 	@Transactional
 	def update(Reserva reservaInstance) {
+		println 'updating..'
 		if (reservaInstance == null) {
 			notFound()
 			return
 		}
-
-		reservaInstance.pasajero =	Pasajero.get(session.pasajero.id)
+		
+		reservaInstance = reservaService.updateRemise(reservaInstance)
+		/*reservaInstance.pasajero =	Pasajero.get(session.pasajero.id)
 
 		reservaInstance.fechaReserva =	params.date( 'fechaReserva', 'dd/MM/yy HH:mm' )
-		reservaInstance.validate()
+		reservaInstance.validate()*/
 
+		println params
 		if (reservaInstance.hasErrors()) {
-			respond reservaInstance.errors, view:'edit'
+			println reservaInstance.errors
+
+			respond reservaInstance.errors, view: 'asignarRemis'
 			return
 		}
 
@@ -166,11 +171,11 @@ class ReservaController {
 				return
 		}
 		flash.message = 'Reserva cancelada'
-		redirect controller:'reserva', action:'show', id:params.id
+		redirect controller:'reserva', action: 'show', id: params.id
 	}
 	
 	def cerrar(){
-		def reserva = reservaService.cerrar(params.id,session?.agencia?.id)
+		def reserva = reservaService.cerrar(params.id, session?.agencia?.id)
 		if(reserva.hasErrors()){
 			respond reserva.errors,view:'show'
 			return
@@ -247,7 +252,6 @@ class ReservaController {
 	}
 	
 	def asignar(Reserva reservaInstance ) {
-		println params
 		respond reservaInstance, view: 'asignarRemis'
 	}
 }

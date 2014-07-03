@@ -6,7 +6,7 @@
 		<g:message code="solicitudAmistad.solicitado.label" default="Nuevo amigo" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="solicitado" name="solicitado.id" from="${pasajerosNoAmigos}" optionKey="id" required="" value="${solicitudAmistadInstance?.solicitado?.id}" class="many-to-one"/>
+	<g:select id="solicitado" name="solicitado.id" from="${resultado}" optionKey="id" required="" value="${solicitudAmistadInstance?.solicitado?.id}" class="many-to-one"/>
 
 </div>
 
