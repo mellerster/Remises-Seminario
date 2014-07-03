@@ -125,7 +125,7 @@ class PasajeroController {
 		def pasajerosMenosYo =Pasajero.findAllByIdNotEqual(p.id)
 		def pasajeroAmigos = p.amigos 
 		def resultado = pasajerosMenosYo - pasajeroAmigos
-		redirect action: "create", controller: solicitudAmistad, pasajerosNoAmigos: resultado
+		redirect action: "create", controller: solicitudAmistad, params: [pasajerosNoAmigos: resultado]
 	}
 	
 	def listSolicitudesAmigosEnviadas(){
