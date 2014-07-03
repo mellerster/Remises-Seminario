@@ -63,12 +63,8 @@ class ReservaController {
 
 	@Transactional
 	def update() {
-		//println 'updating..'
-		//println params
-
 		
 		def reservaInstance = reservaService.updateRemise(params.id, params.version, params.remise.id)
-
 
 		if (reservaInstance.hasErrors()) {
 			println reservaInstance.errors
@@ -76,8 +72,6 @@ class ReservaController {
 			respond reservaInstance.errors, view: 'asignarRemis'
 			return
 		}
-
-		//reservaInstance.save flush:true
 
 		request.withFormat {
 			form multipartForm {
@@ -140,8 +134,8 @@ class ReservaController {
 				reserva.save()
 			}
 		}
-		redirect controller:'reserva', action:'show', id:params.id
-		respond reserva, view:'show'
+		redirect controller: 'reserva', action: 'show', id: params.id
+		respond reserva, view: 'show'
 	}
 
 	protected void notFound() {
@@ -161,83 +155,83 @@ class ReservaController {
 		def reserva = reservaService.cancelarReserva(Long.parseLong(params.id))
 		
 		if (reserva.hasErrors()) {
-				respond reserva.errors, view:'show'
+				respond reserva.errors, view: 'show'
 				return
 		}
 		flash.message = 'Reserva cancelada'
-		redirect controller:'reserva', action: 'show', id: params.id
+		redirect controller: 'reserva', action: 'show', id: params.id
 	}
 	
-	def cerrar(){
+	def cerrar() {
 		def reserva = reservaService.cerrar(params.id, session?.agencia?.id)
 		if(reserva.hasErrors()){
-			respond reserva.errors,view:'show'
+			respond reserva.errors, view: 'show'
 			return
 		}
 		flash.message = 'Reserva Cerrada'
-		redirect controller:'reserva',action:'show',id:params.id
+		redirect controller: 'reserva', action: 'show', id: params.id
 	}
 	
 	def pasarAEnCurso(){
 		def reserva = reservaService.pasarAEnCurso(params.id,session?.agencia?.id)
-		if(reserva.hasErrors()){
-			respond reserva.errors,view:'show'
+		if(reserva.hasErrors()) {
+			respond reserva.errors, view:'show'
 			return
 		}
 		flash.message = 'Reserva En Curso'
 		redirect controller:'reserva',action:'show',id:params.id
 	}
 
-	def calificarRemise(Reserva reservaInstance){
+	def calificarRemise(Reserva reservaInstance) {
 		if(reservaInstance.esRemiseCalificable){
 			respond reservaInstance
 		}else{
 			flash.message = "No se puede calificar esta reserva, no esta cerrada o ya fue calificada"
-			redirect controller:'pasajero',action:'listReservas'
+			redirect controller: 'pasajero', action: 'listReservas'
 
 		}
 	}
 
 	@Transactional
-	def guardarCalificacionRemise(){
+	def guardarCalificacionRemise() {
 		def reserva = Reserva.get(params.id)
-		if(reserva.esRemiseCalificable){
-			if(params.puntaje){
+		if(reserva.esRemiseCalificable) {
+			if(params.puntaje) {
 				reserva.calificarRemise(params.puntaje)
-				redirect controller:'remise', action:'show', id:reserva.remise.id
+				redirect controller:'remise', action: 'show', id: reserva.remise.id
 			}else{
 				flash.message = "Debe seleccionar un puntaje para asignar"
-				respond reserva,view:'calificarRemise'
+				respond reserva, view: 'calificarRemise'
 			}
 		}else{
 			flash.message = "No se puede calificar esta reserva, no esta cerrada o ya fue calificada"
-			redirect controller:'pasajero',action:'listReservas'
+			redirect controller:'pasajero', action: 'listReservas'
 		}
 	}
 	
-	def calificarPasajero(Reserva reservaInstance){
-		if(reservaInstance.esPasajeroCalificable){
+	def calificarPasajero(Reserva reservaInstance) {
+		if(reservaInstance.esPasajeroCalificable) {
 			respond reservaInstance
 		}else{
 			flash.message = "No se puede calificar esta reserva,no esta cerrada o ya fue calificada"
-			redirect controller:'agencia',action:'listReservas',params:[estadoSeleccionado:'Cerrada']
+			redirect controller: 'agencia' ,action: 'listReservas', params: [estadoSeleccionado: 'Cerrada']
 		}
 	}
 
 	@Transactional
-	def guardarCalificacionPasajero(){
+	def guardarCalificacionPasajero() {
 		def reserva = Reserva.get(params.id)
-		if(reserva.esPasajeroCalificable){
+		if(reserva.esPasajeroCalificable) {
 			if(params.puntaje){
 				reserva.calificarPasajero(params.puntaje)
-				redirect controller:'pasajero', action:'show', id:reserva.pasajero.id
+				redirect controller: 'pasajero', action: 'show', id: reserva.pasajero.id
 			}else{
 				flash.message = "Debe seleccionar un puntaje para asignar"
-				respond reserva,view:'calificarPasajero'
+				respond reserva, view: 'calificarPasajero'
 			}
 		}else{
 			flash.message = "No se puede calificar esta reserva,no esta cerrada o ya fue calificada"
-			redirect controller:'agencia',action:'listReservas',params:[estadoSeleccionado:'Cerrada']
+			redirect controller: 'agencia', action: 'listReservas', params: [estadoSeleccionado:'Cerrada']
 		}
 	}
 	
