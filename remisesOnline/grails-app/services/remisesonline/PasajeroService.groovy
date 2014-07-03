@@ -5,15 +5,11 @@ import grails.transaction.Transactional
 @Transactional
 class PasajeroService {
 
+	def emailService
+	
 	def enviarSolicitudAmistad(Pasajero pasajero, Pasajero Amigo) {
-		/*
-		 sendMail {
-		 to "mellerster@gmail.com"
-		 subject "Hello Fred"
-		 body 'How are you?'
-		 }
-		 println "mail enviado"
-		 */
+		emailService.enviarMail(Amigo.email,"Solicitud de Amistad Quererida","""El pasajero ${pasajero.nombre} te quiere agregar como amigo.
+		Para Aceptarlo ingresa a RemisesOnline y anda a Mis Amigos y allí en Solicitudes Recibidas""")
 	}
 	
 	def eliminarAmistad(Pasajero pasajero, Long idAmigo) {
