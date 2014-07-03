@@ -66,7 +66,7 @@
 	<label for="remise">
 		<g:message code="reserva.remise.label" default="Remise" />
 	</label>
-	<g:select id="remise" name="remise.id" from="" optionKey="id" value="${reservaInstance?.remise?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="remise" name="remise.id" from="${sesion.agencia.remises}" optionKey="id" value="${reservaInstance?.remise?.id}" class="many-to-one" noSelection="['null': '']"/>
 
 </div>
 			<g:if test="${reservaInstance?.creado}">
