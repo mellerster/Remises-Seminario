@@ -8,7 +8,8 @@ class PasajeroService {
 	def emailService
 	
 	def enviarSolicitudAmistad(Pasajero pasajero, Pasajero Amigo) {
-		emailService.enviarMail(Amigo.email,"Solicitud de Amistad Quererida","""El pasajero ${pasajero.nombre} te quiere agregar como amigo. Para Aceptarlo ingresa a RemisesOnline y anda a Mis Amigos y alli en Solicitudes Recibidas""")
+		emailService.enviarMail(Amigo.email,"Solicitud de Amistad Quererida","""El pasajero ${pasajero.nombre} te quiere agregar como amigo.
+		Para Aceptarlo ingresa a RemisesOnline y anda a Mis Amigos y allí en Solicitudes Recibidas""")
 	}
 	
 	def eliminarAmistad(Pasajero pasajero, Long idAmigo) {
@@ -42,5 +43,19 @@ class PasajeroService {
 	def solicitudesQuieroIrJuntoPendientesAprobacion(Pasajero p){
 		def solicitudes = SolicitudQuieroIrJunto.findAllBySolicitado(p)
 		solicitudesPendientes = solicitudes.grep{solicitud -> solicitud.pendiente}	
+	}
+	
+	def unirAReserva(Pasajero pasajeroSesion, Map params){
+		def re = Reserva.get(Long.parseLong(params.id))
+		def pas = Pasajero.get(Long.parseLong(params.pasajero))
+		if (re.pendiente) {
+			def solicitud = new SolicitudQuieroIrJunto(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: re , fechaCreada: new Date(), estado: 'Pendiente')
+			solicitud.save flush:true
+			pasajeroSesion.addToSolicitudesQuieroIrJunto(solicitud)
+			pasajeroSesion.save flush:true
+			} else {
+				flash.message = 'La reserva que intenta unirse ha sido cancelada.'
+				
+			}
 	}
 }

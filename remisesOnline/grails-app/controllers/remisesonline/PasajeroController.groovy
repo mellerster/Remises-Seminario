@@ -131,7 +131,8 @@ class PasajeroController {
 	}
 
 	def listSolicitudesAmigosRecibidas(){
-		[solicitudesRecibidas: pasajeroService.solicitudesAmistadPendientesAprobacion(session.pasajero?.id)]
+		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
+		[solicitudesRecibidas: pasajeroService.solicitudesAmistadPendientesAprobacion(pasajeroSesion)]
 	}
 
 	def eliminarAmigo(){
@@ -163,7 +164,7 @@ class PasajeroController {
 
 	def listSolicitudesQuieroIrJuntoRecibidas(){
 		def p = Pasajero.get(session.pasajero?.id)
-		[solicitudesRecibidas: pasajeroService.solicitudesQuieroIrJuntoPendientesAprobacion(session.pasajero?.id)]
+		[solicitudesRecibidas: pasajeroService.solicitudesQuieroIrJuntoPendientesAprobacion(p)]
 	}
 	
 		
@@ -175,20 +176,7 @@ class PasajeroController {
 	
 	def unirseAReserva(){
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
-		if (pasajeroSesion) {
-			def re = Reserva.get(Long.parseLong(params.id))
-			def pas = Pasajero.get(Long.parseLong(params.pasajero))
-			if (re.pendiente) {
-				def solicitud = new SolicitudQuieroIrJunto(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: re , fechaCreada: new Date(), estado: 'Pendiente')
-				solicitud.save flush:true
-
-				pasajeroSesion.addToSolicitudesQuieroIrJunto(solicitud)
-				pasajeroSesion.save flush:true
-			} else {
-				flash.message = 'La reserva que intenta unirse ha sido cancelada.'
-				
-			}
-			return [redirect(action: "showReservasAmigos")]
-		}
+		pasajeroService.unirAReserva(pasajeroSesion, params)
+		[redirect(action: "showReservasAmigos")]
 	}
 }
