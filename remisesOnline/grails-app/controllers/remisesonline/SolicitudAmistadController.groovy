@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class SolicitudAmistadController {
-
+	def pasajeroService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -39,7 +39,7 @@ class SolicitudAmistadController {
         }
 
         solicitudAmistadInstance.save flush:true
-
+		pasajeroService.enviarSolicitudAmistad(session.pasajero, solicitudAmistadInstance.solicitado)
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'solicitudAmistadInstance.label', default: 'SolicitudAmistad'), solicitudAmistadInstance.id])
