@@ -60,18 +60,18 @@ class ReservaService {
 		reserva
 	}
 	
-	def updateRemise(def reservaInstance, Integer version) {
+	def updateRemise(def reservaId, String version, def remisId) {
 		
 		println 'reservaInstance.version ' + version
-		def reserva = Reserva.get(reservaInstance.id)
+		def reserva = Reserva.get(reservaId)
 		println 'reserva.version ' + reserva.version
 		
-		if (reserva.version > version) {
+		if (reserva.version > Integer.parseInt(version)) {
 			reserva.errors.reject('reserva.actualizada','La reserva que intenta actualizar fue modificada por otro usuario')
 					println 'rejecting.. '
 
 		} else {
-			reserva.remise = reservaInstance.remise
+			reserva.remise = Remise.get(Long.parseLong(remisId))
 			reserva.estado = 'Remis asignado'
 		}
 		reserva

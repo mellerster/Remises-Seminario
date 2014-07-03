@@ -133,7 +133,7 @@ class BootStrap {
 		reserva.pasajero = Pasajero.findByNombre('Hugo, the client')
 		reserva.agencia = Agencia.findByEmail('remises@remisloco.com')
 		agencia.addToReservas(reserva)
-		reserva.estado = Reserva.ESTADOS_VALIDOS[1]
+		reserva.estado = Reserva.ESTADOS_VALIDOS[0]
 		parada3 = new Parada(calle: 'Ucrania', localidad: 'Posadas',\
 		descripcion: 'esta es lejos')
 		parada3.numero = 777

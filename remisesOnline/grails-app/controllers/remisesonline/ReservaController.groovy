@@ -62,20 +62,14 @@ class ReservaController {
 	}
 
 	@Transactional
-	def update(Reserva reservaInstance) {
-		println 'updating..'
-		if (reservaInstance == null) {
-			notFound()
-			return
-		}
+	def update() {
+		//println 'updating..'
+		//println params
+
 		
-		reservaInstance = reservaService.updateRemise(reservaInstance, params.version)
-		/*reservaInstance.pasajero =	Pasajero.get(session.pasajero.id)
+		def reservaInstance = reservaService.updateRemise(params.id, params.version, params.remise.id)
 
-		reservaInstance.fechaReserva =	params.date( 'fechaReserva', 'dd/MM/yy HH:mm' )
-		reservaInstance.validate()*/
 
-		println params
 		if (reservaInstance.hasErrors()) {
 			println reservaInstance.errors
 
@@ -83,7 +77,7 @@ class ReservaController {
 			return
 		}
 
-		reservaInstance.save flush:true
+		//reservaInstance.save flush:true
 
 		request.withFormat {
 			form multipartForm {
