@@ -40,6 +40,9 @@ class ReservaController {
 			respond reservaInstance.errors, view:'create'
 			return false
 		}
+		if (reservaInstance.remise && reservaInstance.pendiente) {
+			reservaInstance.estado = Reserva.ESTADOS_VALIDOS[4]
+		}
 
 		reservaInstance.save flush:true
 
