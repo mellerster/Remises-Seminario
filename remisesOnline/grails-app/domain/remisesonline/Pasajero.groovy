@@ -34,6 +34,8 @@ class Pasajero {
 	}
 	
 	def getNoAmigos() {
-		Pasajero.list() - amigos
+		def amigosyo = amigos
+		amigosyo.add(this)
+		Pasajero.list() - amigosyo
 	}
 }
