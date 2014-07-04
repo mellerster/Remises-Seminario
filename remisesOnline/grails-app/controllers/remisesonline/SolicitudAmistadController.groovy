@@ -8,6 +8,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class SolicitudAmistadController {
 	def pasajeroService
+	def solicitudAmistadService
+	
 		static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 		def index(Integer max) {
@@ -32,9 +34,18 @@ class SolicitudAmistadController {
 						return
 				}
 
+				
 				solicitudAmistadInstance.pasajero =	Pasajero.get(session.pasajero.id)
 				solicitudAmistadInstance.validate()
 		
+				if(solicitudAmistadService.comprobarSolicitudSinonimoExistente(solicitudAmistadInstance)){
+					flash.message = "Existe una solicitud pendiente de dicha persona"
+					println "Entro"
+					return [redirect(action:"listSolicitudesAmigosRecibidas", controller:"pasajero")]
+					} 
+		
+		
+				
 				if (solicitudAmistadInstance.hasErrors()) {
 						respond solicitudAmistadInstance.errors, view:'create'
 						return
@@ -49,6 +60,7 @@ class SolicitudAmistadController {
 						}
 						'*' { respond solicitudAmistadInstance, [status: CREATED] }
 				}
+				
 		}
 
 		def edit(SolicitudAmistad solicitudAmistadInstance) {
