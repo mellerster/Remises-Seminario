@@ -20,7 +20,9 @@ class SolicitudAmistadController {
     }
 
     def create() {
-        respond new SolicitudAmistad(params)
+				SolicitudAmistad solicitudAmistadInstance = new SolicitudAmistad(params)
+				solicitudAmistadInstance.pasajero =	Pasajero.get(session.pasajero.id)
+        respond solicitudAmistadInstance
     }
 
     @Transactional
@@ -39,7 +41,7 @@ class SolicitudAmistadController {
         }
 
         solicitudAmistadInstance.save flush:true
-		pasajeroService.enviarSolicitudAmistad(session.pasajero, solicitudAmistadInstance.solicitado)
+				pasajeroService.enviarSolicitudAmistad(session.pasajero, solicitudAmistadInstance.solicitado)
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'solicitudAmistadInstance.label', default: 'SolicitudAmistad'), solicitudAmistadInstance.id])

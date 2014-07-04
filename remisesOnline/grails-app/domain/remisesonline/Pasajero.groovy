@@ -32,4 +32,8 @@ class Pasajero {
 			return 5
 		}
 	}
+	
+	def getNoAmigos() {
+		Pasajero.list() - amigos
+	}
 }
