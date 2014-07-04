@@ -8,9 +8,9 @@ class Solicitud {
 	
 	static belongsTo = [pasajero: Pasajero]
 
-  static constraints = {
+	static constraints = {
 		estado inList: ESTADOS_VALIDOS
-  }
+	}
 	
 	def getPendiente() {
 		estado == 'Pendiente'

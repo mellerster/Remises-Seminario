@@ -36,6 +36,11 @@ class Pasajero {
 	def getNoAmigos() {
 		def amigosyo = amigos
 		amigosyo.add(this)
+		println 'Antes:'
+		println amigosyo
+		amigosyo.addAll(solicitudesAmistad.grep{it.pendiente}.collect { it.solicitado })
+		println 'despues:'
+		println amigosyo
 		Pasajero.list() - amigosyo
 	}
 }
