@@ -40,7 +40,6 @@ class SolicitudAmistadController {
 		
 				if(solicitudAmistadService.comprobarSolicitudSinonimoExistente(solicitudAmistadInstance)){
 					flash.message = "Existe una solicitud pendiente de dicha persona"
-					println "Entro"
 					return [redirect(action:"listSolicitudesAmigosRecibidas", controller:"pasajero")]
 					} 
 		
