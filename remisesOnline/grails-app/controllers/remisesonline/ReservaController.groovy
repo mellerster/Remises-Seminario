@@ -160,6 +160,7 @@ class ReservaController {
 				return
 		}
 		flash.message = 'Reserva cancelada'
+		reservaService.informarPasajeros(reserva)
 		redirect controller: 'reserva', action: 'show', id: params.id
 	}
 	

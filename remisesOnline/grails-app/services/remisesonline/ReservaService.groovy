@@ -5,6 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class ReservaService {
 
+	def solicitudQuieroIrJuntoService
+	
 	def eliminarParada(Long idReserva, String idParada) {
 		println '---------eliminarParada----------------- '
 		def reserva = Reserva.get(idReserva)
@@ -73,4 +75,18 @@ class ReservaService {
 		}
 		reserva
 	}
+	
+	def informarPasajeros(Reserva reservaInstance){
+		println "Informando a pasajeros"	
+		
+		/*aca se supone envia mails a cada pasajero usando el emailService.
+		
+		seria algo asi
+		def pasajeros = reservaIntance.pasajeros
+		Ciclo-> emailService.enviarMail(pasajero.email,'Reserva Cancelada', 'Se cancelo la reserva en la cual estabas adherido. Verifica tus Solicitudes Queiero ir Junto enviadas')
+		*/
+		
+		solicitudQuieroIrJuntoService.cancelacionDeSolicitud(reservaInstance)
+	}
+	
 }
