@@ -24,11 +24,11 @@ class Reserva {
 									return ['invalid.remisenopertenece']
 					 }
 
-		fechaReserva validator: {
+		fechaReserva validator: { fecha_res, reserva_ref ->
 				def now = new Date()
 				def calendar = now.toCalendar()
 				calendar.add(Calendar.MONTH, 1)
-				if	(it < now || it > calendar.time)
+				if	((fecha_res < now || fecha_res > calendar.time) && reserva_ref.estado != 'Cerrada')
 					return ['invalid.rango']
 		}
 		estado inList: ESTADOS_VALIDOS
