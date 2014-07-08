@@ -11,8 +11,9 @@ class PromocionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Promocion.list(params), model:[promocionInstanceCount: Promocion.count()]
+		def agencia = Agencia.get(session.agencia.id)
+		def listado = agencia.promociones.toList()
+		respond listado, model:[promocionInstanceCount: listado.size()]
     }
 
     def show(Promocion promocionInstance) {
