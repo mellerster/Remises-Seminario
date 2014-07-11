@@ -119,21 +119,6 @@ class PasajeroController {
 		[amigos: p.amigos]
 	}
 
-	def agregarAmigos() {
-		def noAmigos = obtenerPasajerosQueNoSonAmigos()
-		println "no amigos"
-		println noAmigos
-		redirect (pasajerosNoAmigos: noAmigos, action: 'create', controller: 'solicitudAmistad')
-	}
-	
-	def obtenerPasajerosQueNoSonAmigos() {
-		def p = Pasajero.get(session.pasajero?.id)
-		def pasajerosMenosYo = Pasajero.findAllByIdNotEqual(p.id)
-		def pasajeroAmigos = p.amigos 
-		def resultado = pasajerosMenosYo - pasajeroAmigos
-		resultado
-	}
-	
 	def listSolicitudesAmigosEnviadas() {
 		def p = Pasajero.get(session.pasajero?.id)
 		[solicitudesEnviadas: p.solicitudesAmistad]
