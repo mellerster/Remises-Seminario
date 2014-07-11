@@ -17,7 +17,6 @@ class AgenciaCommand{
 	}
 }
 
-@Transactional(readOnly = true)
 class AgenciaController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",getRemises: "POST"]

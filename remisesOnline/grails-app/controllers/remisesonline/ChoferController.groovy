@@ -18,7 +18,6 @@ class NuevoChoferCommand {
 	}
 }
 
-@Transactional(readOnly = true)
 class ChoferController {
 
 		static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

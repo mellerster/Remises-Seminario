@@ -17,7 +17,6 @@ class RemiseCommand{
 	}
 }
 
-@Transactional(readOnly = true)
 class RemiseController {
 
 	static allowedMethods = [save: "POST",update:"POST", delete: "DELETE"]
