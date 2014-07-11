@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class ReservaService {
 
 	def solicitudQuieroIrJuntoService
-	
+
 	def eliminarParada(Long idReserva, String idParada) {
 		println '---------eliminarParada----------------- '
 		def reserva = Reserva.get(idReserva)
@@ -32,40 +32,39 @@ class ReservaService {
 	@Transactional
 	def cancelarReserva(Long idReserva) {
 		def reserva = Reserva.get(idReserva)
-		if (reserva.cancelar()) {
-			//reserva.save(flush: true)
-		} else {
+		if (!reserva.cancelar()) {
 			reserva.errors.reject('reserva.estado.cantcancel', 'No se puede cancelar debido al estado comuniquese con la agencia')
 		}
 		reserva
 	}
 
-	def cerrar(def idReserva,def idAgencia){
+	@Transactional
+	def cerrar(def idReserva, def idAgencia) {
 		def reserva = Reserva.get(idReserva)
-		if(reserva.esCerrablePorAgencia(idAgencia)){
+		if(reserva.esCerrablePorAgencia(idAgencia)) {
 			reserva.cerrar()
 			reserva.save(flush:true)
-		}else{
+		} else {
 			reserva.errors.reject('reserva.estado.cantcerrar','No se puede cerrar debido al estado')
 		}
 		reserva
 	}
-	
-	def pasarAEnCurso(def idReserva,def idAgencia){
+
+	def pasarAEnCurso(def idReserva,def idAgencia) {
 		def reserva = Reserva.get(idReserva)
-		if(reserva.esPasableAEnCursoPorAgencia(idAgencia)){
+		if(reserva.esPasableAEnCursoPorAgencia(idAgencia)) {
 			reserva.pasarAEnCurso()
 			reserva.save(flush:true)
-		}else{
+		} else {
 			reserva.errors.reject('reserva.estado.cantcurso','No se puede pasar a en curso debido al estado o falta de asignación de remise')
 		}
 		reserva
 	}
-	
+
 	def updateRemise(def reservaId, String version, def remisId) {
-		
+
 		def reserva = Reserva.get(reservaId)
-		
+
 		if (reserva.version > Integer.parseInt(version)) {
 			reserva.errors.reject('reserva.actualizada','La reserva que intenta actualizar fue modificada por otro usuario')
 
@@ -75,18 +74,18 @@ class ReservaService {
 		}
 		reserva
 	}
-	
-	def informarPasajeros(Reserva reservaInstance){
-		println "Informando a pasajeros"	
-		
+
+	def informarPasajeros(Reserva reservaInstance) {
+		println "Informando a pasajeros"
+
 		/*aca se supone envia mails a cada pasajero usando el emailService.
-		
+
 		seria algo asi
 		def pasajeros = reservaIntance.pasajeros
 		Ciclo-> emailService.enviarMail(pasajero.email,'Reserva Cancelada', 'Se cancelo la reserva en la cual estabas adherido. Verifica tus Solicitudes Queiero ir Junto enviadas')
 		*/
-		
+
 		solicitudQuieroIrJuntoService.cancelacionDeSolicitud(reservaInstance)
 	}
-	
+
 }

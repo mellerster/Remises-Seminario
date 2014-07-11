@@ -31,7 +31,7 @@ class ParadaController {
         }
 
         if (paradaInstance.hasErrors()) {
-            respond paradaInstance.errors, view:'create'
+            respond paradaInstance.errors, view: 'create'
             return
         }
 
@@ -58,7 +58,7 @@ class ParadaController {
         }
 
         if (paradaInstance.hasErrors()) {
-            respond paradaInstance.errors, view:'edit'
+            respond paradaInstance.errors, view: 'edit'
             return
         }
 

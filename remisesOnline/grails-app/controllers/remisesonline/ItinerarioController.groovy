@@ -36,7 +36,7 @@ class ItinerarioController {
         }
 
         if (itinerarioInstance.hasErrors()) {
-            respond itinerarioInstance.errors, view:'create'
+            respond itinerarioInstance.errors, view: 'create'
             return
         }
 
@@ -63,7 +63,7 @@ class ItinerarioController {
         }
 
         if (itinerarioInstance.hasErrors()) {
-            respond itinerarioInstance.errors, view:'edit'
+            respond itinerarioInstance.errors, view: 'edit'
             return
         }
 

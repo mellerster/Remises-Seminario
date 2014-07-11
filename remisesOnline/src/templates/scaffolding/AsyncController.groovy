@@ -35,7 +35,7 @@ class ${className}Controller {
             }
 
             if(${propertyName}.hasErrors()) {
-                respond ${propertyName}.errors, view:'create' // STATUS CODE 422
+                respond ${propertyName}.errors, view: 'create' // STATUS CODE 422
                 return
             }
 
@@ -66,7 +66,7 @@ class ${className}Controller {
 
             ${propertyName}.properties = params
             if( !${propertyName}.save(flush:true) ) {
-                respond ${propertyName}.errors, view:'edit' // STATUS CODE 422
+                respond ${propertyName}.errors, view: 'edit' // STATUS CODE 422
                 return
             }
 

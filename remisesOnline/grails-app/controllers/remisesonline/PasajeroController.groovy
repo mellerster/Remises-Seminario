@@ -49,7 +49,7 @@ class PasajeroController {
 		}
 
 		if (pasajeroInstance.hasErrors()) {
-			respond pasajeroInstance.errors, view:'crear'
+			respond pasajeroInstance.errors, view: 'crear'
 			return
 		}
 
@@ -71,7 +71,7 @@ class PasajeroController {
 		}
 
 		if (pasajeroInstance.hasErrors()) {
-			respond pasajeroInstance.errors, view:'edit'
+			respond pasajeroInstance.errors, view: 'edit'
 			return
 		}
 
@@ -115,19 +115,19 @@ class PasajeroController {
 		}
 	}
 
-	def amigos(){
+	def amigos() {
 		def p = Pasajero.get(session.pasajero?.id)
 		[amigos: p.amigos]
 	}
 
-	def agregarAmigos(){
+	def agregarAmigos() {
 		def noAmigos = obtenerPasajerosQueNoSonAmigos()
 		println "no amigos"
 		println noAmigos
 		redirect (pasajerosNoAmigos: noAmigos, action: 'create', controller: 'solicitudAmistad')
 	}
 	
-	def obtenerPasajerosQueNoSonAmigos(){
+	def obtenerPasajerosQueNoSonAmigos() {
 		def p = Pasajero.get(session.pasajero?.id)
 		def pasajerosMenosYo = Pasajero.findAllByIdNotEqual(p.id)
 		def pasajeroAmigos = p.amigos 
@@ -135,56 +135,56 @@ class PasajeroController {
 		resultado
 	}
 	
-	def listSolicitudesAmigosEnviadas(){
+	def listSolicitudesAmigosEnviadas() {
 		def p = Pasajero.get(session.pasajero?.id)
 		[solicitudesEnviadas: p.solicitudesAmistad]
 	}
 
-	def listSolicitudesAmigosRecibidas(){
+	def listSolicitudesAmigosRecibidas() {
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		[solicitudesRecibidas: pasajeroService.solicitudesAmistadPendientesAprobacion(pasajeroSesion)]
 	}
 
-	def eliminarAmigo(){
+	def eliminarAmigo() {
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		pasajeroService.eliminarAmistad(pasajeroSesion, Long.parseLong(params.id))
 		[redirect(action: "amigos")] 		
 	}
 
-	def listPromociones(){
+	def listPromociones() {
 		[promociones: pasajeroService.getPromocionesVigentes()]
 	}
 	
-	def quieroIrJunto(){
+	def quieroIrJunto() {
 		def p = Pasajero.get(session.pasajero?.id)
 		[amigos: p.amigos]	
 	}
 
-	def showReservasAmigos(){
+	def showReservasAmigos() {
 		def p = Pasajero.get(session.pasajero?.id)
 		[amigos: p.amigos]
 	}
 
 
-	def listSolicitudesQuieroIrJuntoEnviadas(){
+	def listSolicitudesQuieroIrJuntoEnviadas() {
 		def p = Pasajero.get(session.pasajero?.id)
 		[solicitudesEnviadas: p.solicitudesQuieroIrJunto]
 	}
 
 
-	def listSolicitudesQuieroIrJuntoRecibidas(){
+	def listSolicitudesQuieroIrJuntoRecibidas() {
 		def p = Pasajero.get(session.pasajero?.id)
 		[solicitudesRecibidas: pasajeroService.solicitudesQuieroIrJuntoPendientesAprobacion(p)]
 	}
 	
 		
-	def listReservasDeAmigo(){
+	def listReservasDeAmigo() {
 		def p = Pasajero.get(params.pasajero)
 		def reservasCompartibles = pasajeroService.getReservasCompartibles(p)		
 		[reservas: reservasCompartibles, pasajero: p.id]	
 	}
 	
-	def unirseAReserva(){
+	def unirseAReserva() {
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		pasajeroService.unirAReserva(pasajeroSesion, params)
 		[redirect(action: "showReservasAmigos")]

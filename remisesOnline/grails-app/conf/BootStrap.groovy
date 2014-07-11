@@ -10,7 +10,7 @@ import remisesonline.Reserva
 class BootStrap {
 
 	def init = { servletContext ->
-		def comodidad = new Comodidad(descripcion:'Aire Acondicionado')
+		def comodidad = new Comodidad(descripcion: 'Aire Acondicionado')
 		comodidad.save()
 
 		comodidad = new Comodidad()
@@ -34,7 +34,7 @@ class BootStrap {
 		chofer = new Chofer(dni: '99.393.595', nombre: 'Alfredo',\
 				licencia: 'vhf890', telefono: '4299-3500',\
 				direccion: 'copacabana 980', agencia: agencia)
-		def remisDKP123 = new Remise(patente:'DKP123', chofer:chofer,\
+		def remisDKP123 = new Remise(patente: 'DKP123', chofer:chofer,\
 							 estado: 'Vacio', agencia: agencia)
 
 		agencia.addToRemises(remisDKP123)
@@ -58,7 +58,7 @@ class BootStrap {
 
 		agencia.addToChoferes(chofer)
 
-		def remisAAA000 = new Remise(patente:'AAA000', chofer:chofer,\
+		def remisAAA000 = new Remise(patente: 'AAA000', chofer:chofer,\
 															estado: 'Vacio', agencia: agencia)
 		agencia.addToRemises(remisAAA000)
 

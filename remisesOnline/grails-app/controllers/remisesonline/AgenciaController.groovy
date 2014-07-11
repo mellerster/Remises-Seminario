@@ -63,7 +63,7 @@ class AgenciaController {
 		}
 
 		if (agenciaInstance.hasErrors()) {
-			respond agenciaInstance.errors, view:'create'
+			respond agenciaInstance.errors, view: 'create'
 			return
 		}
 		Agencia agencia = new Agencia()
@@ -95,7 +95,7 @@ class AgenciaController {
 		}
 
 		if (agenciaInstance.hasErrors()) {
-			respond agenciaInstance.errors, view:'edit'
+			respond agenciaInstance.errors, view: 'edit'
 			return
 		}
 		Agencia agencia = Agencia.get(params.id)

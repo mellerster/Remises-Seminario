@@ -14,7 +14,7 @@ class PasajeroService {
 	
 	def eliminarAmistad(Pasajero pasajero, Long idAmigo) {
 		def amigo = Pasajero.get(idAmigo)
-		if(amigo){
+		if(amigo) {
 			pasajero.removeFromAmigos(amigo)
 			pasajero.save flush:true
 			amigo.removeFromAmigos(pasajero)
@@ -22,30 +22,30 @@ class PasajeroService {
 		} else {
 			flash.message = "amigo error"
 		}
-    }
+	}
 	
-	def getPromocionesVigentes(){
+	def getPromocionesVigentes() {
 		def fechaActual = new Date()
 		def promocionesVigentes = Promocion.findAllByFechaHastaGreaterThanEquals(fechaActual)
 		promocionesVigentes
 	}
 	
-	def getReservasCompartibles(Pasajero p){
+	def getReservasCompartibles(Pasajero p) {
 		def reservasCompartibles = p.reservas.findAll{reserva -> reserva.compartible && reserva.pendiente}		
 		reservasCompartibles
 	}	
 	
-	def solicitudesAmistadPendientesAprobacion(Pasajero p){
+	def solicitudesAmistadPendientesAprobacion(Pasajero p) {
 		def solicitudes = SolicitudAmistad.findAllBySolicitado(p)
 		solicitudes.grep{solicitud -> solicitud.pendiente}
 	}
 	
-	def solicitudesQuieroIrJuntoPendientesAprobacion(Pasajero p){
+	def solicitudesQuieroIrJuntoPendientesAprobacion(Pasajero p) {
 		def solicitudes = SolicitudQuieroIrJunto.findAllBySolicitado(p)
 		solicitudes.grep{solicitud -> solicitud.pendiente}
 	}
 	
-	def unirAReserva(Pasajero pasajeroSesion, Map params){
+	def unirAReserva(Pasajero pasajeroSesion, Map params) {
 		def re = Reserva.get(Long.parseLong(params.id))
 		def pas = Pasajero.get(Long.parseLong(params.pasajero))
 		if (re.pendiente) {
@@ -55,7 +55,6 @@ class PasajeroService {
 			pasajeroSesion.save flush:true
 		} else {
 			flash.message = 'La reserva que intenta unirse ha sido cancelada.'
-				
 		}
 	}
 }

@@ -5,7 +5,6 @@ package remisesonline
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-//@Transactional(readOnly = true)
 class ReservaController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -37,7 +36,7 @@ class ReservaController {
 		reservaInstance.validate()
 
 		if (reservaInstance.hasErrors()) {
-			respond reservaInstance.errors, view:'create'
+			respond reservaInstance.errors, view: 'create'
 			return false
 		}
 		if (reservaInstance.remise && reservaInstance.pendiente) {
@@ -120,8 +119,6 @@ class ReservaController {
 		def parada1 = reserva.paradas.find{ it.id == Long.parseLong(params.id) }
 
 		if (reserva) {
-
-
 			//def parada2 = Parada.get(Long.parseLong(params.id))
 			if (parada1) {
 				println 'parada1 ok '
@@ -166,7 +163,7 @@ class ReservaController {
 	
 	def cerrar() {
 		def reserva = reservaService.cerrar(params.id, session?.agencia?.id)
-		if(reserva.hasErrors()){
+		if(reserva.hasErrors()) {
 			respond reserva.errors, view: 'show'
 			return
 		}
@@ -174,20 +171,20 @@ class ReservaController {
 		redirect controller: 'reserva', action: 'show', id: params.id
 	}
 	
-	def pasarAEnCurso(){
+	def pasarAEnCurso() {
 		def reserva = reservaService.pasarAEnCurso(params.id,session?.agencia?.id)
 		if(reserva.hasErrors()) {
-			respond reserva.errors, view:'show'
+			respond reserva.errors, view: 'show'
 			return
 		}
 		flash.message = 'Reserva En Curso'
-		redirect controller:'reserva',action:'show',id:params.id
+		redirect controller: 'reserva', action: 'show',id:params.id
 	}
 
 	def calificarRemise(Reserva reservaInstance) {
-		if(reservaInstance.esRemiseCalificable){
+		if(reservaInstance.esRemiseCalificable) {
 			respond reservaInstance
-		}else{
+		} else {
 			flash.message = "No se puede calificar esta reserva, no esta cerrada o ya fue calificada"
 			redirect controller: 'pasajero', action: 'listReservas'
 
@@ -200,21 +197,21 @@ class ReservaController {
 		if(reserva.esRemiseCalificable) {
 			if(params.puntaje) {
 				reserva.calificarRemise(params.puntaje)
-				redirect controller:'remise', action: 'show', id: reserva.remise.id
-			}else{
+				redirect controller: 'remise', action: 'show', id: reserva.remise.id
+			} else {
 				flash.message = "Debe seleccionar un puntaje para asignar"
 				respond reserva, view: 'calificarRemise'
 			}
-		}else{
+		} else {
 			flash.message = "No se puede calificar esta reserva, no esta cerrada o ya fue calificada"
-			redirect controller:'pasajero', action: 'listReservas'
+			redirect controller: 'pasajero', action: 'listReservas'
 		}
 	}
 	
 	def calificarPasajero(Reserva reservaInstance) {
 		if(reservaInstance.esPasajeroCalificable) {
 			respond reservaInstance
-		}else{
+		} else {
 			flash.message = "No se puede calificar esta reserva,no esta cerrada o ya fue calificada"
 			redirect controller: 'agencia' ,action: 'listReservas', params: [estadoSeleccionado: 'Cerrada']
 		}
@@ -224,16 +221,16 @@ class ReservaController {
 	def guardarCalificacionPasajero() {
 		def reserva = Reserva.get(params.id)
 		if(reserva.esPasajeroCalificable) {
-			if(params.puntaje){
+			if(params.puntaje) {
 				reserva.calificarPasajero(params.puntaje)
 				redirect controller: 'pasajero', action: 'show', id: reserva.pasajero.id
-			}else{
+			} else {
 				flash.message = "Debe seleccionar un puntaje para asignar"
 				respond reserva, view: 'calificarPasajero'
 			}
-		}else{
+		} else {
 			flash.message = "No se puede calificar esta reserva,no esta cerrada o ya fue calificada"
-			redirect controller: 'agencia', action: 'listReservas', params: [estadoSeleccionado:'Cerrada']
+			redirect controller: 'agencia', action: 'listReservas', params: [estadoSeleccionado: 'Cerrada']
 		}
 	}
 	

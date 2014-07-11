@@ -38,7 +38,7 @@ class SolicitudAmistadController {
 				solicitudAmistadInstance.pasajero =	Pasajero.get(session.pasajero.id)
 				solicitudAmistadInstance.validate()
 		
-				if(solicitudAmistadService.comprobarSolicitudSinonimoExistente(solicitudAmistadInstance)){
+				if(solicitudAmistadService.comprobarSolicitudSinonimoExistente(solicitudAmistadInstance)) {
 					flash.message = "Existe una solicitud pendiente de dicha persona"
 					return [redirect(action:"listSolicitudesAmigosRecibidas", controller:"pasajero")]
 					} 
@@ -46,7 +46,7 @@ class SolicitudAmistadController {
 		
 				
 				if (solicitudAmistadInstance.hasErrors()) {
-						respond solicitudAmistadInstance.errors, view:'create'
+						respond solicitudAmistadInstance.errors, view: 'create'
 						return
 				}
 
@@ -74,7 +74,7 @@ class SolicitudAmistadController {
 				}
 
 				if (solicitudAmistadInstance.hasErrors()) {
-						respond solicitudAmistadInstance.errors, view:'edit'
+						respond solicitudAmistadInstance.errors, view: 'edit'
 						return
 				}
 
@@ -118,8 +118,8 @@ class SolicitudAmistadController {
 				}
 		}
 	
-	def aprobarSolicitud(SolicitudAmistad instance){
-		if (instance){
+	def aprobarSolicitud(SolicitudAmistad instance) {
+		if (instance) {
 			instance.estado = 'Aprobada'
 			def pasajeroSolicitante = Pasajero.get(instance.pasajero.id)
 			def pasajeroSolicitado = Pasajero.get(instance.solicitado.id)
@@ -132,8 +132,8 @@ class SolicitudAmistadController {
 			}
 	}
 	
-	def denegarSolicitud(SolicitudAmistad instance){
-		if (instance){
+	def denegarSolicitud(SolicitudAmistad instance) {
+		if (instance) {
 			instance.estado = 'Denegada'
 			instance.save flush:true
 			redirect action: 'amigos', controller: 'pasajero'

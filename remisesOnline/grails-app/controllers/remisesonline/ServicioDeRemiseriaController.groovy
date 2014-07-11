@@ -33,7 +33,7 @@ class ServicioDeRemiseriaController {
 		servicioDeRemiseriaInstance.agencia = session.agencia
 		servicioDeRemiseriaInstance.validate()
         if (servicioDeRemiseriaInstance.hasErrors()) {
-            respond servicioDeRemiseriaInstance.errors, view:'create'
+            respond servicioDeRemiseriaInstance.errors, view: 'create'
             return
         }
 
@@ -60,7 +60,7 @@ class ServicioDeRemiseriaController {
         }
 
         if (servicioDeRemiseriaInstance.hasErrors()) {
-            respond servicioDeRemiseriaInstance.errors, view:'edit'
+            respond servicioDeRemiseriaInstance.errors, view: 'edit'
             return
         }
 
@@ -104,21 +104,21 @@ class ServicioDeRemiseriaController {
         }
     }
 	
-	def listServicios(){
+	def listServicios() {
 		respond ServicioDeRemiseria.list(params), model:[servicioDeRemiseriaInstanceCount: ServicioDeRemiseria.count()]
 	}
 	
-	def misAdhesiones(){
+	def misAdhesiones() {
 		respond ServicioDeRemiseria.list(params).grep{it.adheridos.id.contains(session.pasajero.id)}
 	}
 	
-	def adherirse(ServicioDeRemiseria servicioDeRemiseriaInstance){
+	def adherirse(ServicioDeRemiseria servicioDeRemiseriaInstance) {
 		servicioDeRemiseriaInstance.adheridos.add(Pasajero.get(session.pasajero.id))
 		servicioDeRemiseriaInstance.save flush:true
 		redirect action:"show", id: servicioDeRemiseriaInstance.id
 	}
 	
-	def desadherirse(ServicioDeRemiseria servicioDeRemiseriaInstance){
+	def desadherirse(ServicioDeRemiseria servicioDeRemiseriaInstance) {
 		servicioDeRemiseriaInstance.adheridos.remove(Pasajero.get(session.pasajero.id))
 		servicioDeRemiseriaInstance.save flush:true
 		redirect action:"show", id: servicioDeRemiseriaInstance.id

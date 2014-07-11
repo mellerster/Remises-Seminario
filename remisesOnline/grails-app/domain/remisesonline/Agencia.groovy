@@ -31,12 +31,12 @@ class Agencia {
 		return nombre
 	}
 	
-	def choferesSinRemise(){
+	def choferesSinRemise() {
 		def choferesAsignados = remises.collect{it.chofer.id}
 		return choferes.findAll{!choferesAsignados.contains(it.id)}
 	}
 	
-	def choferesSinRemise(Chofer chofer){
+	def choferesSinRemise(Chofer chofer) {
 		def choferesAsignados = remises.collect{it.chofer.id}
 		return choferes.findAll{!choferesAsignados.contains(it.id)}.add(chofer);
 	}

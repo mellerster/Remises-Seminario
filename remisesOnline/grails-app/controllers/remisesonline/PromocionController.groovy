@@ -35,7 +35,7 @@ class PromocionController {
 		promocionInstance.validate()
 		
         if (promocionInstance.hasErrors()) {
-            respond promocionInstance.errors, view:'create'
+            respond promocionInstance.errors, view: 'create'
             return
         }
 
@@ -62,7 +62,7 @@ class PromocionController {
         }
 
         if (promocionInstance.hasErrors()) {
-            respond promocionInstance.errors, view:'edit'
+            respond promocionInstance.errors, view: 'edit'
             return
         }
 

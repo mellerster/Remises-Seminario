@@ -31,7 +31,7 @@ class SolicitudQuieroIrJuntoController {
         }
 
         if (solicitudQuieroIrJuntoInstance.hasErrors()) {
-            respond solicitudQuieroIrJuntoInstance.errors, view:'create'
+            respond solicitudQuieroIrJuntoInstance.errors, view: 'create'
             return
         }
 
@@ -58,7 +58,7 @@ class SolicitudQuieroIrJuntoController {
         }
 
         if (solicitudQuieroIrJuntoInstance.hasErrors()) {
-            respond solicitudQuieroIrJuntoInstance.errors, view:'edit'
+            respond solicitudQuieroIrJuntoInstance.errors, view: 'edit'
             return
         }
 
@@ -102,8 +102,8 @@ class SolicitudQuieroIrJuntoController {
         }
     }
 	
-	def aprobarSolicitud(SolicitudQuieroIrJunto instance){
-		if (instance){
+	def aprobarSolicitud(SolicitudQuieroIrJunto instance) {
+		if (instance) {
 			instance.estado = 'Aprobada'
 			def pasajeroSolicitante = Pasajero.get(instance.pasajero.id)
 			def reservaSolicitada = Reserva.get(instance.reservaSolicitada.id)
@@ -115,8 +115,8 @@ class SolicitudQuieroIrJuntoController {
 	
 	
 	
-	def denegarSolicitud(SolicitudQuieroIrJunto instance){
-		if (instance){
+	def denegarSolicitud(SolicitudQuieroIrJunto instance) {
+		if (instance) {
 			instance.estado = 'Denegada'
 			instance.save flush:true
 			redirect action: 'quieroIrJunto', controller: 'pasajero'

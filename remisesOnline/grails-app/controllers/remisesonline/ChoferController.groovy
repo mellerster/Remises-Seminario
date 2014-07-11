@@ -46,7 +46,7 @@ class ChoferController {
 				}
 		
 				if (choferInstanceCommand.hasErrors()) {
-						respond choferInstanceCommand.errors, view:'create'
+						respond choferInstanceCommand.errors, view: 'create'
 						return
 				}
 				Chofer chofer = new Chofer()
@@ -76,7 +76,7 @@ class ChoferController {
 				}
 
 				if (choferInstance.hasErrors()) {
-						respond choferInstance.errors, view:'edit'
+						respond choferInstance.errors, view: 'edit'
 						return
 				}
 		

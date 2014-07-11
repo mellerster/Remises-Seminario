@@ -23,8 +23,8 @@ class Remise {
 		return	patente
 	}
 
-	def getCalificacion(){
-		if(calificaciones.size() > 0){
+	def getCalificacion() {
+		if(calificaciones.size() > 0) {
 			return (calificaciones.inject(0) { acc, val -> acc + val.puntaje } / calificaciones.size())			
 		}else {
 			return 5

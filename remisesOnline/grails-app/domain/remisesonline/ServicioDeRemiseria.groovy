@@ -14,11 +14,11 @@ class ServicioDeRemiseria {
 		agencia nullable:false
     }
 	
-	String toString(){
+	String toString() {
 		nombre
 	}
 	
-	def getCantidadAdheridos(){
+	def getCantidadAdheridos() {
 		adheridos.size()
 	}
 }

@@ -29,7 +29,7 @@ class ${className}Controller {
         }
 
         if (${propertyName}.hasErrors()) {
-            respond ${propertyName}.errors, view:'create'
+            respond ${propertyName}.errors, view: 'create'
             return
         }
 
@@ -56,7 +56,7 @@ class ${className}Controller {
         }
 
         if (${propertyName}.hasErrors()) {
-            respond ${propertyName}.errors, view:'edit'
+            respond ${propertyName}.errors, view: 'edit'
             return
         }
 

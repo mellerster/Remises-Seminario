@@ -46,7 +46,7 @@ class RemiseController {
 		}
 
 		if (remiseInstance.hasErrors()) {
-			respond remiseInstance.errors, view:'create'
+			respond remiseInstance.errors, view: 'create'
 			return
 		}
 
@@ -83,7 +83,7 @@ class RemiseController {
 		}
 
 		if (remiseInstance.hasErrors()) {
-			respond remiseInstance.errors, view:'edit'
+			respond remiseInstance.errors, view: 'edit'
 			return
 		}
 

@@ -44,7 +44,7 @@ class Reserva {
 		estado == ESTADOS_VALIDOS[0]
 	}
 	
-	def getEnCurso(){
+	def getEnCurso() {
 		estado == ESTADOS_VALIDOS[1]
 	}
 	
@@ -52,15 +52,15 @@ class Reserva {
 		estado == ESTADOS_VALIDOS[4]
 	}
 	
-	def esCancelablePorPasajero(def pasajeroId){
+	def esCancelablePorPasajero(def pasajeroId) {
 		(pendiente && pasajero.id == pasajeroId)
 	}
 	
-	def esCerrablePorAgencia(def agenciaId){
+	def esCerrablePorAgencia(def agenciaId) {
 		(estado == ESTADOS_VALIDOS[1] && agencia.id == agenciaId)
 	}
 	
-	def esPasableAEnCursoPorAgencia(def agenciaId){
+	def esPasableAEnCursoPorAgencia(def agenciaId) {
 		(remisAsignado && agencia.id == agenciaId && remise != null)
 	}
 	
@@ -76,14 +76,14 @@ class Reserva {
 		false
 	}
 	
-	def cerrar(){
-		if(enCurso){
+	def cerrar() {
+		if(enCurso) {
 			estado = ESTADOS_VALIDOS[2]
 		}
 	}
 	
-	def pasarAEnCurso(){
-		if(remisAsignado){
+	def pasarAEnCurso() {
+		if(remisAsignado) {
 			estado = ESTADOS_VALIDOS[1]
 		}
 	}
@@ -97,27 +97,27 @@ class Reserva {
 		//[].withLazyDefault {new Parada()}
 	}*/
 	
-	def calificarRemise(def puntaje){
+	def calificarRemise(def puntaje) {
 		calificacionRemise = new Calificacion(puntaje:puntaje)
 		calificacionRemise.save(flush:true)
 		remise.addToCalificaciones(calificacionRemise)
 	}
 	
-	def calificarPasajero(def puntaje){
+	def calificarPasajero(def puntaje) {
 		calificacionPasajero = new Calificacion(puntaje:puntaje)
 		calificacionPasajero.save(flush:true)
 		pasajero.addToCalificaciones(calificacionPasajero)
 	}
 	
-	def getEsRemiseCalificable(){
+	def getEsRemiseCalificable() {
 		(estaCerrada && calificacionRemise == null)
 	}
 	
-	def getEsPasajeroCalificable(){
+	def getEsPasajeroCalificable() {
 		(estaCerrada && calificacionPasajero == null)
 	}
 	
-	def getEstaCerrada(){
+	def getEstaCerrada() {
 		(estado == 'Cerrada')
 	}
 }
