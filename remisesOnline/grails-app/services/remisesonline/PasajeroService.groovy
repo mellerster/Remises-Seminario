@@ -19,9 +19,9 @@ class PasajeroService {
 			pasajero.save flush:true
 			amigo.removeFromAmigos(pasajero)
 			amigo.save flush:true
-			} else {
-				flash.message = "amigo error"
-			}
+		} else {
+			flash.message = "amigo error"
+		}
     }
 	
 	def getPromocionesVigentes(){
@@ -42,7 +42,7 @@ class PasajeroService {
 	
 	def solicitudesQuieroIrJuntoPendientesAprobacion(Pasajero p){
 		def solicitudes = SolicitudQuieroIrJunto.findAllBySolicitado(p)
-		solicitudes.grep{solicitud -> solicitud.pendiente}	
+		solicitudes.grep{solicitud -> solicitud.pendiente}
 	}
 	
 	def unirAReserva(Pasajero pasajeroSesion, Map params){
@@ -53,9 +53,9 @@ class PasajeroService {
 			solicitud.save flush:true
 			pasajeroSesion.addToSolicitudesQuieroIrJunto(solicitud)
 			pasajeroSesion.save flush:true
-			} else {
-				flash.message = 'La reserva que intenta unirse ha sido cancelada.'
+		} else {
+			flash.message = 'La reserva que intenta unirse ha sido cancelada.'
 				
-			}
+		}
 	}
 }

@@ -29,11 +29,11 @@ class ReservaService {
 			println 'reserva: ' + reserva
 		}
 	}
-
+	@Transactional
 	def cancelarReserva(Long idReserva) {
 		def reserva = Reserva.get(idReserva)
 		if (reserva.cancelar()) {
-			reserva.save(flush: true)
+			//reserva.save(flush: true)
 		} else {
 			reserva.errors.reject('reserva.estado.cantcancel', 'No se puede cancelar debido al estado comuniquese con la agencia')
 		}

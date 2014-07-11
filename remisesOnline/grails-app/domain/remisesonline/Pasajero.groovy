@@ -25,19 +25,16 @@ class Pasajero {
 		return "${nombre} - ${email}"
 	}
 	
-	def getCalificacion(){
-		if(calificaciones.size() > 0){
-			return (calificaciones.inject(0) { acc, val -> acc + val.puntaje } / calificaciones.size())
-		}else {
-			return 5
-		}
+	def getCalificacion() {
+		if (!calificaciones) { return 5 }
+		calificaciones.inject(0) { acc, val -> acc + val.puntaje } / calificaciones.size()
 	}
 	
 	def getNoAmigos() {
 		def todosMenosYo = Pasajero.findAllByIdNotEqual(this.id)
 		def misAmigos = amigos
 		misAmigos.addAll(solicitudesAmistad.grep{it.pendiente}.collect { it.solicitado })
-		def resultado = todosMenosYo - misAmigos
-		resultado
+		
+		todosMenosYo - misAmigos
 	}
 }
