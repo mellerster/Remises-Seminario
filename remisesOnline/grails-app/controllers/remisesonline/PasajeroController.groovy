@@ -149,19 +149,16 @@ class PasajeroController {
 		[amigos: p.amigos]
 	}
 
-
 	def listSolicitudesQuieroIrJuntoEnviadas() {
 		def p = Pasajero.get(session.pasajero?.id)
 		[solicitudesEnviadas: p.solicitudesQuieroIrJunto]
 	}
-
 
 	def listSolicitudesQuieroIrJuntoRecibidas() {
 		def p = Pasajero.get(session.pasajero?.id)
 		[solicitudesRecibidas: pasajeroService.solicitudesQuieroIrJuntoPendientesAprobacion(p)]
 	}
 	
-		
 	def listReservasDeAmigo() {
 		def p = Pasajero.get(params.pasajero)
 		def reservasCompartibles = pasajeroService.getReservasCompartibles(p)		

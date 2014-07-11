@@ -29,7 +29,7 @@ class ReservaService {
 			println 'reserva: ' + reserva
 		}
 	}
-	@Transactional
+
 	def cancelarReserva(Long idReserva) {
 		def reserva = Reserva.get(idReserva)
 		if (!reserva.cancelar()) {
@@ -38,12 +38,10 @@ class ReservaService {
 		reserva
 	}
 
-	@Transactional
 	def cerrar(def idReserva, def idAgencia) {
 		def reserva = Reserva.get(idReserva)
 		if(reserva.esCerrablePorAgencia(idAgencia)) {
 			reserva.cerrar()
-			reserva.save(flush:true)
 		} else {
 			reserva.errors.reject('reserva.estado.cantcerrar','No se puede cerrar debido al estado')
 		}
@@ -54,7 +52,6 @@ class ReservaService {
 		def reserva = Reserva.get(idReserva)
 		if(reserva.esPasableAEnCursoPorAgencia(idAgencia)) {
 			reserva.pasarAEnCurso()
-			reserva.save(flush:true)
 		} else {
 			reserva.errors.reject('reserva.estado.cantcurso','No se puede pasar a en curso debido al estado o falta de asignación de remise')
 		}
