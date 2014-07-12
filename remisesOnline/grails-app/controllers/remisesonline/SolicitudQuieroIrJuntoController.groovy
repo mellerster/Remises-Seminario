@@ -103,11 +103,10 @@ class SolicitudQuieroIrJuntoController {
 	
 	def aprobarSolicitud(SolicitudQuieroIrJunto instance) {
 		if (instance) {
-			instance.estado = 'Aprobada'
+			instance.aprobar()
 			def pasajeroSolicitante = Pasajero.get(instance.pasajero.id)
 			def reservaSolicitada = Reserva.get(instance.reservaSolicitada.id)
 			
-			instance.save flush:true
 			redirect action: 'quieroIrJunto', controller: 'pasajero'
 			}
 	}
@@ -116,8 +115,7 @@ class SolicitudQuieroIrJuntoController {
 	
 	def denegarSolicitud(SolicitudQuieroIrJunto instance) {
 		if (instance) {
-			instance.estado = 'Denegada'
-			instance.save flush:true
+			instance.denegar()
 			redirect action: 'quieroIrJunto', controller: 'pasajero'
 		}
 	}

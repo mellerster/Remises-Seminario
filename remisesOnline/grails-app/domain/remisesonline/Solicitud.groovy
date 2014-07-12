@@ -1,18 +1,36 @@
 package remisesonline
 
-class Solicitud {
-	static final ESTADOS_VALIDOS = ['Pendiente', 'Aprobada', 'Denegada']
+enum ESTADOS_SOLICITUD{
+	Pendiente,
+	Aprobada,
+	Denegada,
+	CanceladaPorElDuenio{
+		@Override
+		public String toString(){
+			"Cancelada Por El Dueño"
+		}
+	}
+}
 
+class Solicitud {
 	Date fechaCreada = new Date()
-	String estado = 'Pendiente'
+	ESTADOS_SOLICITUD estado = ESTADOS_SOLICITUD.Pendiente
 	
 	static belongsTo = [pasajero: Pasajero]
 
 	static constraints = {
-		estado inList: ESTADOS_VALIDOS
+		estado blank:false
 	}
 	
 	def getPendiente() {
-		estado == 'Pendiente'
+		estado ==  ESTADOS_SOLICITUD.Pendiente
+	}
+	
+	def aprobar(){
+		estado = ESTADOS_SOLICITUD.Aprobada
+	}
+	
+	def denegar(){
+		estado = ESTADOS_SOLICITUD.Denegada
 	}
 }

@@ -119,22 +119,20 @@ class SolicitudAmistadController {
 	
 	def aprobarSolicitud(SolicitudAmistad instance) {
 		if (instance) {
-			instance.estado = 'Aprobada'
+			instance.aprobar()
 			def pasajeroSolicitante = Pasajero.get(instance.pasajero.id)
 			def pasajeroSolicitado = Pasajero.get(instance.solicitado.id)
 			pasajeroSolicitante.addToAmigos(pasajeroSolicitado)
 			pasajeroSolicitante.save flush:true
 			pasajeroSolicitado.addToAmigos(pasajeroSolicitante)
 			pasajeroSolicitado.save flush:true
-			instance.save flush:true
 			redirect action: 'amigos', controller: 'pasajero'
 			}
 	}
 	
 	def denegarSolicitud(SolicitudAmistad instance) {
 		if (instance) {
-			instance.estado = 'Denegada'
-			instance.save flush:true
+			instance.denegar()
 			redirect action: 'amigos', controller: 'pasajero'
 			}
 	}
