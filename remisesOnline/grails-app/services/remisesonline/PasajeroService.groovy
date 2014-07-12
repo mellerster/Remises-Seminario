@@ -9,7 +9,7 @@ class PasajeroService {
 	
 	def enviarSolicitudAmistad(Pasajero pasajero, Pasajero Amigo) {
 		emailService.enviarMail(Amigo.email,"Solicitud de Amistad Requerida","""El pasajero ${pasajero.nombre} te quiere agregar como amigo.
-		Para Aceptarlo ingresa a RemisesOnline y anda a Mis Amigos y allí en Solicitudes Recibidas""")
+		Para Aceptarlo ingresa a RemisesOnline y anda a Mis Amigos y luego a Solicitudes Recibidas""")
 	}
 	
 	def eliminarAmistad(Pasajero pasajero, Long idAmigo) {

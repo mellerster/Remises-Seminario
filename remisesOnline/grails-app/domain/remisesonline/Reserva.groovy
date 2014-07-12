@@ -114,15 +114,25 @@ class Reserva {
 	}
 	
 	def calificarRemise(def puntaje) {
-		calificacionRemise = new Calificacion(puntaje:puntaje)
-		calificacionRemise.save(flush:true)
-		remise.addToCalificaciones(calificacionRemise)
+		if(esRemiseCalificable) {
+			calificacionRemise = new Calificacion(puntaje:puntaje)
+			calificacionRemise.save(flush:true)
+			remise.addToCalificaciones(calificacionRemise)
+			true
+		}else {
+			false
+		}
 	}
 	
 	def calificarPasajero(def puntaje) {
-		calificacionPasajero = new Calificacion(puntaje:puntaje)
-		calificacionPasajero.save(flush:true)
-		pasajero.addToCalificaciones(calificacionPasajero)
+		if(esPasajeroCalificable) {
+			calificacionPasajero = new Calificacion(puntaje:puntaje)
+			calificacionPasajero.save(flush:true)
+			pasajero.addToCalificaciones(calificacionPasajero)
+			true
+		} else {
+			false
+		}
 	}
 	
 	def getEsRemiseCalificable() {
