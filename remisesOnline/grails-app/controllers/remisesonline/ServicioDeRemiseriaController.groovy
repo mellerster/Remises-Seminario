@@ -113,13 +113,11 @@ class ServicioDeRemiseriaController {
 	
 	def adherirse(ServicioDeRemiseria servicioDeRemiseriaInstance) {
 		servicioDeRemiseriaInstance.adheridos.add(Pasajero.get(session.pasajero.id))
-		servicioDeRemiseriaInstance.save flush:true
 		redirect action:"show", id: servicioDeRemiseriaInstance.id
 	}
 	
 	def desadherirse(ServicioDeRemiseria servicioDeRemiseriaInstance) {
 		servicioDeRemiseriaInstance.adheridos.remove(Pasajero.get(session.pasajero.id))
-		servicioDeRemiseriaInstance.save flush:true
 		redirect action:"show", id: servicioDeRemiseriaInstance.id
 	}
 }

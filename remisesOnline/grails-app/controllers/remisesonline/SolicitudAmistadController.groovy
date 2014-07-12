@@ -123,9 +123,7 @@ class SolicitudAmistadController {
 			def pasajeroSolicitante = Pasajero.get(instance.pasajero.id)
 			def pasajeroSolicitado = Pasajero.get(instance.solicitado.id)
 			pasajeroSolicitante.addToAmigos(pasajeroSolicitado)
-			pasajeroSolicitante.save flush:true
 			pasajeroSolicitado.addToAmigos(pasajeroSolicitante)
-			pasajeroSolicitado.save flush:true
 			redirect action: 'amigos', controller: 'pasajero'
 			}
 	}
