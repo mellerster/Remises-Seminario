@@ -3,11 +3,28 @@ package remisesonline
 import org.apache.commons.collections.Factory;
 import org.apache.commons.collections.ListUtils;
 
+enum ESTADOS_RESERVA{
+	Pendiente,
+	EnCurso{
+			@Override
+            public String toString() {
+                return "En Curso";
+            }
+	},
+	Cerrada,
+	Cancelada,
+	ConRemise{
+		@Override
+		public String toString() {
+			return "Con Remise";
+		}
+	},
+}
+
 class Reserva {
-	static final ESTADOS_VALIDOS = ['Pendiente', 'En curso', 'Cerrada', 'Cancelada', 'Remis asignado']
 	Remise remise
 	Date fechaReserva
-	String estado = ESTADOS_VALIDOS[0]
+	ESTADOS_RESERVA estado = ESTADOS_RESERVA.Pendiente;
 	Date creado = new Date()
 	Boolean compartible = false
 	List<Parada> paradas =  ListUtils.lazyList(new ArrayList(), {new Parada()} as Factory)
@@ -28,10 +45,10 @@ class Reserva {
 				def now = new Date()
 				def calendar = now.toCalendar()
 				calendar.add(Calendar.MONTH, 1)
-				if	((fecha_res < now || fecha_res > calendar.time) && reserva_ref.estado != 'Cerrada')
+				if	((fecha_res < now || fecha_res > calendar.time) && reserva_ref.estado != ESTADOS_RESERVA.Cerrada)
 					return ['invalid.rango']
 		}
-		estado inList: ESTADOS_VALIDOS
+		estado blank:false
 		calificacionRemise nullable:true
 		calificacionPasajero nullable:true
 	}
@@ -41,15 +58,15 @@ class Reserva {
 	}
 	
 	def getPendiente() {
-		estado == ESTADOS_VALIDOS[0]
+		estado == ESTADOS_RESERVA.Pendiente
 	}
 	
 	def getEnCurso() {
-		estado == ESTADOS_VALIDOS[1]
+		estado == ESTADOS_RESERVA.EnCurso
 	}
 	
 	def getRemisAsignado() {
-		estado == ESTADOS_VALIDOS[4]
+		estado == ESTADOS_RESERVA.ConRemise
 	}
 	
 	def esCancelablePorPasajero(def pasajeroId) {
@@ -57,7 +74,7 @@ class Reserva {
 	}
 	
 	def esCerrablePorAgencia(def agenciaId) {
-		(estado == ESTADOS_VALIDOS[1] && agencia.id == agenciaId)
+		(estado == ESTADOS_RESERVA.EnCurso && agencia.id == agenciaId)
 	}
 	
 	def esPasableAEnCursoPorAgencia(def agenciaId) {
@@ -69,7 +86,7 @@ class Reserva {
 			def limite = new Date().toCalendar()
 			limite.add(Calendar.MINUTE, -10)
 			if (limite.before(fechaReserva.toCalendar())) {
-				estado = ESTADOS_VALIDOS[3]
+				estado = ESTADOS_RESERVA.Cancelada
 				return true
 			}
 		}
@@ -78,24 +95,23 @@ class Reserva {
 	
 	def cerrar() {
 		if(enCurso) {
-			estado = ESTADOS_VALIDOS[2]
+			estado = ESTADOS_RESERVA.Cerrada
 		}
 	}
 	
 	def pasarAEnCurso() {
 		if(remisAsignado) {
-			estado = ESTADOS_VALIDOS[1]
+			estado = ESTADOS_RESERVA.EnCurso
 		}
+	}
+	
+	def asignarRemise(){
+		estado = ESTADOS_RESERVA.ConRemise
 	}
   
 	static mapping = {
 		paradas cascade: "all-delete-orphan"
 	}
-	
-	/*def getParadasList() {
-		return LazyList.decorate(paradas,	FactoryUtils.instantiateFactory(Parada.class))
-		//[].withLazyDefault {new Parada()}
-	}*/
 	
 	def calificarRemise(def puntaje) {
 		calificacionRemise = new Calificacion(puntaje:puntaje)
@@ -118,6 +134,6 @@ class Reserva {
 	}
 	
 	def getEstaCerrada() {
-		(estado == 'Cerrada')
+		(estado == ESTADOS_RESERVA.Cerrada)
 	}
 }

@@ -67,7 +67,7 @@ class ReservaService {
 
 		} else {
 			reserva.remise = Remise.get(Long.parseLong(remisId))
-			reserva.estado = 'Remis asignado'
+			reserva.asignarRemise()
 		}
 		reserva
 	}

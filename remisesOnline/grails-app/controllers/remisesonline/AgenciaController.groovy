@@ -37,12 +37,12 @@ class AgenciaController {
 	}
 
 	def searchReservas() {
-		[estadosReservas: Reserva.ESTADOS_VALIDOS]
+		[estadosReservas: ESTADOS_RESERVA]
 	}
 
 	def listReservas() {
 		def agenciaLogueada = Agencia.get(session.agencia.id)
-		def reservasEstado = agenciaLogueada?.reservas?.findAll {it.estado == params.estadoSeleccionado}
+		def reservasEstado = agenciaLogueada?.reservas?.findAll {it.estado == (ESTADOS_RESERVA)(params.estadoSeleccionado.replaceAll(" ", ""))}
 		return [reservas: reservasEstado]
 	}
 

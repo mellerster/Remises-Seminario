@@ -40,7 +40,7 @@ class ReservaController {
 			return false
 		}
 		if (reservaInstance.remise && reservaInstance.pendiente) {
-			reservaInstance.estado = Reserva.ESTADOS_VALIDOS[4]
+			reservaInstance.estado = ESTADOS_RESERVA.ConRemise
 		}
 
 		reservaInstance.save flush:true
@@ -61,7 +61,6 @@ class ReservaController {
 		respond reservaInstance
 	}
 
-	@Transactional
 	def update() {
 		
 		def reservaInstance = reservaService.updateRemise(params.id, params.version, params.remise.id)
@@ -187,7 +186,6 @@ class ReservaController {
 		} else {
 			flash.message = "No se puede calificar esta reserva, no esta cerrada o ya fue calificada"
 			redirect controller: 'pasajero', action: 'listReservas'
-
 		}
 	}
 

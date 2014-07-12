@@ -1,4 +1,5 @@
 import remisesonline.Comodidad
+import remisesonline.ESTADOS_RESERVA;
 import remisesonline.Itinerario
 import remisesonline.Parada
 import remisesonline.Agencia
@@ -108,8 +109,9 @@ class BootStrap {
 		reserva = new Reserva( fechaReserva: new Date() + 1)
 		reserva.pasajero = Pasajero.findByNombre('Hugo, the client')
 		reserva.agencia = Agencia.findByEmail('remises@remisloco.com')
+		reserva.remise = reserva.agencia.remises[0]
 		agencia.addToReservas(reserva)
-		reserva.estado = Reserva.ESTADOS_VALIDOS[1]
+		reserva.estado = ESTADOS_RESERVA.EnCurso
 		def parada3 = new Parada(calle: 'Ucrania', localidad: 'Posadas',\
 		descripcion: 'esta es lejos')
 		parada3.numero = 756
@@ -120,7 +122,6 @@ class BootStrap {
 		reserva.pasajero = Pasajero.findByNombre('Hugo, the client')
 		reserva.agencia = Agencia.findByEmail('remises@remisloco.com')
 		agencia.addToReservas(reserva)
-		reserva.estado = Reserva.ESTADOS_VALIDOS[0]
 		parada3 = new Parada(calle: 'Ucrania', localidad: 'Posadas',\
 		descripcion: 'esta es lejos')
 		parada3.numero = 777
@@ -132,7 +133,7 @@ class BootStrap {
 		reserva.agencia = Agencia.findByEmail('remises@remisloco.com')
 		reserva.remise = reserva.agencia.remises[0]
 		agencia.addToReservas(reserva)
-		reserva.estado = Reserva.ESTADOS_VALIDOS[2]
+		reserva.estado = ESTADOS_RESERVA.Cerrada
 		reserva.paradas[0] = parada1
 		reserva.paradas[1] = parada3
 
