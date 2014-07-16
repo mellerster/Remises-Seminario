@@ -20,8 +20,8 @@ class AgenciaCommand{
 class AgenciaController {
 
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",getRemises: "POST"]
-	def agenciaService 
-	
+	def agenciaService
+
 	def logout() {
 		session.agencia = null
 		redirect(action: 'login')
@@ -67,7 +67,7 @@ class AgenciaController {
 		}
 		Agencia agencia = new Agencia()
 		agencia.properties = agenciaInstance
-		
+
 		agencia.save flush:true,  failOnError:true
 		session.agencia = agencia
 		request.withFormat {
@@ -99,7 +99,7 @@ class AgenciaController {
 		}
 		Agencia agencia = Agencia.get(params.id)
 		agencia.properties = agenciaInstance
-		
+
 		agencia.save flush:true
 
 		request.withFormat {
@@ -148,8 +148,8 @@ class AgenciaController {
 			'*'{ render status: NOT_FOUND }
 		}
 	}
-	
+
 	def getRemises()  {
 		render agenciaService.getRemisesParaCombo(params.agenciaid)
-  } 
+	}
 }

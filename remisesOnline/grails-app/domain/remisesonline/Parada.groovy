@@ -8,10 +8,10 @@ class Parada {
 	String calle
 	Integer numero
 	String descripcion
-	
+
 	boolean deleted = false
 	static transients = [ 'deleted' ]
-	
+
 	static belongsTo = [Itinerario]
 
 	static constraints = {
@@ -20,21 +20,21 @@ class Parada {
 		descripcion blank: true, nullable: true
 		localidad blank: true, nullable: true
 	}
-	
+
 	String toString() {
 		return "${calle} ${numero} - ${localidad}"
 	}
-	
+
 	@Override
 	boolean equals(o) {
 		if(this.is(o)) return true
 		if(o == null) return false
-		// hibernate creates dynamic subclasses, so 
+		// hibernate creates dynamic subclasses, so
 		// checking o.class == class would fail most of the time
 		if(!o.instanceOf(Parada)) return false
-		
+
 		return this.calle == o.calle
-		
+
 	}
 
 	@Override

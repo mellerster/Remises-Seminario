@@ -19,14 +19,14 @@ class Itinerario {
 	String toString() {
 		return descripcion
 	}
-	
+
 	static mapping = {
 		paradas cascade:"all-delete-orphan"
 	}
-	
+
 	def getParadasList() {
 		return LazyList.decorate(
-							paradas,
-							FactoryUtils.instantiateFactory(Parada.class))
-		}
+		paradas,
+		FactoryUtils.instantiateFactory(Parada.class))
+	}
 }

@@ -21,12 +21,12 @@ class Agencia {
 	String toString() {
 		return nombre
 	}
-	
+
 	def choferesSinRemise() {
 		def choferesAsignados = remises.collect{it.chofer.id}
 		return choferes.findAll{!choferesAsignados.contains(it.id)}
 	}
-	
+
 	def choferesSinRemise(Chofer chofer) {
 		def choferesAsignados = remises.collect{it.chofer.id}
 		return choferes.findAll{!choferesAsignados.contains(it.id)}.add(chofer);

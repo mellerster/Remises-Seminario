@@ -10,7 +10,7 @@ class PasajeroController {
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 	def pasajeroService
-	
+
 	def logout() {
 		session.pasajero = null
 		redirect(action: 'login')
@@ -130,18 +130,18 @@ class PasajeroController {
 	}
 
 	def eliminarAmigo() {
-		def pasajeroSesion = Pasajero.get(session.pasajero?.id)	
+		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		pasajeroSesion.removeAmigo(Long.parseLong(params.id))
-		[redirect(action: "amigos")] 		
+		[redirect(action: "amigos")]
 	}
 
 	def listPromociones() {
 		[promociones: pasajeroService.getPromocionesVigentes()]
 	}
-	
+
 	def quieroIrJunto() {
 		def p = Pasajero.get(session.pasajero?.id)
-		[amigos: p.amigos]	
+		[amigos: p.amigos]
 	}
 
 	def showReservasAmigos() {
@@ -158,13 +158,13 @@ class PasajeroController {
 		def p = Pasajero.get(session.pasajero?.id)
 		[solicitudesRecibidas: pasajeroService.solicitudesQuieroIrJuntoPendientesAprobacion(p)]
 	}
-	
+
 	def listReservasDeAmigo() {
 		def p = Pasajero.get(params.pasajero)
-		def reservasCompartibles = pasajeroService.getReservasCompartibles(p)		
-		[reservas: reservasCompartibles, pasajero: p.id]	
+		def reservasCompartibles = pasajeroService.getReservasCompartibles(p)
+		[reservas: reservasCompartibles, pasajero: p.id]
 	}
-	
+
 	def unirseAReserva() {
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		pasajeroService.unirAReserva(pasajeroSesion, params)

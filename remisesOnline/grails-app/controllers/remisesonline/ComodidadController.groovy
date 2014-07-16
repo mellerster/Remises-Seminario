@@ -18,7 +18,7 @@ class ComodidadController {
 		Remise remise = Remise.get(remiseInstance.id)
 		remise.comodidades.clear()
 		params.grep{it.key.startsWith("comodidad_")}.each {
-				remise.comodidades << Comodidad.get((it.key - "comodidad_") as Integer)
+			remise.comodidades << Comodidad.get((it.key - "comodidad_") as Integer)
 		}
 		remise.save flush:true
 		redirect action: 'show', controller: 'remise',id:remiseInstance.id
@@ -33,9 +33,9 @@ class ComodidadController {
 			redirect controller: 'comodidad', action: 'modificar',id:params.id
 			return
 		}
-		
+
 		comodidad.save flush:true
-		
+
 		request.withFormat {
 			form multipartForm {
 				flash.message = message(code: 'default.created.message', args: [

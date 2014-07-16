@@ -11,7 +11,7 @@ class Pasajero {
 	Set amigos = []
 	Set solicitudesAmistad = []
 	Set solicitudesQuieroIrJunto = []
-	
+
 	static hasMany = [solicitudesQuieroIrJunto: SolicitudQuieroIrJunto, solicitudesAmistad: SolicitudAmistad, amigos: Pasajero, reservas: Reserva, destinosFrecuentes: Parada,calificaciones: Calificacion]
 
 	static constraints = {
@@ -24,24 +24,24 @@ class Pasajero {
 	String toString() {
 		return "${nombre} - ${email}"
 	}
-	
+
 	def getCalificacion() {
 		if (!calificaciones) { return 5 }
 		calificaciones.inject(0) { acc, val -> acc + val.puntaje } / calificaciones.size()
 	}
-	
+
 	def getNoAmigos() {
 		def todosMenosYo = Pasajero.findAllByIdNotEqual(this.id)
 		def misAmigos = amigos
 		misAmigos.addAll(solicitudesAmistad.grep{it.pendiente}.collect { it.solicitado })
-		
+
 		todosMenosYo - misAmigos
 	}
-	
-	def removeAmigo(def id){	
+
+	def removeAmigo(def id){
 		def p = Pasajero.get(id)
-		amigos.remove(p)	
-		p.amigos.remove(this)		
+		amigos.remove(p)
+		p.amigos.remove(this)
 	}
-	
+
 }

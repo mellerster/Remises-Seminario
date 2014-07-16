@@ -6,10 +6,10 @@ import org.apache.commons.collections.ListUtils;
 enum ESTADOS_RESERVA{
 	Pendiente,
 	EnCurso{
-			@Override
-            public String toString() {
-                return "En Curso";
-            }
+		@Override
+		public String toString() {
+			return "En Curso";
+		}
 	},
 	Cerrada,
 	Cancelada,
@@ -35,18 +35,18 @@ class Reserva {
 
 	static constraints = {
 		remise nullable: true, //en la reserva puede preferir algun remise o no
-					validator: { remis_param, reserva_ref ->
-							if (remis_param && reserva_ref?.agencia)
-								if (!(reserva_ref.agencia.remises.find{it.patente == remis_param.patente}))
-									return ['invalid.remisenopertenece']
-					 }
+		validator: { remis_param, reserva_ref ->
+			if (remis_param && reserva_ref?.agencia)
+				if (!(reserva_ref.agencia.remises.find{it.patente == remis_param.patente}))
+					return ['invalid.remisenopertenece']
+		}
 
 		fechaReserva validator: { fecha_res, reserva_ref ->
-				def now = new Date()
-				def calendar = now.toCalendar()
-				calendar.add(Calendar.MONTH, 1)
-				if	((fecha_res < now || fecha_res > calendar.time) && reserva_ref.estado != ESTADOS_RESERVA.Cerrada)
-					return ['invalid.rango']
+			def now = new Date()
+			def calendar = now.toCalendar()
+			calendar.add(Calendar.MONTH, 1)
+			if	((fecha_res < now || fecha_res > calendar.time) && reserva_ref.estado != ESTADOS_RESERVA.Cerrada)
+				return ['invalid.rango']
 		}
 		estado blank:false
 		calificacionRemise nullable:true
@@ -56,31 +56,31 @@ class Reserva {
 	String toString() {
 		"Fecha: $fechaReserva - Estado: $estado"
 	}
-	
+
 	def getPendiente() {
 		estado == ESTADOS_RESERVA.Pendiente
 	}
-	
+
 	def getEnCurso() {
 		estado == ESTADOS_RESERVA.EnCurso
 	}
-	
+
 	def getRemisAsignado() {
 		estado == ESTADOS_RESERVA.ConRemise
 	}
-	
+
 	def esCancelablePorPasajero(def pasajeroId) {
 		(pendiente && pasajero.id == pasajeroId)
 	}
-	
+
 	def esCerrablePorAgencia(def agenciaId) {
 		(estado == ESTADOS_RESERVA.EnCurso && agencia.id == agenciaId)
 	}
-	
+
 	def esPasableAEnCursoPorAgencia(def agenciaId) {
 		(remisAsignado && agencia.id == agenciaId && remise != null)
 	}
-	
+
 	def cancelar() {
 		if (pendiente) {
 			def limite = new Date().toCalendar()
@@ -92,27 +92,27 @@ class Reserva {
 		}
 		false
 	}
-	
+
 	def cerrar() {
 		if(enCurso) {
 			estado = ESTADOS_RESERVA.Cerrada
 		}
 	}
-	
+
 	def pasarAEnCurso() {
 		if(remisAsignado) {
 			estado = ESTADOS_RESERVA.EnCurso
 		}
 	}
-	
+
 	def asignarRemise(){
 		estado = ESTADOS_RESERVA.ConRemise
 	}
-  
+
 	static mapping = {
 		paradas cascade: "all-delete-orphan"
 	}
-	
+
 	def calificarRemise(def puntaje) {
 		if(esRemiseCalificable) {
 			calificacionRemise = new Calificacion(puntaje:puntaje)
@@ -123,7 +123,7 @@ class Reserva {
 			false
 		}
 	}
-	
+
 	def calificarPasajero(def puntaje) {
 		if(esPasajeroCalificable) {
 			calificacionPasajero = new Calificacion(puntaje:puntaje)
@@ -134,15 +134,15 @@ class Reserva {
 			false
 		}
 	}
-	
+
 	def getEsRemiseCalificable() {
 		(estaCerrada && calificacionRemise == null)
 	}
-	
+
 	def getEsPasajeroCalificable() {
 		(estaCerrada && calificacionPasajero == null)
 	}
-	
+
 	def getEstaCerrada() {
 		(estado == ESTADOS_RESERVA.Cerrada)
 	}

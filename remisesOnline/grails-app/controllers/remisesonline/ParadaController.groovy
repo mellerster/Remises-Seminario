@@ -7,97 +7,97 @@ import grails.transaction.Transactional
 
 class ParadaController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Parada.list(params), model:[paradaInstanceCount: Parada.count()]
-    }
+	def index(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		respond Parada.list(params), model:[paradaInstanceCount: Parada.count()]
+	}
 
-    def show(Parada paradaInstance) {
-        respond paradaInstance
-    }
+	def show(Parada paradaInstance) {
+		respond paradaInstance
+	}
 
-    def create() {
-        respond new Parada(params)
-    }
+	def create() {
+		respond new Parada(params)
+	}
 
-    @Transactional
-    def save(Parada paradaInstance) {
-        if (paradaInstance == null) {
-            notFound()
-            return
-        }
+	@Transactional
+	def save(Parada paradaInstance) {
+		if (paradaInstance == null) {
+			notFound()
+			return
+		}
 
-        if (paradaInstance.hasErrors()) {
-            respond paradaInstance.errors, view: 'create'
-            return
-        }
+		if (paradaInstance.hasErrors()) {
+			respond paradaInstance.errors, view: 'create'
+			return
+		}
 
-        paradaInstance.save flush:true
+		paradaInstance.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'paradaInstance.label', default: 'Parada'), paradaInstance.id])
-                redirect paradaInstance
-            }
-            '*' { respond paradaInstance, [status: CREATED] }
-        }
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.created.message', args: [message(code: 'paradaInstance.label', default: 'Parada'), paradaInstance.id])
+				redirect paradaInstance
+			}
+			'*' { respond paradaInstance, [status: CREATED] }
+		}
+	}
 
-    def edit(Parada paradaInstance) {
-        respond paradaInstance
-    }
+	def edit(Parada paradaInstance) {
+		respond paradaInstance
+	}
 
-    @Transactional
-    def update(Parada paradaInstance) {
-        if (paradaInstance == null) {
-            notFound()
-            return
-        }
+	@Transactional
+	def update(Parada paradaInstance) {
+		if (paradaInstance == null) {
+			notFound()
+			return
+		}
 
-        if (paradaInstance.hasErrors()) {
-            respond paradaInstance.errors, view: 'edit'
-            return
-        }
+		if (paradaInstance.hasErrors()) {
+			respond paradaInstance.errors, view: 'edit'
+			return
+		}
 
-        paradaInstance.save flush:true
+		paradaInstance.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Parada.label', default: 'Parada'), paradaInstance.id])
-                redirect paradaInstance
-            }
-            '*'{ respond paradaInstance, [status: OK] }
-        }
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.updated.message', args: [message(code: 'Parada.label', default: 'Parada'), paradaInstance.id])
+				redirect paradaInstance
+			}
+			'*'{ respond paradaInstance, [status: OK] }
+		}
+	}
 
-    @Transactional
-    def delete(Parada paradaInstance) {
+	@Transactional
+	def delete(Parada paradaInstance) {
 
-        if (paradaInstance == null) {
-            notFound()
-            return
-        }
+		if (paradaInstance == null) {
+			notFound()
+			return
+		}
 
-        paradaInstance.delete flush:true
+		paradaInstance.delete flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Parada.label', default: 'Parada'), paradaInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.deleted.message', args: [message(code: 'Parada.label', default: 'Parada'), paradaInstance.id])
+				redirect action:"index", method:"GET"
+			}
+			'*'{ render status: NO_CONTENT }
+		}
+	}
 
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'paradaInstance.label', default: 'Parada'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
-    }
+	protected void notFound() {
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'paradaInstance.label', default: 'Parada'), params.id])
+				redirect action: "index", method: "GET"
+			}
+			'*'{ render status: NOT_FOUND }
+		}
+	}
 }

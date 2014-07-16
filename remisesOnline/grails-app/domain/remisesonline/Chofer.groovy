@@ -7,7 +7,7 @@ class Chofer {
 	String direccion
 	String licencia
 	static belongsTo = [agencia: Agencia]
-	
+
 	static constraints = {
 		dni unique: true, blank: false, nullable: false, minValue: 1000000
 		nombre blank: false
@@ -15,7 +15,7 @@ class Chofer {
 		direccion()
 		licencia()
 	}
-	
+
 	String toString() {
 		return "${nombre} - ${dni}"
 	}

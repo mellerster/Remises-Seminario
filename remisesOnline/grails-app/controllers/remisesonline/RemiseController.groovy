@@ -142,5 +142,5 @@ class RemiseController {
 		response.outputStream.write(remise?.foto)
 	}
 
-	
+
 }

@@ -62,7 +62,7 @@ class ReservaController {
 	}
 
 	def update() {
-		
+
 		def reservaInstance = reservaService.updateRemise(params.id, params.version, params.remise.id)
 
 		if (reservaInstance.hasErrors()) {
@@ -147,19 +147,19 @@ class ReservaController {
 			'*'{ render status: NOT_FOUND }
 		}
 	}
-		
+
 	def cancelarReserva() {
 		def reserva = reservaService.cancelarReserva(Long.parseLong(params.id))
-		
+
 		if (reserva.hasErrors()) {
-				respond reserva.errors, view: 'show'
-				return
+			respond reserva.errors, view: 'show'
+			return
 		}
 		flash.message = 'Reserva cancelada'
 		reservaService.informarPasajeros(reserva)
 		redirect controller: 'reserva', action: 'show', id: params.id
 	}
-	
+
 	def cerrar() {
 		def reserva = reservaService.cerrar(params.id, session?.agencia?.id)
 		if(reserva.hasErrors()) {
@@ -169,7 +169,7 @@ class ReservaController {
 		flash.message = 'Reserva Cerrada'
 		redirect controller: 'reserva', action: 'show', id: params.id
 	}
-	
+
 	def pasarAEnCurso() {
 		def reserva = reservaService.pasarAEnCurso(params.id,session?.agencia?.id)
 		if(reserva.hasErrors()) {
@@ -192,7 +192,7 @@ class ReservaController {
 	@Transactional
 	def guardarCalificacionRemise() {
 		def reserva = Reserva.get(params.id)
-		
+
 		if(params.puntaje) {
 			if(reserva.calificarRemise(params.puntaje)) {
 				redirect controller: 'remise', action: 'show', id: reserva.remise.id
@@ -205,7 +205,7 @@ class ReservaController {
 			respond reserva, view: 'calificarRemise'
 		}
 	}
-	
+
 	def calificarPasajero(Reserva reservaInstance) {
 		if(reservaInstance.esPasajeroCalificable) {
 			respond reservaInstance
@@ -218,7 +218,7 @@ class ReservaController {
 	@Transactional
 	def guardarCalificacionPasajero() {
 		def reserva = Reserva.get(params.id)
-		
+
 		if(params.puntaje) {
 			if(reserva.calificarPasajero(params.puntaje)) {
 				redirect controller: 'pasajero', action: 'show', id: reserva.pasajero.id
@@ -231,11 +231,11 @@ class ReservaController {
 			respond reserva, view: 'calificarPasajero'
 		}
 	}
-	
+
 	def asignarRemis(Reserva reservaInstance) {
 		respond reservaInstance
 	}
-	
+
 	def asignar(Reserva reservaInstance ) {
 		respond reservaInstance, view: 'asignarRemis'
 	}
