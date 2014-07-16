@@ -37,7 +37,7 @@ class SolicitudAmistadController {
 				solicitudAmistadInstance.pasajero =	Pasajero.get(session.pasajero.id)
 				solicitudAmistadInstance.validate()
 		
-				if(solicitudAmistadService.comprobarSolicitudSinonimoExistente(solicitudAmistadInstance)) {
+				if(solicitudAmistadService.comprobarSolicitudPendienteExistente(solicitudAmistadInstance)) {
 					flash.message = "Existe una solicitud pendiente de dicha persona"
 					return [redirect(action:"listSolicitudesAmigosRecibidas", controller:"pasajero")]
 					} 
