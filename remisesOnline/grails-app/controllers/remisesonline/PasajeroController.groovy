@@ -130,8 +130,8 @@ class PasajeroController {
 	}
 
 	def eliminarAmigo() {
-		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
-		pasajeroService.eliminarAmistad(pasajeroSesion, Long.parseLong(params.id))
+		def pasajeroSesion = Pasajero.get(session.pasajero?.id)	
+		pasajeroSesion.removeAmigo(Long.parseLong(params.id))
 		[redirect(action: "amigos")] 		
 	}
 

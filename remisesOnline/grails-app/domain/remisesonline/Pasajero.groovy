@@ -37,4 +37,11 @@ class Pasajero {
 		
 		todosMenosYo - misAmigos
 	}
+	
+	def removeAmigo(def id){	
+		def p = Pasajero.get(id)
+		amigos.remove(p)	
+		p.amigos.remove(this)		
+	}
+	
 }
