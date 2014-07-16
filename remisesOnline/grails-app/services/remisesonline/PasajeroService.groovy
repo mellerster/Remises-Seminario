@@ -12,18 +12,6 @@ class PasajeroService {
 		Para Aceptarlo ingresa a RemisesOnline y anda a Mis Amigos y luego a Solicitudes Recibidas""")
 	}
 	
-	def eliminarAmistad(Pasajero pasajero, Long idAmigo) {
-		def amigo = Pasajero.get(idAmigo)
-		if(amigo) {
-			pasajero.removeFromAmigos(amigo)
-			pasajero.save flush:true
-			amigo.removeFromAmigos(pasajero)
-			amigo.save flush:true
-		} else {
-			flash.message = "amigo error"
-		}
-	}
-	
 	def getPromocionesVigentes() {
 		def fechaActual = new Date()
 		def promocionesVigentes = Promocion.findAllByFechaHastaGreaterThanEquals(fechaActual)
