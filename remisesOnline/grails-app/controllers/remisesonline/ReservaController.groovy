@@ -68,7 +68,7 @@ class ReservaController {
 		if (reservaInstance.hasErrors()) {
 			println reservaInstance.errors
 
-			respond reservaInstance.errors, view: 'asignarRemis'
+			respond reservaInstance.errors, view: 'show'
 			return
 		}
 
