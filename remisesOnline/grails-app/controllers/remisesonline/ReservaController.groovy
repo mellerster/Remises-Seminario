@@ -105,20 +105,11 @@ class ReservaController {
 	}
 
 	def eliminarParada(Reserva reservaInstance) {
-		println 'Id ' + reservaInstance?.id
-		println 'fechaReserva ' + reservaInstance?.fechaReserva
-		println 'Agencia ' + reservaInstance?.agencia
-		println 'params.id '
-		println params.id
-
 		def reserva = Reserva.get(reservaInstance?.id)
-		println 'fechaReserva2 ' + reserva?.fechaReserva
 		def parada1 = reserva.paradas.find{ it.id == Long.parseLong(params.id) }
 
 		if (reserva) {
-			//def parada2 = Parada.get(Long.parseLong(params.id))
 			if (parada1) {
-				println 'parada1 ok '
 			}
 			println parada1.calle + ' ' + parada1.numero
 
