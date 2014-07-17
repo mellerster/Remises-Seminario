@@ -234,9 +234,11 @@ class ReservaController {
 		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
 		def pasajeroSolicitado = Pasajero.get(Long.parseLong(params.pasajero))
 		if (reserva.solicitarUnirseAReserva(pasajeroSesion, pasajeroSolicitado)) {
-			[redirect(action: "showReservasAmigos", controller: "pasajero")]
+			redirect(action: "showReservasAmigos", controller: "pasajero")
+		} else {
+			flash.message = 'La reserva que intenta unirse ha sido cancelada.'
+			redirect controller: 'pasajero', action: 'quieroIrJunto'
 		}
-		flash.message = 'La reserva que intenta unirse ha sido cancelada.'
-		redirect controller: 'pasajero', action: 'quieroIrJunto'
+		
 	}
 }
