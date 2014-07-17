@@ -116,7 +116,6 @@ class Reserva {
 	def calificarRemise(def puntaje) {
 		if(esRemiseCalificable) {
 			calificacionRemise = new Calificacion(puntaje:puntaje)
-			calificacionRemise.save(flush:true)
 			remise.addToCalificaciones(calificacionRemise)
 			true
 		}else {
@@ -127,7 +126,6 @@ class Reserva {
 	def calificarPasajero(def puntaje) {
 		if(esPasajeroCalificable) {
 			calificacionPasajero = new Calificacion(puntaje:puntaje)
-			calificacionPasajero.save(flush:true)
 			pasajero.addToCalificaciones(calificacionPasajero)
 			true
 		} else {
