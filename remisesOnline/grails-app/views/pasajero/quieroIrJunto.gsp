@@ -8,6 +8,11 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
+		<g:if test="${flash.message}">
+			<ul class="errors" role="alert">
+				<li ><g:message error="${flash.message}"/></li>
+			</ul>
+		</g:if>
 		<a href="#list-solicitudAmistad" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
