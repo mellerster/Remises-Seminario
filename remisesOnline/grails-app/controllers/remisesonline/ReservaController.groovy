@@ -66,8 +66,6 @@ class ReservaController {
 		def reservaInstance = reservaService.updateRemise(params.id, params.version, params.remise.id)
 
 		if (reservaInstance.hasErrors()) {
-			println reservaInstance.errors
-
 			respond reservaInstance.errors, view: 'show'
 			return
 		}
