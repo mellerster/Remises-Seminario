@@ -164,10 +164,4 @@ class PasajeroController {
 		def reservasCompartibles = pasajeroService.getReservasCompartibles(p)
 		[reservas: reservasCompartibles, pasajero: p.id]
 	}
-
-	def unirseAReserva() {
-		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
-		pasajeroService.unirAReserva(pasajeroSesion, params)
-		[redirect(action: "showReservasAmigos")]
-	}
 }

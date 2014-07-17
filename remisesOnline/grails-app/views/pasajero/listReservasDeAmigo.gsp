@@ -46,7 +46,7 @@
 							<td>${fieldValue(bean: reserva, field: "agencia")}</td>
 							<td><g:link action="show" controller="remise" id="${reserva.remise?.id}">${fieldValue(bean: reserva, field: "remise")}</g:link></td>
 							<td>
-								<g:link action="unirseAReserva" controller="pasajero" id="${reserva.id}" params="[pasajero: pasajero]"><input type="button" value="Si" /></g:link>
+								<g:link action="solicitarUnirse" controller="reserva" id="${reserva.id}" params="[pasajero: pasajero]"><input type="button" value="Si" /></g:link>
 							</td>
 						</tr>
 					</g:each>

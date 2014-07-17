@@ -32,17 +32,4 @@ class PasajeroService {
 		def solicitudes = SolicitudQuieroIrJunto.findAllBySolicitado(p)
 		solicitudes.grep{solicitud -> solicitud.pendiente}
 	}
-
-	def unirAReserva(Pasajero pasajeroSesion, Map params) {
-		def re = Reserva.get(Long.parseLong(params.id))
-		def pas = Pasajero.get(Long.parseLong(params.pasajero))
-		if (re.pendiente) {
-			def solicitud = new SolicitudQuieroIrJunto(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: re , fechaCreada: new Date(), estado: 'Pendiente')
-			solicitud.save flush:true
-			pasajeroSesion.addToSolicitudesQuieroIrJunto(solicitud)
-			pasajeroSesion.save flush:true
-		} else {
-			flash.message = 'La reserva que intenta unirse ha sido cancelada.'
-		}
-	}
 }

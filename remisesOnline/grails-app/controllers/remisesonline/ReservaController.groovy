@@ -239,4 +239,12 @@ class ReservaController {
 	def asignar(Reserva reservaInstance ) {
 		respond reservaInstance, view: 'asignarRemis'
 	}
+	
+	def solicitarUnirse(){
+		def reserva = Reserva.get(params.id)
+		def pasajeroSesion = Pasajero.get(session.pasajero?.id)
+		def pasajeroSolicitado = Pasajero.get(Long.parseLong(params.pasajero))
+		reserva.solicitarUnirseAReserva(pasajeroSesion, pasajeroSolicitado)
+		[redirect(action: "showReservasAmigos", controller: "pasajero")]
+	}
 }

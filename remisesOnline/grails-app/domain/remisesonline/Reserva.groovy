@@ -146,4 +146,13 @@ class Reserva {
 	def getEstaCerrada() {
 		(estado == ESTADOS_RESERVA.Cerrada)
 	}
+	
+	def solicitarUnirseAReserva(Pasajero pasajeroSesion, Pasajero pas){
+		if (this.pendiente){
+			def solicitud = new SolicitudQuieroIrJunto(pasajero: pasajeroSesion, solicitado: pas, reservaSolicitada: this)
+			pasajeroSesion.addToSolicitudesQuieroIrJunto(solicitud)
+		} else {
+			flash.message = 'La reserva que intenta unirse ha sido cancelada.'
+		}
+	}
 }
